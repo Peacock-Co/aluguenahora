@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/aluguenahora/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/aluguenahora/static/js/main.4fc31bf6.chunk.js",
+    "main.js.map": "/aluguenahora/static/js/main.4fc31bf6.chunk.js.map",
+    "runtime-main.js": "/aluguenahora/static/js/runtime-main.f9943323.js",
+    "runtime-main.js.map": "/aluguenahora/static/js/runtime-main.f9943323.js.map",
+    "static/js/2.d2ad0633.chunk.js": "/aluguenahora/static/js/2.d2ad0633.chunk.js",
+    "static/js/2.d2ad0633.chunk.js.map": "/aluguenahora/static/js/2.d2ad0633.chunk.js.map",
+    "index.html": "/aluguenahora/index.html",
+    "precache-manifest.de27a9f0a3a3ddd07fa5125322fbf68b.js": "/aluguenahora/precache-manifest.de27a9f0a3a3ddd07fa5125322fbf68b.js",
+    "service-worker.js": "/aluguenahora/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/aluguenahora/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.d2ad0633.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.d2ad0633.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f9943323.js",
+    "static/js/2.d2ad0633.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.4fc31bf6.chunk.js"
+  ]
+}
