@@ -4,6 +4,7 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Contact from './components/contact/Contact';
 import About from './components/about/About';
+import SideBar from './components/sidebar/SideBar';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({});
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className={classes.container}>
       <Header />
+      <SideBar />
       <Switch>
         <Route exact from='/' render={(props) => <Home {...props} />} />
         <Route
