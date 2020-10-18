@@ -1,79 +1,85 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// React
+import React, { useState } from 'react';
 
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+// MU Components
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Link,
+  Typography,
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  makeStyles,
+} from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
+// MU Icons
+import {
+  Menu as MenuIcon,
+  HomeWorkOutlined,
+  Home as HomeIcon,
+  HelpOutlineOutlined,
+} from '@material-ui/icons';
+
+const useStyles = makeStyles((style: theme) => ({
+  list: {
+    width: '15rem',
   },
 }));
 
-export default function MenuAppBar() {
+const Header = () => {
+  // Styles
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  // state
+  const [drawerOpen, setDrawerOpen] = useState(true);
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  //functions
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+  const drawerItems = [
+    { text: 'Alugue na Hora', icon: <HomeIcon /> },
+    { text: 'Imóveis para Alugar', icon: <HomeWorkOutlined /> },
+    { text: 'Quem somos', icon: <HelpOutlineOutlined /> },
+  ];
   return (
-    <div className={classes.root}>
-      <AppBar position='static'>
+    <div>
+      <AppBar position='static' color='primary'>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
-            ALUGUE NA HORA <i className='fas fa-clock'></i>
+            <Link href='/' variant='h6' color='inherit' underline='none'>
+              Alugue na HORA <i className='fas fa-clock'></i>
+            </Link>
           </Typography>
+          <Box flexGrow={1} />
 
-          <div>
-            <IconButton
-              edge='start'
-              className={classes.menuButton}
-              color='inherit'
-              aria-label='menu'
-              onClick={handleMenu}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id='menu-appbar'
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-            </Menu>
-          </div>
+          <IconButton color='inherit' onClick={toggleDrawer}>
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
+        <Drawer
+          anchor='right'
+          variant='temporary'
+          onClose={toggleDrawer}
+          open={!drawerOpen}
+        >
+          <List className={classes.list}>
+            {drawerItems.map((prop) => (
+              <ListItem onClick={toggleDrawer} button key={prop.text}>
+                <ListItemIcon>{prop.icon}</ListItemIcon>
+                <ListItemText>{prop.text}</ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
       </AppBar>
     </div>
   );
-}
+};
+export default Header;
