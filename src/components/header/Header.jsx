@@ -50,7 +50,7 @@ const Header = () => {
   ];
   return (
     <div>
-      <AppBar position='static' color='primary'>
+      <AppBar position='sticky' color='primary'>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
             <Link href='/' variant='h6' color='inherit' underline='none'>
