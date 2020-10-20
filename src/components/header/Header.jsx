@@ -53,7 +53,7 @@ const Header = () => {
       <AppBar position='sticky' color='primary'>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
-            <Link href='/' variant='h6' color='inherit' underline='none'>
+            <Link href='#home' variant='h6' color='inherit' underline='none'>
               Alugue na HORA <i className='fas fa-clock'></i>
             </Link>
           </Typography>

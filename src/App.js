@@ -10,7 +10,7 @@ const App = () => {
     <div>
       <Header />
       <Switch>
-        <Route exact from='/' render={(props) => <Home {...props} />} />
+        <Route exact path='/' render={(props) => <Home {...props} />} />
         <Route
           exact
           path='/contact'
