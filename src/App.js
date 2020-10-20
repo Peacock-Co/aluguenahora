@@ -1,7 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Contact from './components/contact/Contact';
@@ -11,7 +9,7 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact from='/' render={(props) => <Home {...props} />} />
           <Route
