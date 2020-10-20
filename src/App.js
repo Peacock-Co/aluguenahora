@@ -1,23 +1,21 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Contact from './components/contact/Contact';
 import About from './components/about/About';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <Switch>
-        <Route exact path='/' render={(props) => <Home {...props} />} />
-        <Route
-          exact
-          path='/contact'
-          render={(props) => <Contact {...props} />}
-        />
-        <Route exact path='/about' render={(props) => <About {...props} />} />
-      </Switch>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/contact' component={Contact} />
+          <Route path='/about' component={About} />
+        </Switch>
+      </Router>
     </div>
   );
 };
