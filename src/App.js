@@ -3,7 +3,7 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Contact from './components/contact/Contact';
 import About from './components/about/About';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -11,9 +11,13 @@ const App = () => {
       <Router>
         <Header />
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/contact' component={Contact} />
-          <Route path='/about' component={About} />
+          <Route exact from='/' render={(props) => <Home {...props} />} />
+          <Route
+            exact
+            from='/contact'
+            render={(props) => <Contact {...props} />}
+          />
+          <Route exact from='/about' render={(props) => <About {...props} />} />
         </Switch>
       </Router>
     </div>

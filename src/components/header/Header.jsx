@@ -1,6 +1,9 @@
 // React
 import React, { useState } from 'react';
 
+// React Router
+import { withRouter } from 'react-router-dom';
+
 // MU Components
 import {
   AppBar,
@@ -31,7 +34,8 @@ const useStyles = makeStyles((style: theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = (props) => {
+  const { history } = props;
   // Styles
   const classes = useStyles();
 
@@ -44,9 +48,21 @@ const Header = () => {
   };
 
   const drawerItems = [
-    { text: 'Alugue na Hora', icon: <HomeIcon /> },
-    { text: 'Imóveis para Alugar', icon: <HomeWorkOutlined /> },
-    { text: 'Quem somos', icon: <HelpOutlineOutlined /> },
+    {
+      text: 'Alugue na Hora',
+      icon: <HomeIcon />,
+      onClick: () => history.push('/'),
+    },
+    {
+      text: 'Imóveis para Alugar',
+      icon: <HomeWorkOutlined />,
+      onClick: () => history.push('/contact'),
+    },
+    {
+      text: 'Quem somos',
+      icon: <HelpOutlineOutlined />,
+      onClick: () => history.push('/about'),
+    },
   ];
   return (
     <div>
@@ -70,16 +86,19 @@ const Header = () => {
           open={!drawerOpen}
         >
           <List className={classes.list}>
-            {drawerItems.map((prop) => (
-              <ListItem onClick={toggleDrawer} button key={prop.text}>
-                <ListItemIcon>{prop.icon}</ListItemIcon>
-                <ListItemText>{prop.text}</ListItemText>
-              </ListItem>
-            ))}
+            {drawerItems.map((item, index) => {
+              const { text, icon, onClick } = item;
+              return (
+                <ListItem onClick={(toggleDrawer, onClick)} button key={text}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText>{text}</ListItemText>
+                </ListItem>
+              );
+            })}
           </List>
         </Drawer>
       </AppBar>
     </div>
   );
 };
-export default Header;
+export default withRouter(Header);
