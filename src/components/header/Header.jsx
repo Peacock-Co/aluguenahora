@@ -1,104 +1,92 @@
 // React
 import React, { useState } from 'react';
 
-// React Router
-import { withRouter } from 'react-router-dom';
+// React router
+import { Link } from 'react-router-dom';
 
-// MU Components
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Link,
-  Typography,
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  makeStyles,
-} from '@material-ui/core';
+// M-U Components
+import { AppBar, Toolbar, Tabs, Tab } from '@material-ui/core';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
 
-// MU Icons
-import {
-  Menu as MenuIcon,
-  HomeWorkOutlined,
-  Home as HomeIcon,
-  HelpOutlineOutlined,
-} from '@material-ui/icons';
+function ElevationScroll(props) {
+  const { children } = props;
 
-const useStyles = makeStyles((style: theme) => ({
-  list: {
-    width: '15rem',
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
+const useStyles = makeStyles((theme) => ({
+  toolbarMagin: {
+    ...theme.mixins.toolbar,
+  },
+  tabContainer: {
+    marginLeft: 'auto',
+  },
+  tab: {
+    ...theme.typography.tab,
+    minWidth: 10,
+    marginLeft: '25px',
   },
 }));
 
 const Header = (props) => {
-  const { history } = props;
-  // Styles
   const classes = useStyles();
+  const [value, setValue] = useState(0);
 
-  // state
-  const [drawerOpen, setDrawerOpen] = useState(true);
-
-  //functions
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
+  const onChangeHandler = (e, value) => {
+    setValue(value);
   };
 
-  const drawerItems = [
-    {
-      text: 'Alugue na Hora',
-      icon: <HomeIcon />,
-      onClick: () => history.push('/'),
-    },
-    {
-      text: 'Imóveis para Alugar',
-      icon: <HomeWorkOutlined />,
-      onClick: () => history.push('/contact'),
-    },
-    {
-      text: 'Quem somos',
-      icon: <HelpOutlineOutlined />,
-      onClick: () => history.push('/about'),
-    },
-  ];
   return (
-    <div>
-      <AppBar position='sticky' color='primary'>
-        <Toolbar>
-          <Typography variant='h6' className={classes.title}>
-            <Link href='/' variant='h6' color='inherit' underline='none'>
-              Alugue na HORA <i className='fas fa-clock'></i>
-            </Link>
-          </Typography>
-          <Box flexGrow={1} />
-
-          <IconButton color='inherit' onClick={toggleDrawer}>
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-        <Drawer
-          anchor='right'
-          variant='temporary'
-          onClose={toggleDrawer}
-          open={!drawerOpen}
-        >
-          <List className={classes.list}>
-            {drawerItems.map((item, index) => {
-              const { text, icon, onClick } = item;
-              return (
-                <ListItem onClick={(toggleDrawer, onClick)} button key={text}>
-                  <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText>{text}</ListItemText>
-                </ListItem>
-              );
-            })}
-          </List>
-        </Drawer>
-      </AppBar>
-    </div>
+    <>
+      <ElevationScroll>
+        <AppBar position='fixed'>
+          <Toolbar>
+            <Typography variant='h4'>Alugue na HORA</Typography>
+            <Tabs
+              value={value}
+              onChange={onChangeHandler}
+              className={classes.tabContainer}
+              indicatorColor='primary'
+            >
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to='/'
+                label='Home'
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to='/imoveis-para-alugar'
+                label='Imóveis para alugar'
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to='/imoveis-para-comprar'
+                label='Imóveis para comprar'
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to='/quem-somos'
+                label='Quem somos'
+              />
+            </Tabs>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
+      <div className={classes.toolbarMagin} />
+    </>
   );
 };
-export default withRouter(Header);
+export default Header;

@@ -1,26 +1,36 @@
 import React from 'react';
+import { ThemeProvider } from '@material-ui/styles';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import theme from './components/ui/Theme';
+
 import Header from './components/header/Header';
-import Home from './components/home/Home';
-import Contact from './components/contact/Contact';
+import Home from './components/home-page/Home';
+import HousesToRent from './components/houses/HousesToRent';
+import HousesToBuy from './components/houses/HousesToBuy';
 import About from './components/about/About';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div>
-      <Router>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact from='/' render={(props) => <Home {...props} />} />
+          <Route exact path='/' component={() => <Home />} />
           <Route
             exact
-            from='/contact'
-            render={(props) => <Contact {...props} />}
+            path='/imoveis-para-alugar'
+            component={() => <HousesToRent />}
           />
-          <Route exact from='/about' render={(props) => <About {...props} />} />
+          <Route
+            exact
+            path='/imoveis-para-comprar'
+            component={() => <HousesToBuy />}
+          />
+          <Route exact path='/quem-somos' component={() => <About />} />
         </Switch>
-      </Router>
-    </div>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
