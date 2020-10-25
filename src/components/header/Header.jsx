@@ -68,6 +68,7 @@ const Header = (props) => {
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Handler Functions
   const handleChange = (e, value) => {
