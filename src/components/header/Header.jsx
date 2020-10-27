@@ -82,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerItems: {
     ...theme.typography.tab,
+    fontSize: 14,
     opacity: 0.6,
   },
   drawerItemSelected: {
@@ -124,90 +125,65 @@ const Header = (props) => {
   };
 
   const menuOptions = [
-    { name: 'Para proprietários', link: '/para-proprietarios' },
-    { name: 'Anunciar imóvel para alugar', link: '/anunciar-para-alugar' },
-    { name: 'Anunciar imóvel para vender', link: '/anunciar-para-vender' },
-    { name: 'Meus Imóveis', link: '/meus-imoveis' },
+    {
+      name: 'Para proprietários',
+      link: '/para-proprietarios',
+      activeIndex: 3,
+      selectedIndex: 0,
+    },
+    {
+      name: 'Anunciar imóvel para alugar',
+      link: '/anunciar-para-alugar',
+      activeIndex: 3,
+      selectedIndex: 1,
+    },
+    {
+      name: 'Anunciar imóvel para vender',
+      link: '/anunciar-para-vender',
+      activeIndex: 3,
+      selectedIndex: 2,
+    },
+    {
+      name: 'Meus Imóveis',
+      link: '/meus-imoveis',
+      activeIndex: 3,
+      selectedIndex: 3,
+    },
+  ];
+
+  const routes = [
+    { name: 'Home', link: '/', activeIndex: 0 },
+    {
+      name: 'Imóveis para alugar',
+      link: '/imoveis-para-alugar',
+      activeIndex: 1,
+    },
+    {
+      name: 'Imóveis para comprar',
+      link: '/imoveis-para-comprar',
+      activeIndex: 2,
+    },
+    { name: 'Para proprietarios', link: '/para-proprietarios', activeIndex: 3 },
+    { name: 'Quem somos', link: '/quem-somos', activeIndex: 4 },
+    { name: 'Contate nos', link: '/contato', activeIndex: 5 },
   ];
 
   useEffect(() => {
-    if (window.location.pathname === '/' && value !== 0) {
-      setValue(0);
-    } else if (
-      window.location.pathname === '/imoveis-para-alugar' &&
-      value !== 1
-    ) {
-      setValue(1);
-    } else if (
-      window.location.pathname === '/imoveis-para-comprar' &&
-      value !== 2
-    ) {
-      setValue(2);
-    } else if (
-      window.location.pathname === '/para-proprietarios' &&
-      value !== 3
-    ) {
-      setValue(3);
-    } else if (window.location.pathname === '/quem-somos' && value !== 4) {
-      setValue(4);
-    } else if (window.location.pathname === '/contato' && value !== 5) {
-      setValue(5);
-    }
-
-    switch (window.location.pathname) {
-      case '/':
-        if (value !== 0) {
-          setValue(0);
-        }
-        break;
-      case '/imoveis-para-alugar':
-        if (value !== 1) {
-          setValue(1);
-        }
-        break;
-      case '/imoveis-para-comprar':
-        if (value !== 2) {
-          setValue(2);
-        }
-        break;
-      case '/para-proprietarios':
-        if (value !== 3) {
-          setValue(3);
-          setSelectedIndex(0);
-        }
-        break;
-      case '/anunciar-para-alugar':
-        if (value !== 3) {
-          setValue(3);
-          setSelectedIndex(1);
-        }
-        break;
-      case '/anunciar-para-vender':
-        if (value !== 3) {
-          setValue(3);
-          setSelectedIndex(2);
-        }
-        break;
-      case '/meus-imoveis':
-        if (value !== 3) {
-          setValue(3);
-          setSelectedIndex(3);
-        }
-        break;
-      case '/quem-somos':
-        if (value !== 4) {
-          setValue(4);
-        }
-        break;
-      case '/contato':
-        if (value !== 5) {
-          setValue(5);
-        }
-        break;
-      default:
-        break;
-    }
-  }, [value]);
+    [...menuOptions, ...routes].forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex);
+            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
+              setSelectedIndex(route.selectedIndex);
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, menuOptions, selectedIndex, routes]);
 
   const tabs = (
     <>
