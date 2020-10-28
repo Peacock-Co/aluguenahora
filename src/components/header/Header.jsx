@@ -13,11 +13,18 @@ import {
   Button,
   Menu,
   MenuItem,
+  IconButton,
+  Typography,
+  useScrollTrigger,
+  useMediaQuery,
+  SwipeableDrawer,
+  List,
+  ListItem,
+  ListItemText,
 } from '@material-ui/core';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -50,69 +57,243 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'transparent',
     },
+    [theme.breakpoints.down('md')]: {},
   },
   menuItem: {
     ...theme.typography.tab,
     fontSize: 14,
-    opacity: 0.7,
+    opacity: 0.6,
     '&:hover': {
-      opacity: 1,
+      opacity: 1.1,
     },
+  },
+  drawerIconContainer: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    marginLeft: 'auto',
+  },
+  drawerIcon: {
+    height: '40px',
+    width: '40px',
+  },
+  drawer: {
+    backgroundColor: theme.palette.common.algBlue,
+  },
+  drawerItems: {
+    ...theme.typography.tab,
+    fontSize: 14,
+    opacity: 0.6,
+  },
+  drawerItemSelected: {
+    opacity: 1.1,
+  },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
   },
 }));
 
 const Header = (props) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   // Use states Hooks
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   // Handler Functions
-  const handleChange = (e, value) => {
-    setValue(value);
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
   };
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
-    setOpen(true);
+    setOpenMenu(true);
+  };
+
+  const handleMenuItemClick = (e, i) => {
+    setAnchorEl(null);
+    setOpenMenu(false);
+    setSelectedIndex(i);
   };
 
   const handleClose = (e) => {
     setAnchorEl(null);
-    setOpen(false);
+    setOpenMenu(false);
   };
 
+  const menuOptions = [
+    {
+      name: 'Para proprietários',
+      link: '/para-proprietarios',
+      activeIndex: 3,
+      selectedIndex: 0,
+    },
+    {
+      name: 'Anunciar imóvel para alugar',
+      link: '/anunciar-para-alugar',
+      activeIndex: 3,
+      selectedIndex: 1,
+    },
+    {
+      name: 'Anunciar imóvel para vender',
+      link: '/anunciar-para-vender',
+      activeIndex: 3,
+      selectedIndex: 2,
+    },
+    {
+      name: 'Meus Imóveis',
+      link: '/meus-imoveis',
+      activeIndex: 3,
+      selectedIndex: 3,
+    },
+  ];
+
+  const routes = [
+    { name: 'Home', link: '/', activeIndex: 0 },
+    {
+      name: 'Imóveis para alugar',
+      link: '/imoveis-para-alugar',
+      activeIndex: 1,
+    },
+    {
+      name: 'Imóveis para comprar',
+      link: '/imoveis-para-comprar',
+      activeIndex: 2,
+    },
+    {
+      name: 'Para proprietarios',
+      link: '/para-proprietarios',
+      activeIndex: 3,
+      ariaOwns: anchorEl ? 'simple-menu' : undefined,
+      ariaPopup: anchorEl ? 'true' : undefined,
+      mouseOver: (event) => handleClick(event),
+    },
+    { name: 'Quem somos', link: '/quem-somos', activeIndex: 4 },
+    { name: 'Contate nos', link: '/contato', activeIndex: 5 },
+  ];
+
   useEffect(() => {
-    if (window.location.pathname === '/' && value !== 0) {
-      setValue(0);
-    } else if (
-      window.location.pathname === '/imoveis-para-alugar' &&
-      value !== 1
-    ) {
-      setValue(1);
-    } else if (
-      window.location.pathname === '/imoveis-para-comprar' &&
-      value !== 2
-    ) {
-      setValue(2);
-    } else if (
-      window.location.pathname === '/para-proprietarios' &&
-      value !== 3
-    ) {
-      setValue(3);
-    } else if (window.location.pathname === '/quem-somos' && value !== 4) {
-      setValue(4);
-    } else if (window.location.pathname === '/contato' && value !== 5) {
-      setValue(5);
-    }
-  }, [value]);
+    [...menuOptions, ...routes].forEach((route) => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex);
+            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
+              setSelectedIndex(route.selectedIndex);
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, menuOptions, selectedIndex, routes]);
+
+  const tabs = (
+    <>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        className={classes.tabContainer}
+        indicatorColor='primary'
+      >
+        {routes.map((route, index) => (
+          <Tab
+            key={`${route}${index}`}
+            className={classes.tab}
+            component={Link}
+            to={route.link}
+            label={route.name}
+            aria-owns={route.ariaOwns}
+            aria-haspopup={route.ariaPopup}
+            onMouseOver={route.mouseOver}
+          />
+        ))}
+      </Tabs>
+      <Menu
+        id='simple-menu'
+        anchorEl={anchorEl}
+        open={openMenu}
+        onClose={handleClose}
+        classes={{ paper: classes.menu }}
+        MenuListProps={{ onMouseLeave: handleClose }}
+        elevation={0}
+        style={{ zIndex: 1302 }}
+        keepMounted
+      >
+        {menuOptions.map((option, i) => (
+          <MenuItem
+            key={`${option}${i}`}
+            component={Link}
+            to={option.link}
+            classes={{ root: classes.menuItem }}
+            onClick={(event) => {
+              handleMenuItemClick(event, i);
+              setValue(1);
+              handleClose(true);
+            }}
+            selected={i === selectedIndex && value === 1}
+          >
+            {option.name}
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
+  );
+
+  const drawer = (
+    <>
+      <SwipeableDrawer
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}
+      >
+        <div className={classes.toolbarMagin} />
+        <List disablePadding>
+          {routes.map((route) => (
+            <ListItem
+              divider
+              key={`${route}${route.activeIndex}`}
+              button
+              component={Link}
+              to={route.link}
+              selected={value === route.activeIndex}
+              classes={{ selected: classes.drawerItemSelected }}
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.activeIndex);
+              }}
+            >
+              <ListItemText className={classes.drawerItems} disableTypography>
+                {route.name}
+              </ListItemText>
+            </ListItem>
+          ))}
+        </List>
+      </SwipeableDrawer>
+      <IconButton
+        className={classes.drawerIconContainer}
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple
+      >
+        <MenuIcon className={classes.drawerIcon} />
+      </IconButton>
+    </>
+  );
 
   return (
     <>
       <ElevationScroll>
-        <AppBar position='fixed'>
+        <AppBar position='fixed' className={classes.appbar}>
           <Toolbar>
             <Button
               component={Link}
@@ -125,106 +306,7 @@ const Header = (props) => {
                 Alugue na HORA <i className='far fa-clock'></i>
               </Typography>
             </Button>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              className={classes.tabContainer}
-              indicatorColor='primary'
-            >
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to='/'
-                label='Home'
-              />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to='/imoveis-para-alugar'
-                label='Imóveis para alugar'
-              />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to='/imoveis-para-comprar'
-                label='Imóveis para comprar'
-              />
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Tab
-                  aria-owns={anchorEl ? 'simple-menu' : undefined}
-                  aria-haspopup={anchorEl ? 'true' : undefined}
-                  className={classes.tab}
-                  component={Link}
-                  onMouseOver={(event) => handleClick(event)}
-                  to='/para-proprietarios'
-                  label='Para proprietários'
-                />
-                <ExpandMoreIcon />
-              </div>
-
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to='/quem-somos'
-                label='Quem somos'
-              />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to='/contato'
-                label='Contate nos'
-              />
-            </Tabs>
-
-            {/* Menu items */}
-
-            <Menu
-              id='simple-menu'
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              classes={{ paper: classes.menu }}
-              MenuListProps={{ onMouseLeave: handleClose }}
-            >
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                  setValue(3);
-                }}
-                component={Link}
-                to='/anunciar-para-alugar'
-                classes={{ root: classes.menuItem }}
-              >
-                Anunciar imóvel para alugar
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                  setValue(3);
-                }}
-                component={Link}
-                to='/anunciar-para-vender'
-                classes={{ root: classes.menuItem }}
-              >
-                Anunciar imóvel para vender
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleClose();
-                  setValue(3);
-                }}
-                component={Link}
-                to='/meus-imoveis'
-                classes={{ root: classes.menuItem }}
-              >
-                Meus imóvies
-              </MenuItem>
-            </Menu>
+            {matches ? drawer : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
