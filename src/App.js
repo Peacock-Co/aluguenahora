@@ -9,6 +9,7 @@ import Home from './components/home-page/Home';
 import HousesToRent from './components/houses/HousesToRent';
 import HousesToBuy from './components/houses/HousesToBuy';
 import About from './components/about/About';
+import Contact from './components/contact/Contact';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             component={() => <HousesToBuy />}
           />
           <Route exact path='/quem-somos' component={() => <About />} />
+          <Route exact path='/contato' component={() => <Contact />} />
         </Switch>
       </BrowserRouter>
     </ThemeProvider>
