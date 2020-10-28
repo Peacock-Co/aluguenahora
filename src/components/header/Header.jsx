@@ -88,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
   drawerItemSelected: {
     opacity: 1.1,
   },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
+  },
 }));
 
 const Header = (props) => {
@@ -163,7 +166,14 @@ const Header = (props) => {
       link: '/imoveis-para-comprar',
       activeIndex: 2,
     },
-    { name: 'Para proprietarios', link: '/para-proprietarios', activeIndex: 3 },
+    {
+      name: 'Para proprietarios',
+      link: '/para-proprietarios',
+      activeIndex: 3,
+      ariaOwns: anchorEl ? 'simple-menu' : undefined,
+      ariaPopup: anchorEl ? 'true' : undefined,
+      mouseOver: (event) => handleClick(event),
+    },
     { name: 'Quem somos', link: '/quem-somos', activeIndex: 4 },
     { name: 'Contate nos', link: '/contato', activeIndex: 5 },
   ];
@@ -193,40 +203,18 @@ const Header = (props) => {
         className={classes.tabContainer}
         indicatorColor='primary'
       >
-        <Tab className={classes.tab} component={Link} to='/' label='Home' />
-        <Tab
-          className={classes.tab}
-          component={Link}
-          to='/imoveis-para-alugar'
-          label='Imóveis para alugar'
-        />
-        <Tab
-          className={classes.tab}
-          component={Link}
-          to='/imoveis-para-comprar'
-          label='Imóveis para comprar'
-        />
-        <Tab
-          aria-owns={anchorEl ? 'simple-menu' : undefined}
-          aria-haspopup={anchorEl ? 'true' : undefined}
-          className={classes.tab}
-          component={Link}
-          onMouseOver={(event) => handleClick(event)}
-          to='/para-proprietarios'
-          label='Para proprietários'
-        />
-        <Tab
-          className={classes.tab}
-          component={Link}
-          to='/quem-somos'
-          label='Quem somos'
-        />
-        <Tab
-          className={classes.tab}
-          component={Link}
-          to='/contato'
-          label='Contate nos'
-        />
+        {routes.map((route, index) => (
+          <Tab
+            key={`${route}${index}`}
+            className={classes.tab}
+            component={Link}
+            to={route.link}
+            label={route.name}
+            aria-owns={route.ariaOwns}
+            aria-haspopup={route.ariaPopup}
+            onMouseOver={route.mouseOver}
+          />
+        ))}
       </Tabs>
       <Menu
         id='simple-menu'
@@ -235,10 +223,13 @@ const Header = (props) => {
         onClose={handleClose}
         classes={{ paper: classes.menu }}
         MenuListProps={{ onMouseLeave: handleClose }}
+        elevation={0}
+        style={{ zIndex: 1302 }}
+        keepMounted
       >
         {menuOptions.map((option, i) => (
           <MenuItem
-            key={option}
+            key={`${option}${i}`}
             component={Link}
             to={option.link}
             classes={{ root: classes.menuItem }}
@@ -266,139 +257,27 @@ const Header = (props) => {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}
       >
+        <div className={classes.toolbarMagin} />
         <List disablePadding>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-            divider
-            button
-            component={Link}
-            to='/'
-            selected={value === 0}
-          >
-            <ListItemText
-              className={
-                value === 0
-                  ? [classes.drawerItems, classes.drawerItemSelected]
-                  : classes.drawerItems
-              }
-              disableTypography
+          {routes.map((route) => (
+            <ListItem
+              divider
+              key={`${route}${route.activeIndex}`}
+              button
+              component={Link}
+              to={route.link}
+              selected={value === route.activeIndex}
+              classes={{ selected: classes.drawerItemSelected }}
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.activeIndex);
+              }}
             >
-              Home
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(1);
-            }}
-            divider
-            button
-            component={Link}
-            to='/imoveis-para-alugar'
-            selected={value === 1}
-          >
-            <ListItemText
-              className={
-                value === 1
-                  ? [classes.drawerItems, classes.drawerItemSelected]
-                  : classes.drawerItems
-              }
-              disableTypography
-            >
-              Imóveis para alugar
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(2);
-            }}
-            divider
-            button
-            component={Link}
-            to='/imoveis-para-comprar'
-            selected={value === 2}
-          >
-            <ListItemText
-              className={
-                value === 2
-                  ? [classes.drawerItems, classes.drawerItemSelected]
-                  : classes.drawerItems
-              }
-              disableTypography
-            >
-              Imóveis para comprar
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(3);
-            }}
-            divider
-            button
-            component={Link}
-            to='/para-proprietarios'
-            selected={value === 3}
-          >
-            <ListItemText
-              className={
-                value === 3
-                  ? [classes.drawerItems, classes.drawerItemSelected]
-                  : classes.drawerItems
-              }
-              disableTypography
-            >
-              Para proprietários
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(4);
-            }}
-            divider
-            button
-            component={Link}
-            to='/quem-somos'
-            selected={value === 4}
-          >
-            <ListItemText
-              className={
-                value === 4
-                  ? [classes.drawerItems, classes.drawerItemSelected]
-                  : classes.drawerItems
-              }
-              disableTypography
-            >
-              Quem somos
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(5);
-            }}
-            divider
-            button
-            component={Link}
-            to='/contato'
-            selected={value === 5}
-          >
-            <ListItemText
-              className={
-                value === 5
-                  ? [classes.drawerItems, classes.drawerItemSelected]
-                  : classes.drawerItems
-              }
-              disableTypography
-            >
-              Contate nos
-            </ListItemText>
-          </ListItem>
+              <ListItemText className={classes.drawerItems} disableTypography>
+                {route.name}
+              </ListItemText>
+            </ListItem>
+          ))}
         </List>
       </SwipeableDrawer>
       <IconButton
@@ -414,7 +293,7 @@ const Header = (props) => {
   return (
     <>
       <ElevationScroll>
-        <AppBar position='fixed'>
+        <AppBar position='fixed' className={classes.appbar}>
           <Toolbar>
             <Button
               component={Link}
