@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -13,12 +13,21 @@ import HousesToBuy from './components/houses-to-rent-to-buy/HousesToBuy';
 import AnnounceToRent from './components/owners/AnnounceToRent';
 import AnnounceToSell from './components/owners/AnnounceToSell';
 import MyHouses from './components/owners/MyHouses';
+import Footer from './components/footer/Footer';
 
 const App = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [value, setValue] = useState(0);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
+        <Header
+          value={value}
+          setValue={setValue}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
         <Switch>
           <Route exact path='/' component={() => <Home />} />
           <Route
@@ -46,6 +55,12 @@ const App = () => {
           <Route exact path='/meus-imoveis' component={() => <MyHouses />} />
           <Route exact path='/contato' component={() => <Contact />} />
         </Switch>
+        <Footer
+          value={value}
+          setValue={setValue}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
       </BrowserRouter>
     </ThemeProvider>
   );

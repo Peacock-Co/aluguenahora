@@ -1,8 +1,16 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  home: {
+    height: '800px',
+  },
+}));
 
 function Home() {
+  const classes = useStyles();
   return (
-    <div>
+    <div className={classes.home}>
       <h1>Home Page</h1>
     </div>
   );
