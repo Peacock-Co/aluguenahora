@@ -1,19 +1,23 @@
 {
   "files": {
-    "main.js": "/aluguenahora/static/js/main.d547f8f8.chunk.js",
-    "main.js.map": "/aluguenahora/static/js/main.d547f8f8.chunk.js.map",
+    "main.js": "/aluguenahora/static/js/main.0e41fbce.chunk.js",
+    "main.js.map": "/aluguenahora/static/js/main.0e41fbce.chunk.js.map",
     "runtime-main.js": "/aluguenahora/static/js/runtime-main.f9943323.js",
     "runtime-main.js.map": "/aluguenahora/static/js/runtime-main.f9943323.js.map",
-    "static/js/2.ab3c19d9.chunk.js": "/aluguenahora/static/js/2.ab3c19d9.chunk.js",
-    "static/js/2.ab3c19d9.chunk.js.map": "/aluguenahora/static/js/2.ab3c19d9.chunk.js.map",
+    "static/js/2.85cbc67a.chunk.js": "/aluguenahora/static/js/2.85cbc67a.chunk.js",
+    "static/js/2.85cbc67a.chunk.js.map": "/aluguenahora/static/js/2.85cbc67a.chunk.js.map",
     "index.html": "/aluguenahora/index.html",
-    "precache-manifest.c8c9c91f4433deed488042ade272e18c.js": "/aluguenahora/precache-manifest.c8c9c91f4433deed488042ade272e18c.js",
+    "precache-manifest.82a8c95b2061c01244c8f8ec1031ed2a.js": "/aluguenahora/precache-manifest.82a8c95b2061c01244c8f8ec1031ed2a.js",
     "service-worker.js": "/aluguenahora/service-worker.js",
-    "static/js/2.ab3c19d9.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.ab3c19d9.chunk.js.LICENSE.txt"
+    "static/js/2.85cbc67a.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.85cbc67a.chunk.js.LICENSE.txt",
+    "static/media/facebook-square-brands.svg": "/aluguenahora/static/media/facebook-square-brands.34e73505.svg",
+    "static/media/instagram-square-brands.svg": "/aluguenahora/static/media/instagram-square-brands.6c6931f4.svg",
+    "static/media/linkedin-brands.svg": "/aluguenahora/static/media/linkedin-brands.d9049f46.svg",
+    "static/media/twitter-brands.svg": "/aluguenahora/static/media/twitter-brands.6620c8ae.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f9943323.js",
-    "static/js/2.ab3c19d9.chunk.js",
-    "static/js/main.d547f8f8.chunk.js"
+    "static/js/2.85cbc67a.chunk.js",
+    "static/js/main.0e41fbce.chunk.js"
   ]
 }
