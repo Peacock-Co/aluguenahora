@@ -14,18 +14,20 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.common.algBlue,
     width: '100%',
-    height: '15em',
+    height: '14em',
     zIndex: 1302,
     position: 'relative',
     [theme.breakpoints.down('md')]: {
       height: '10em',
     },
     [theme.breakpoints.down('xs')]: {
-      height: '7em',
+      height: '5em',
     },
   },
   mainContainer: {
     position: 'absolute',
+    height: '14em',
+    left: '-10em',
   },
   link: {
     fontFamily: 'Arial',
@@ -40,12 +42,25 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     height: '2em',
     width: '2em',
-    color: '#5D5F62',
+    [theme.breakpoints.down('xs')]: {
+      height: '1.5em',
+      width: '1.5em',
+    },
   },
   socialContainer: {
     position: 'absolute',
-    right: '1.5em',
     marginTop: '6em',
+    right: '12em',
+    // backgroundColor: 'gray',
+    [theme.breakpoints.down('md')]: {
+      marginTop: '3em',
+      justifyContent: 'center',
+      right: '0',
+    },
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '1.5em',
+      right: '0',
+    },
   },
 }));
 
@@ -55,8 +70,10 @@ const Footer = (props) => {
     <footer className={classes.footer}>
       <Hidden mdDown>
         <Grid container justify='center' className={classes.mainContainer}>
+          {/*HOME LINK*/}
+
           <Grid item className={classes.gridItem}>
-            <Grid container direction='column' spacing={2}>
+            <Grid container direction='column'>
               <Grid
                 item
                 component={Link}
@@ -68,6 +85,9 @@ const Footer = (props) => {
               </Grid>
             </Grid>
           </Grid>
+
+          {/* Imoveis para alugar e comprar*/}
+
           <Grid item className={classes.gridItem}>
             <Grid container direction='column' spacing={2}>
               <Grid
@@ -79,7 +99,6 @@ const Footer = (props) => {
               >
                 Imóveis para alugar
               </Grid>
-
               <Grid
                 item
                 component={Link}
@@ -91,6 +110,9 @@ const Footer = (props) => {
               </Grid>
             </Grid>
           </Grid>
+
+          {/*Para proprietarios */}
+
           <Grid item className={classes.gridItem}>
             <Grid container direction='column' spacing={2}>
               <Grid item className={classes.link}>
@@ -134,6 +156,9 @@ const Footer = (props) => {
               </Grid>
             </Grid>
           </Grid>
+
+          {/* Quem somos e contato */}
+
           <Grid item className={classes.gridItem}>
             <Grid container direction='column' spacing={2}>
               <Grid
@@ -159,6 +184,8 @@ const Footer = (props) => {
           </Grid>
         </Grid>
       </Hidden>
+
+      {/* Social media container */}
 
       <Grid
         container

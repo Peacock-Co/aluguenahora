@@ -76,6 +76,14 @@ const useStyles = makeStyles((theme) => ({
   drawerIcon: {
     height: '40px',
     width: '40px',
+    [theme.breakpoints.down('md')]: {
+      height: '30px',
+      width: '30',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '30px',
+      width: '30',
+    },
   },
   drawer: {
     backgroundColor: theme.palette.common.algBlue,
