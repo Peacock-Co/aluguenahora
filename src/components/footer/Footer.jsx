@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.common.algBlue,
     width: '100%',
-    height: '14em',
+    height: '13em',
     zIndex: 1302,
     position: 'relative',
     [theme.breakpoints.down('md')]: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mainContainer: {
     position: 'absolute',
-    height: '14em',
+    height: '13em',
     left: '-10em',
   },
   link: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     right: '12em',
     // backgroundColor: 'gray',
     [theme.breakpoints.down('md')]: {
-      marginTop: '3em',
+      marginTop: '3.5em',
       justifyContent: 'center',
       right: '0',
     },

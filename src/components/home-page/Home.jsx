@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Lottie from 'react-lottie';
+import animationData from '../../lotties/house-flat.json';
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -9,9 +11,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
   const classes = useStyles();
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRadio: 'xMidYMid slice',
+    },
+  };
   return (
     <div className={classes.home}>
-      <h1>Home Page</h1>
+      <Lottie options={defaultOptions} height={400} width={400} />
     </div>
   );
 }
