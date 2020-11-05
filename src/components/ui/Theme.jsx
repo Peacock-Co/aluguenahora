@@ -1,19 +1,19 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const algBlue = '#edf2fb';
-const algOrange = '#dc2f02';
+const algBlue = '#F4F4F8';
+const algRed = '#dc2f02';
 
 export default createMuiTheme({
   palette: {
     common: {
       algBlue: `${algBlue}`,
-      algOrange: `${algOrange}`,
+      algOrange: `${algRed}`,
     },
     primary: {
       main: `${algBlue}`,
     },
     secondary: {
-      main: `${algOrange}`,
+      main: `${algRed}`,
     },
   },
   typography: {
@@ -21,6 +21,10 @@ export default createMuiTheme({
       fontFamily: 'Raleway',
       textTransform: 'none',
       fontWeight: '700',
+    },
+    h2: {
+      fontWeight: '500',
+      fontSize: '2rem',
     },
   },
 });
