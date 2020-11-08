@@ -26,5 +26,11 @@ export default createMuiTheme({
       fontWeight: '500',
       fontSize: '2rem',
     },
+    h3: {
+      fontWeight: '300',
+      fontSize: '1.5rem',
+      color: 'gray',
+      lineHeight: '1.5em',
+    },
   },
 });
