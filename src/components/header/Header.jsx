@@ -137,26 +137,20 @@ const Header = (props) => {
     {
       name: 'Para proprietários',
       link: '/para-proprietarios',
-      activeIndex: 3,
+      activeIndex: 2,
       selectedIndex: 0,
     },
     {
       name: 'Anunciar imóvel para alugar',
       link: '/anunciar-para-alugar',
-      activeIndex: 3,
+      activeIndex: 2,
       selectedIndex: 1,
-    },
-    {
-      name: 'Anunciar imóvel para vender',
-      link: '/anunciar-para-vender',
-      activeIndex: 3,
-      selectedIndex: 2,
     },
     {
       name: 'Meus Imóveis',
       link: '/meus-imoveis',
-      activeIndex: 3,
-      selectedIndex: 3,
+      activeIndex: 2,
+      selectedIndex: 2,
     },
   ];
 
@@ -167,21 +161,17 @@ const Header = (props) => {
       link: '/imoveis-para-alugar',
       activeIndex: 1,
     },
-    {
-      name: 'Imóveis para comprar',
-      link: '/imoveis-para-comprar',
-      activeIndex: 2,
-    },
+
     {
       name: 'Para proprietarios',
       link: '/para-proprietarios',
-      activeIndex: 3,
+      activeIndex: 2,
       ariaOwns: anchorEl ? 'simple-menu' : undefined,
       ariaPopup: anchorEl ? 'true' : undefined,
       mouseOver: (event) => handleClick(event),
     },
-    { name: 'Quem somos', link: '/quem-somos', activeIndex: 4 },
-    { name: 'Contate nos', link: '/contato', activeIndex: 5 },
+    { name: 'Quem somos', link: '/quem-somos', activeIndex: 3 },
+    { name: 'Contate nos', link: '/contato', activeIndex: 4 },
   ];
 
   useEffect(() => {

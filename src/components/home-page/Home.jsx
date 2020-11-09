@@ -88,7 +88,7 @@ function Home() {
                   </label>
                   <TextField placeholder='Busque por cidade' fullWidth={true} />
                 </Grid>
-                <Grid container>
+                <Grid item container>
                   <Grid item className={classes.bairroContainer}>
                     <TextField xs='12' md='12' id='bairro' label='Bairro' />
                   </Grid>
