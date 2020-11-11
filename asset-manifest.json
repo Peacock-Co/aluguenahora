@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.js": "/aluguenahora/static/js/main.4c59c4fa.chunk.js",
-    "main.js.map": "/aluguenahora/static/js/main.4c59c4fa.chunk.js.map",
+    "main.js": "/aluguenahora/static/js/main.9f58d2a5.chunk.js",
+    "main.js.map": "/aluguenahora/static/js/main.9f58d2a5.chunk.js.map",
     "runtime-main.js": "/aluguenahora/static/js/runtime-main.f9943323.js",
     "runtime-main.js.map": "/aluguenahora/static/js/runtime-main.f9943323.js.map",
-    "static/js/2.8b58af12.chunk.js": "/aluguenahora/static/js/2.8b58af12.chunk.js",
-    "static/js/2.8b58af12.chunk.js.map": "/aluguenahora/static/js/2.8b58af12.chunk.js.map",
+    "static/js/2.99829e64.chunk.js": "/aluguenahora/static/js/2.99829e64.chunk.js",
+    "static/js/2.99829e64.chunk.js.map": "/aluguenahora/static/js/2.99829e64.chunk.js.map",
     "index.html": "/aluguenahora/index.html",
-    "precache-manifest.73e3865ff2217daf22977a65d08f5a1d.js": "/aluguenahora/precache-manifest.73e3865ff2217daf22977a65d08f5a1d.js",
+    "precache-manifest.8278741957b71a29cab63e2e888998f7.js": "/aluguenahora/precache-manifest.8278741957b71a29cab63e2e888998f7.js",
     "service-worker.js": "/aluguenahora/service-worker.js",
-    "static/js/2.8b58af12.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.8b58af12.chunk.js.LICENSE.txt",
+    "static/js/2.99829e64.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.99829e64.chunk.js.LICENSE.txt",
     "static/media/aluguenahora.logo.svg": "/aluguenahora/static/media/aluguenahora.logo.fd3ada78.svg",
+    "static/media/campogrande.jpg": "/aluguenahora/static/media/campogrande.9b112c42.jpg",
     "static/media/facebook-square-brands.svg": "/aluguenahora/static/media/facebook-square-brands.34e73505.svg",
     "static/media/instagram-square-brands.svg": "/aluguenahora/static/media/instagram-square-brands.6c6931f4.svg",
     "static/media/linkedin-brands.svg": "/aluguenahora/static/media/linkedin-brands.d9049f46.svg",
@@ -18,7 +19,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f9943323.js",
-    "static/js/2.8b58af12.chunk.js",
-    "static/js/main.4c59c4fa.chunk.js"
+    "static/js/2.99829e64.chunk.js",
+    "static/js/main.9f58d2a5.chunk.js"
   ]
 }
