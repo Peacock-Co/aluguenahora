@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.js": "/aluguenahora/static/js/main.9f58d2a5.chunk.js",
-    "main.js.map": "/aluguenahora/static/js/main.9f58d2a5.chunk.js.map",
+    "main.js": "/aluguenahora/static/js/main.89fcbe64.chunk.js",
+    "main.js.map": "/aluguenahora/static/js/main.89fcbe64.chunk.js.map",
     "runtime-main.js": "/aluguenahora/static/js/runtime-main.f9943323.js",
     "runtime-main.js.map": "/aluguenahora/static/js/runtime-main.f9943323.js.map",
-    "static/js/2.99829e64.chunk.js": "/aluguenahora/static/js/2.99829e64.chunk.js",
-    "static/js/2.99829e64.chunk.js.map": "/aluguenahora/static/js/2.99829e64.chunk.js.map",
+    "static/js/2.9fa1d623.chunk.js": "/aluguenahora/static/js/2.9fa1d623.chunk.js",
+    "static/js/2.9fa1d623.chunk.js.map": "/aluguenahora/static/js/2.9fa1d623.chunk.js.map",
     "index.html": "/aluguenahora/index.html",
-    "precache-manifest.8278741957b71a29cab63e2e888998f7.js": "/aluguenahora/precache-manifest.8278741957b71a29cab63e2e888998f7.js",
+    "precache-manifest.641b74c92ffb28d6b739fd5d4d5db20a.js": "/aluguenahora/precache-manifest.641b74c92ffb28d6b739fd5d4d5db20a.js",
     "service-worker.js": "/aluguenahora/service-worker.js",
-    "static/js/2.99829e64.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.99829e64.chunk.js.LICENSE.txt",
-    "static/media/aluguenahora.logo.svg": "/aluguenahora/static/media/aluguenahora.logo.fd3ada78.svg",
-    "static/media/campogrande.jpg": "/aluguenahora/static/media/campogrande.9b112c42.jpg",
+    "static/js/2.9fa1d623.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.9fa1d623.chunk.js.LICENSE.txt",
+    "static/media/aluguenahora.logo.svg": "/aluguenahora/static/media/aluguenahora.logo.188c455f.svg",
     "static/media/facebook-square-brands.svg": "/aluguenahora/static/media/facebook-square-brands.34e73505.svg",
+    "static/media/home.jpg": "/aluguenahora/static/media/home.1d95de56.jpg",
     "static/media/instagram-square-brands.svg": "/aluguenahora/static/media/instagram-square-brands.6c6931f4.svg",
     "static/media/linkedin-brands.svg": "/aluguenahora/static/media/linkedin-brands.d9049f46.svg",
     "static/media/twitter-brands.svg": "/aluguenahora/static/media/twitter-brands.6620c8ae.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f9943323.js",
-    "static/js/2.99829e64.chunk.js",
-    "static/js/main.9f58d2a5.chunk.js"
+    "static/js/2.9fa1d623.chunk.js",
+    "static/js/main.89fcbe64.chunk.js"
   ]
 }

@@ -1,35 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3f5bb2960c805884bd0b39f6e273d0db",
+    "revision": "af04b406062dc4c665f2b4cd59f29ea3",
     "url": "/aluguenahora/index.html"
   },
   {
-    "revision": "9eea6bd9264f7bb7d1dc",
-    "url": "/aluguenahora/static/js/2.99829e64.chunk.js"
+    "revision": "dda14e28f19a93d19f0a",
+    "url": "/aluguenahora/static/js/2.9fa1d623.chunk.js"
   },
   {
-    "revision": "b118541259295443550a9258aca2c793",
-    "url": "/aluguenahora/static/js/2.99829e64.chunk.js.LICENSE.txt"
+    "revision": "6397acf4c5cafcd591a770ce33fc3e2f",
+    "url": "/aluguenahora/static/js/2.9fa1d623.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e3291e6e7a533bf7bab0",
-    "url": "/aluguenahora/static/js/main.9f58d2a5.chunk.js"
+    "revision": "432b7670b83b1988e83f",
+    "url": "/aluguenahora/static/js/main.89fcbe64.chunk.js"
   },
   {
     "revision": "854d34716c7e9a37f7f0",
     "url": "/aluguenahora/static/js/runtime-main.f9943323.js"
   },
   {
-    "revision": "fd3ada782702511b63c2b3db1a7ac894",
-    "url": "/aluguenahora/static/media/aluguenahora.logo.fd3ada78.svg"
-  },
-  {
-    "revision": "9b112c429a07a8e15c733bc3507bcdd8",
-    "url": "/aluguenahora/static/media/campogrande.9b112c42.jpg"
+    "revision": "188c455f226cd17b9328cbae5e11ab3b",
+    "url": "/aluguenahora/static/media/aluguenahora.logo.188c455f.svg"
   },
   {
     "revision": "34e73505be53a83b3d32236dab04f124",
     "url": "/aluguenahora/static/media/facebook-square-brands.34e73505.svg"
+  },
+  {
+    "revision": "1d95de5699af056bd53306e16ab6524d",
+    "url": "/aluguenahora/static/media/home.1d95de56.jpg"
   },
   {
     "revision": "6c6931f426bcc5ba571c8ed56b757ece",
