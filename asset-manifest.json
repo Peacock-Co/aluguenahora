@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/aluguenahora/static/js/main.aeea116f.chunk.js",
-    "main.js.map": "/aluguenahora/static/js/main.aeea116f.chunk.js.map",
+    "main.js": "/aluguenahora/static/js/main.40c9cedb.chunk.js",
+    "main.js.map": "/aluguenahora/static/js/main.40c9cedb.chunk.js.map",
     "runtime-main.js": "/aluguenahora/static/js/runtime-main.f9943323.js",
     "runtime-main.js.map": "/aluguenahora/static/js/runtime-main.f9943323.js.map",
-    "static/js/2.642bcdc4.chunk.js": "/aluguenahora/static/js/2.642bcdc4.chunk.js",
-    "static/js/2.642bcdc4.chunk.js.map": "/aluguenahora/static/js/2.642bcdc4.chunk.js.map",
+    "static/js/2.861af993.chunk.js": "/aluguenahora/static/js/2.861af993.chunk.js",
+    "static/js/2.861af993.chunk.js.map": "/aluguenahora/static/js/2.861af993.chunk.js.map",
     "index.html": "/aluguenahora/index.html",
-    "precache-manifest.1816e27bf9862c81d2c314a26c11027a.js": "/aluguenahora/precache-manifest.1816e27bf9862c81d2c314a26c11027a.js",
+    "precache-manifest.e16d28ff4a60a4bc98c71c099e749386.js": "/aluguenahora/precache-manifest.e16d28ff4a60a4bc98c71c099e749386.js",
     "service-worker.js": "/aluguenahora/service-worker.js",
-    "static/js/2.642bcdc4.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.642bcdc4.chunk.js.LICENSE.txt",
+    "static/js/2.861af993.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.861af993.chunk.js.LICENSE.txt",
     "static/media/aluguenahora.logo.svg": "/aluguenahora/static/media/aluguenahora.logo.f496b5f0.svg",
     "static/media/facebook-square-brands.svg": "/aluguenahora/static/media/facebook-square-brands.34e73505.svg",
     "static/media/homeclock.jpg": "/aluguenahora/static/media/homeclock.0f5ee7cb.jpg",
@@ -19,7 +19,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f9943323.js",
-    "static/js/2.642bcdc4.chunk.js",
-    "static/js/main.aeea116f.chunk.js"
+    "static/js/2.861af993.chunk.js",
+    "static/js/main.40c9cedb.chunk.js"
   ]
 }
