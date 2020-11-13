@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/aluguenahora/precache-manifest.e119e74eff2cb054d1832806c1cd4f7a.js"
+  "/aluguenahora/precache-manifest.2a5ce6bc840f855e68293f611d4eec8f.js"
 );
 
 self.addEventListener('message', (event) => {
