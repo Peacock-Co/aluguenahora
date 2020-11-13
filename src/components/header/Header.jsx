@@ -14,7 +14,6 @@ import {
   Menu,
   MenuItem,
   IconButton,
-  Typography,
   useScrollTrigger,
   useMediaQuery,
   SwipeableDrawer,
@@ -25,6 +24,9 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+
+// Logo fro assets
+import logo from '../../assets/aluguenahora.logo.svg';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -41,7 +43,7 @@ function ElevationScroll(props) {
 
 // useSytyles hooks
 const useStyles = makeStyles((theme) => ({
-  toolbarMagin: {
+  toolbarMargin: {
     ...theme.mixins.toolbar,
   },
   tabContainer: {
@@ -53,11 +55,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '25px',
   },
   logoContainer: {
-    padding: 0,
     '&:hover': {
       backgroundColor: 'transparent',
     },
     [theme.breakpoints.down('md')]: {},
+  },
+  logo: {
+    height: '2.7em',
+    marginLeft: '1em',
+    [theme.breakpoints.down('xs')]: {
+      height: '2em',
+    },
   },
   menuItem: {
     ...theme.typography.tab,
@@ -81,8 +89,8 @@ const useStyles = makeStyles((theme) => ({
       width: '30',
     },
     [theme.breakpoints.down('xs')]: {
-      height: '30px',
-      width: '30',
+      height: '25px',
+      width: '25',
     },
   },
   drawer: {
@@ -255,7 +263,7 @@ const Header = (props) => {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}
       >
-        <div className={classes.toolbarMagin} />
+        <div className={classes.toolbarMargin} />
         <List disablePadding>
           {routes.map((route) => (
             <ListItem
@@ -292,7 +300,7 @@ const Header = (props) => {
     <>
       <ElevationScroll>
         <AppBar position='fixed' className={classes.appbar}>
-          <Toolbar>
+          <Toolbar disableGutters>
             <Button
               component={Link}
               to='/'
@@ -300,15 +308,13 @@ const Header = (props) => {
               onClick={() => props.setValue(0)}
               disableRipple
             >
-              <Typography variant='h5'>
-                Alugue na HORA <i className='far fa-clock'></i>
-              </Typography>
+              <img alt='logo marca' src={logo} className={classes.logo} />
             </Button>
             {matches ? drawer : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      <div className={classes.toolbarMagin} />
+      <div className={classes.toolbarMargin} />
     </>
   );
 };

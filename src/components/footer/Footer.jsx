@@ -86,7 +86,7 @@ const Footer = (props) => {
             </Grid>
           </Grid>
 
-          {/* Imoveis para alugar e comprar*/}
+          {/* Imoveis para alugar*/}
 
           <Grid item className={classes.gridItem}>
             <Grid container direction='column' spacing={2}>
@@ -114,20 +114,19 @@ const Footer = (props) => {
                 component={Link}
                 onClick={() => {
                   props.setValue(2);
-                  props.setSelectedIndex(0);
+                  props.setSelectedIndex(1);
                 }}
                 to='/anunciar-para-alugar'
                 className={classes.link}
               >
                 Anunciar imóvel para alugar
               </Grid>
-
               <Grid
                 item
                 component={Link}
                 onClick={() => {
                   props.setValue(2);
-                  props.setSelectedIndex(1);
+                  props.setSelectedIndex(2);
                 }}
                 to='/meus-imoveis'
                 className={classes.link}
@@ -154,7 +153,7 @@ const Footer = (props) => {
               <Grid
                 item
                 component={Link}
-                onClick={() => props.setValue(5)}
+                onClick={() => props.setValue(4)}
                 to='/contato'
                 className={classes.link}
               >

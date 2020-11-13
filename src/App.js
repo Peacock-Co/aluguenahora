@@ -6,11 +6,10 @@ import theme from './components/ui/Theme';
 
 import Header from './components/header/Header';
 import Home from './components/home-page/Home';
-import HousesToRent from './components/houses-to-rent-to-buy/HousesToRent';
+import HousesToRent from './components/houses-to-rent/HousesToRent';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import AnnounceToRent from './components/owners/AnnounceToRent';
-import AnnounceToSell from './components/owners/AnnounceToSell';
 import MyHouses from './components/owners/MyHouses';
 import Footer from './components/footer/Footer';
 
@@ -42,11 +41,7 @@ const App = () => {
             path='/anunciar-para-alugar'
             component={() => <AnnounceToRent />}
           />
-          <Route
-            exact
-            path='/anunciar-para-vender'
-            component={() => <AnnounceToSell />}
-          />
+
           <Route exact path='/meus-imoveis' component={() => <MyHouses />} />
           <Route exact path='/contato' component={() => <Contact />} />
         </Switch>
