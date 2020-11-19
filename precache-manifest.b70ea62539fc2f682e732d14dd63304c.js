@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fcaff7d0fcfa990c9a4642022f5bb046",
+    "revision": "18c50ae0fd06d950417ab426e539eaef",
     "url": "/aluguenahora/index.html"
   },
   {
-    "revision": "c9a5b7cd1b4302febe21",
-    "url": "/aluguenahora/static/js/2.abcebf84.chunk.js"
+    "revision": "68f36e65dcd6944b7062",
+    "url": "/aluguenahora/static/js/2.733d9b2a.chunk.js"
   },
   {
-    "revision": "1a3cc71403f332d098a2b9cdd7c4c36d",
-    "url": "/aluguenahora/static/js/2.abcebf84.chunk.js.LICENSE.txt"
+    "revision": "6397acf4c5cafcd591a770ce33fc3e2f",
+    "url": "/aluguenahora/static/js/2.733d9b2a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9186903ab6c70e3f26ba",
-    "url": "/aluguenahora/static/js/main.a35c91d2.chunk.js"
+    "revision": "6b2972bcd47d3a1b0d2c",
+    "url": "/aluguenahora/static/js/main.7255d799.chunk.js"
   },
   {
     "revision": "854d34716c7e9a37f7f0",
@@ -26,10 +26,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "34e73505be53a83b3d32236dab04f124",
     "url": "/aluguenahora/static/media/facebook-square-brands.34e73505.svg"
-  },
-  {
-    "revision": "0f5ee7cb3874ee9d5b64400bac3bd844",
-    "url": "/aluguenahora/static/media/homeclock.0f5ee7cb.jpg"
   },
   {
     "revision": "6c6931f426bcc5ba571c8ed56b757ece",
