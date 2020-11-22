@@ -20,12 +20,13 @@ import {
   List,
   ListItem,
   ListItemText,
+  Divider,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 
-// Logo fro assets
+// Logo from assets
 import logo from '../../assets/aluguenahora.logo.svg';
 
 function ElevationScroll(props) {
@@ -63,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: '2.7em',
     marginLeft: '1em',
+    marginBottom: '0.5em',
     [theme.breakpoints.down('xs')]: {
       height: '2em',
     },
@@ -93,9 +95,7 @@ const useStyles = makeStyles((theme) => ({
       width: '25',
     },
   },
-  drawer: {
-    backgroundColor: theme.palette.common.algBlue,
-  },
+
   drawerItems: {
     ...theme.typography.tab,
     fontSize: 14,
@@ -106,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appbar: {
     zIndex: theme.zIndex.modal + 1,
+    backgroundColor: '#ffffff',
   },
 }));
 
@@ -315,6 +316,7 @@ const Header = (props) => {
         </AppBar>
       </ElevationScroll>
       <div className={classes.toolbarMargin} />
+      <Divider />
     </>
   );
 };

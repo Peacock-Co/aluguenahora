@@ -1,21 +1,21 @@
 import React from 'react';
 
 //Material UI
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/styles';
 
-import background from '../../assets/homeclock.jpg';
-
 //Styles
 const useStyles = makeStyles((theme) => ({
-  background: {
-    backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    height: '30em',
-    opacity: '.8',
+  mainContainer: {
+    height: '35em',
+    [theme.breakpoints.down('md')]: {
+      height: '33em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '32em',
+      backgroundPosition: '5% 95%',
+    },
   },
 }));
 
@@ -24,8 +24,25 @@ function Home(props) {
 
   return (
     <Grid container direction='column'>
-      {/*Search block*/}
-      <section className={classes.background}></section>
+      <Grid container className={classes.mainContainer}>
+        <Grid
+          item
+          container
+          direction='column'
+          justify='center'
+          alignItems='center'
+          className={classes.searchBlock}
+        >
+          <Typography variant='h2' className='h2'>
+            Alugue na Hora
+          </Typography>
+          <Typography variant='h3' className='h3'>
+            Encontre seu imóvel
+          </Typography>
+        </Grid>
+      </Grid>
+
+      <Grid item className={classes.formContainer}></Grid>
     </Grid>
   );
 }

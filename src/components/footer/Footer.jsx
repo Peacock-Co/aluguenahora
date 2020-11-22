@@ -9,23 +9,22 @@ import facebook from '../../assets/facebook-square-brands.svg';
 import twitter from '../../assets/twitter-brands.svg';
 import instagram from '../../assets/instagram-square-brands.svg';
 import linkedin from '../../assets/linkedin-brands.svg';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    backgroundColor: theme.palette.common.algBlue,
     width: '100%',
     height: '13em',
     zIndex: 1302,
     position: 'relative',
     [theme.breakpoints.down('md')]: {
-      height: '10em',
+      height: '8em',
     },
     [theme.breakpoints.down('xs')]: {
       height: '5em',
     },
   },
   mainContainer: {
-    position: 'absolute',
     height: '13em',
     left: '-10em',
   },
@@ -40,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '3em',
   },
   icon: {
+    margin: '1em',
     height: '2em',
     width: '2em',
     [theme.breakpoints.down('xs')]: {
@@ -48,10 +48,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   socialContainer: {
-    position: 'absolute',
-    marginTop: '6em',
-    right: '12em',
-    // backgroundColor: 'gray',
     [theme.breakpoints.down('md')]: {
       marginTop: '3.5em',
       justifyContent: 'center',
@@ -68,145 +64,164 @@ const Footer = (props) => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <Hidden mdDown>
-        <Grid container justify='center' className={classes.mainContainer}>
-          {/*HOME LINK*/}
-
-          <Grid item className={classes.gridItem}>
-            <Grid container direction='column'>
-              <Grid
-                item
-                component={Link}
-                onClick={() => props.setValue(0)}
-                to='/'
-                className={classes.link}
-              >
-                Home
-              </Grid>
-            </Grid>
-          </Grid>
-
-          {/* Imoveis para alugar*/}
-
-          <Grid item className={classes.gridItem}>
-            <Grid container direction='column' spacing={2}>
-              <Grid
-                item
-                component={Link}
-                onClick={() => props.setValue(1)}
-                to='/imoveis-para-alugar'
-                className={classes.link}
-              >
-                Imóveis para alugar
-              </Grid>
-            </Grid>
-          </Grid>
-
-          {/*Para proprietarios */}
-
-          <Grid item className={classes.gridItem}>
-            <Grid container direction='column' spacing={2}>
-              <Grid item className={classes.link}>
-                Para proprietários
-              </Grid>
-              <Grid
-                item
-                component={Link}
-                onClick={() => {
-                  props.setValue(2);
-                  props.setSelectedIndex(1);
-                }}
-                to='/anunciar-para-alugar'
-                className={classes.link}
-              >
-                Anunciar imóvel para alugar
-              </Grid>
-              <Grid
-                item
-                component={Link}
-                onClick={() => {
-                  props.setValue(2);
-                  props.setSelectedIndex(2);
-                }}
-                to='/meus-imoveis'
-                className={classes.link}
-              >
-                Meus imóveis
-              </Grid>
-            </Grid>
-          </Grid>
-
-          {/* Quem somos e contato */}
-
-          <Grid item className={classes.gridItem}>
-            <Grid container direction='column' spacing={2}>
-              <Grid
-                item
-                component={Link}
-                onClick={() => props.setValue(3)}
-                to='/quem-somos'
-                className={classes.link}
-              >
-                Quem somos
-              </Grid>
-
-              <Grid
-                item
-                component={Link}
-                onClick={() => props.setValue(4)}
-                to='/contato'
-                className={classes.link}
-              >
-                Contate nos
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Hidden>
-
-      {/* Social media container */}
+      <Divider />
 
       <Grid
         container
-        justify='flex-end'
-        spacing={2}
-        className={classes.socialContainer}
+        justify='space-around'
+        alignItems='center'
+        className={classes.mainContainer}
       >
-        <Grid
-          item
-          component={'a'}
-          href='https://www.facebook.com'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img alt='facebook logo' src={facebook} className={classes.icon} />
-        </Grid>
-        <Grid
-          item
-          component={'a'}
-          href='https://www.twitter.com'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img alt='twitter logo' src={twitter} className={classes.icon} />
-        </Grid>
-        <Grid
-          item
-          component={'a'}
-          href='https://www.instagram.com'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img alt='instagram logo' src={instagram} className={classes.icon} />
-        </Grid>
-        <Grid
-          item
-          component={'a'}
-          href='https://www.linkedin.com'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          <img alt='linkedin logo' src={linkedin} className={classes.icon} />
+        {/*HOME LINK*/}
+        <Hidden mdDown>
+          <Grid item>
+            <Grid container>
+              <Grid item className={classes.gridItem}>
+                <Grid container direction='column' spacing={2}>
+                  <Grid
+                    item
+                    component={Link}
+                    onClick={() => props.setValue(0)}
+                    to='/'
+                    className={classes.link}
+                  >
+                    Home
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              {/* Imoveis para alugar*/}
+
+              <Grid item className={classes.gridItem}>
+                <Grid container direction='column' spacing={2}>
+                  <Grid
+                    item
+                    component={Link}
+                    onClick={() => props.setValue(1)}
+                    to='/imoveis-para-alugar'
+                    className={classes.link}
+                  >
+                    Imóveis para alugar
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              {/*Para proprietarios */}
+
+              <Grid item className={classes.gridItem}>
+                <Grid container direction='column' spacing={2}>
+                  <Grid item className={classes.link}>
+                    Para proprietários
+                  </Grid>
+                  <Grid
+                    item
+                    component={Link}
+                    onClick={() => {
+                      props.setValue(2);
+                      props.setSelectedIndex(1);
+                    }}
+                    to='/anunciar-para-alugar'
+                    className={classes.link}
+                  >
+                    Anunciar imóvel para alugar
+                  </Grid>
+                  <Grid
+                    item
+                    component={Link}
+                    onClick={() => {
+                      props.setValue(2);
+                      props.setSelectedIndex(2);
+                    }}
+                    to='/meus-imoveis'
+                    className={classes.link}
+                  >
+                    Meus imóveis
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              {/* Quem somos e contato */}
+
+              <Grid item className={classes.gridItem}>
+                <Grid container direction='column' spacing={2}>
+                  <Grid
+                    item
+                    component={Link}
+                    onClick={() => props.setValue(3)}
+                    to='/quem-somos'
+                    className={classes.link}
+                  >
+                    Quem somos
+                  </Grid>
+
+                  <Grid
+                    item
+                    component={Link}
+                    onClick={() => props.setValue(4)}
+                    to='/contato'
+                    className={classes.link}
+                  >
+                    Contate nos
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Hidden>
+
+        {/* Social media container */}
+
+        <Grid item className={classes.socialContainer}>
+          <Grid>
+            <Grid
+              item
+              component={'a'}
+              href='https://www.facebook.com'
+              rel='noopener noreferrer'
+              target='_blank'
+            >
+              <img
+                alt='facebook logo'
+                src={facebook}
+                className={classes.icon}
+              />
+            </Grid>
+            <Grid
+              item
+              component={'a'}
+              href='https://www.twitter.com'
+              rel='noopener noreferrer'
+              target='_blank'
+            >
+              <img alt='twitter logo' src={twitter} className={classes.icon} />
+            </Grid>
+            <Grid
+              item
+              component={'a'}
+              href='https://www.instagram.com'
+              rel='noopener noreferrer'
+              target='_blank'
+            >
+              <img
+                alt='instagram logo'
+                src={instagram}
+                className={classes.icon}
+              />
+            </Grid>
+            <Grid
+              item
+              component={'a'}
+              href='https://www.linkedin.com'
+              rel='noopener noreferrer'
+              target='_blank'
+            >
+              <img
+                alt='linkedin logo'
+                src={linkedin}
+                className={classes.icon}
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </footer>
