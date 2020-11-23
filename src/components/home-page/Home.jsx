@@ -7,14 +7,20 @@ import { makeStyles } from '@material-ui/styles';
 
 //Styles
 const useStyles = makeStyles((theme) => ({
+  h3: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '2.4rem',
+    },
+  },
+  h2: {},
   mainContainer: {
     height: '35em',
     [theme.breakpoints.down('md')]: {
       height: '33em',
     },
     [theme.breakpoints.down('xs')]: {
-      height: '32em',
-      backgroundPosition: '5% 95%',
+      height: '20em',
+      marginTop: '5em',
     },
   },
 }));

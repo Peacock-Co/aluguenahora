@@ -26,8 +26,9 @@ const App = () => {
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
         />
+        <Home />
         <Switch>
-          <Route exact path='/' component={Home} />
+          {/* <Route exact path='/' component={() => <Home />} /> */}
           <Route
             exact
             path='/imoveis-para-alugar'

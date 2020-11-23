@@ -13,20 +13,28 @@ import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
+    backgroundColor: 'white',
     width: '100%',
-    height: '13em',
+    height: '11em',
     zIndex: 1302,
-    position: 'relative',
+    position: 'absolute',
+    bottom: 0,
     [theme.breakpoints.down('md')]: {
       height: '8em',
     },
     [theme.breakpoints.down('xs')]: {
-      height: '5em',
+      height: '6em',
     },
   },
   mainContainer: {
-    height: '13em',
-    left: '-10em',
+    // height: '13em',
+    // zIndex: 1302,
+    [theme.breakpoints.down('md')]: {
+      height: '8em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '6em',
+    },
   },
   link: {
     fontFamily: 'Arial',
@@ -49,13 +57,12 @@ const useStyles = makeStyles((theme) => ({
   },
   socialContainer: {
     [theme.breakpoints.down('md')]: {
-      marginTop: '3.5em',
+      marginTop: '2em',
       justifyContent: 'center',
-      right: '0',
     },
     [theme.breakpoints.down('xs')]: {
-      marginTop: '1.5em',
-      right: '0',
+      marginTop: '1em',
+      justifyContent: 'center',
     },
   },
 }));
@@ -65,7 +72,6 @@ const Footer = (props) => {
   return (
     <footer className={classes.footer}>
       <Divider />
-
       <Grid
         container
         justify='space-around'
@@ -172,7 +178,7 @@ const Footer = (props) => {
         {/* Social media container */}
 
         <Grid item className={classes.socialContainer}>
-          <Grid>
+          <Grid container justify='center'>
             <Grid
               item
               component={'a'}
