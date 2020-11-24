@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchBlock: {
+    width: '100%',
     textAlign: 'center',
   },
   Typography: {
@@ -119,10 +120,13 @@ function Home(props) {
               <Grid container>
                 <TextField
                   fullWidth
-                  id='outlined-search'
-                  label='Busque por cidade'
-                  type='search'
+                  disabled
+                  id='outlined-disabled'
+                  label='Cidade'
+                  defaultValue='Campo Grande'
                   variant='outlined'
+                  md={6}
+                  xs={12}
                 />
               </Grid>
               <Grid item className={classes.separateItem}></Grid>
@@ -132,6 +136,8 @@ function Home(props) {
                   label='Busque por bairro'
                   type='search'
                   variant='outlined'
+                  md={3}
+                  xs={6}
                 />
                 <TextField
                   id='outlined-select-price'
@@ -140,6 +146,8 @@ function Home(props) {
                   onChange={handleChangePrice}
                   helperText='Selecione nº de quartos '
                   variant='outlined'
+                  md={3}
+                  xs={6}
                 >
                   {rooms.map((option) => (
                     <MenuItem key={option.value} value={option.value}>

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   tabContainer: {
-    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   tab: {
     ...theme.typography.tab,
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'transparent',
     },
-    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   drawerIcon: {
     height: '40px',
