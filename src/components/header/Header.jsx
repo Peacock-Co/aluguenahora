@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '25px',
   },
   logoContainer: {
+    flexDirection: 'start',
     '&:hover': {
       backgroundColor: 'transparent',
     },
@@ -209,7 +210,7 @@ const Header = (props) => {
         value={props.value}
         onChange={handleChange}
         className={classes.tabContainer}
-        indicatorColor='primary'
+        indicatorColor='#ffffff'
       >
         {routes.map((route, index) => (
           <Tab
@@ -233,6 +234,7 @@ const Header = (props) => {
         MenuListProps={{ onMouseLeave: handleClose }}
         style={{ zIndex: 1302 }}
         keepMounted
+        disableRipple
       >
         {menuOptions.map((option, i) => (
           <MenuItem
