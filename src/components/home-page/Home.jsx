@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 
 //Material UI
-import { Grid, TextField, Typography, MenuItem } from '@material-ui/core';
+import {
+  Grid,
+  TextField,
+  Typography,
+  MenuItem,
+  Button,
+} from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/styles';
 
@@ -30,6 +36,12 @@ const useStyles = makeStyles((theme) => ({
   },
   separateItem: {
     marginTop: '1em',
+  },
+  buttomForm: {
+    marginTop: '2em',
+    width: '20em',
+    height: '3.5em',
+    borderRadius: '0.5em',
   },
 }));
 
@@ -170,6 +182,14 @@ function Home(props) {
                   ))}
                 </TextField>
               </Grid>
+              <Button
+                variant='contained'
+                size='medium'
+                color='secondary'
+                className={classes.buttomForm}
+              >
+                Encontrar imóveis
+              </Button>
             </form>
           </Grid>
         </Grid>

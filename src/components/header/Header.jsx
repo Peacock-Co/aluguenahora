@@ -25,6 +25,7 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 // Logo from assets
 import logo from '../../assets/aluguenahora.logo.svg';
@@ -56,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '25px',
   },
   logoContainer: {
-    flexDirection: 'start',
     '&:hover': {
       backgroundColor: 'transparent',
     },
@@ -82,7 +82,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'transparent',
     },
-    marginRight: 'auto',
   },
   drawerIcon: {
     height: '40px',
@@ -107,6 +106,11 @@ const useStyles = makeStyles((theme) => ({
   },
   appbar: {
     zIndex: theme.zIndex.modal + 1,
+    backgroundColor: '#ffffff',
+  },
+  accountButtom: {
+    marginRight: '1em',
+    borderRadius: '5em',
     backgroundColor: '#ffffff',
   },
 }));
@@ -210,7 +214,7 @@ const Header = (props) => {
         value={props.value}
         onChange={handleChange}
         className={classes.tabContainer}
-        indicatorColor='#ffffff'
+        indicatorColor='primary'
       >
         {routes.map((route, index) => (
           <Tab
@@ -234,7 +238,6 @@ const Header = (props) => {
         MenuListProps={{ onMouseLeave: handleClose }}
         style={{ zIndex: 1302 }}
         keepMounted
-        disableRipple
       >
         {menuOptions.map((option, i) => (
           <MenuItem
@@ -309,11 +312,18 @@ const Header = (props) => {
               to='/'
               className={classes.logoContainer}
               onClick={() => props.setValue(0)}
-              disableRipple
             >
               <img alt='logo marca' src={logo} className={classes.logo} />
             </Button>
             {matches ? drawer : tabs}
+            <Button
+              variant='contained'
+              color='default'
+              className={classes.accountButtom}
+              startIcon={<AccountCircleIcon />}
+            >
+              Area cliente
+            </Button>
           </Toolbar>
         </AppBar>
       </ElevationScroll>

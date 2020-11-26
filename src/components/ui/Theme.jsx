@@ -1,16 +1,16 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const algBlue = '#F4F4F8';
+const algWhite = '#ffffff';
 const algRed = '#dc2f02';
 
 export default createMuiTheme({
   palette: {
     common: {
-      algBlue: `${algBlue}`,
+      algBlue: `${algWhite}`,
       algOrange: `${algRed}`,
     },
     primary: {
-      main: `${algBlue}`,
+      main: `${algWhite}`,
     },
     secondary: {
       main: `${algRed}`,
