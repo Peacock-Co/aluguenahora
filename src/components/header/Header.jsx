@@ -27,6 +27,7 @@ import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // Logo from assets
 import logo from '../../assets/aluguenahora.logo.svg';
@@ -332,6 +333,14 @@ const Header = (props) => {
                 color='default'
                 className={classes.accountButtom}
                 startIcon={<AccountCircleIcon />}
+                endIcon={<ExpandMoreIcon />}
+                id='user-menu'
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleClose}
+                classes={{ paper: classes.menu }}
+                MenuListProps={{ onMouseLeave: handleClose }}
+                keepMounted
               >
                 Area cliente
               </Button>
