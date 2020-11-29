@@ -21,6 +21,7 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  Hidden,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
@@ -60,12 +61,11 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'transparent',
     },
-    [theme.breakpoints.down('md')]: {},
   },
   logo: {
     height: '2.7em',
-    marginLeft: '1em',
     marginBottom: '0.5em',
+    marginLeft: '1.5em',
     [theme.breakpoints.down('xs')]: {
       height: '2em',
     },
@@ -108,8 +108,16 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.modal + 1,
     backgroundColor: '#ffffff',
   },
+  toolbar: {
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'space-between',
+    },
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'start',
+    },
+  },
   accountButtom: {
-    marginRight: '1em',
+    marginRight: '1.5em',
     borderRadius: '5em',
     backgroundColor: '#ffffff',
   },
@@ -292,13 +300,6 @@ const Header = (props) => {
           ))}
         </List>
       </SwipeableDrawer>
-      <IconButton
-        className={classes.drawerIconContainer}
-        onClick={() => setOpenDrawer(!openDrawer)}
-        disableRipple
-      >
-        <MenuIcon className={classes.drawerIcon} />
-      </IconButton>
     </>
   );
 
@@ -306,7 +307,16 @@ const Header = (props) => {
     <>
       <ElevationScroll>
         <AppBar position='fixed' className={classes.appbar}>
-          <Toolbar disableGutters>
+          <Toolbar disableGutters className={classes.toolbar}>
+            <Hidden lgUp>
+              <IconButton
+                className={classes.drawerIconContainer}
+                onClick={() => setOpenDrawer(!openDrawer)}
+                disableRipple
+              >
+                <MenuIcon className={classes.drawerIcon} />
+              </IconButton>
+            </Hidden>
             <Button
               component={Link}
               to='/'
@@ -316,14 +326,16 @@ const Header = (props) => {
               <img alt='logo marca' src={logo} className={classes.logo} />
             </Button>
             {matches ? drawer : tabs}
-            <Button
-              variant='contained'
-              color='default'
-              className={classes.accountButtom}
-              startIcon={<AccountCircleIcon />}
-            >
-              Area cliente
-            </Button>
+            <Hidden xsDown>
+              <Button
+                variant='contained'
+                color='default'
+                className={classes.accountButtom}
+                startIcon={<AccountCircleIcon />}
+              >
+                Area cliente
+              </Button>
+            </Hidden>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
