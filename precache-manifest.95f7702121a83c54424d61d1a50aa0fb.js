@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ea806ece66023fbdabbcbd473127d549",
+    "revision": "1550e638af2702962b11b89f04b0e94d",
     "url": "/aluguenahora/index.html"
   },
   {
-    "revision": "1cfadcc271ef0f0ce02e",
-    "url": "/aluguenahora/static/js/2.dfe1d8a4.chunk.js"
+    "revision": "d1ad32ce14669469213f",
+    "url": "/aluguenahora/static/js/2.11a63f3a.chunk.js"
   },
   {
     "revision": "6397acf4c5cafcd591a770ce33fc3e2f",
-    "url": "/aluguenahora/static/js/2.dfe1d8a4.chunk.js.LICENSE.txt"
+    "url": "/aluguenahora/static/js/2.11a63f3a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b02eca1e6dfbc3d0e634",
-    "url": "/aluguenahora/static/js/main.10448074.chunk.js"
+    "revision": "9445138ffe1cbd527ed5",
+    "url": "/aluguenahora/static/js/main.a39253b3.chunk.js"
   },
   {
     "revision": "854d34716c7e9a37f7f0",
