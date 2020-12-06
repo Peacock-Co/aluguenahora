@@ -8,8 +8,6 @@ const useStyles = makeStyles((theme) => ({
     width: '20em',
     height: '3.5em',
     borderRadius: '0.5em',
-    backgroundColor: '#C82E29',
-    color: 'white',
   },
 }));
 

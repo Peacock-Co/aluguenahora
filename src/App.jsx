@@ -1,11 +1,16 @@
+// React, Router
 import React, { useState } from 'react';
-import { ThemeProvider } from '@material-ui/styles';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+// Material UI
+import { ThemeProvider } from '@material-ui/styles';
 import theme from './components/ui/Theme';
 
+// Firebase Auth
+
+// Components
 import Header from './components/header/Header';
-import SignInSginUp from './pages/sign-in-sign-up/SignInSignUp';
+import SignIn from './components/singn-in/SignIn';
 import Home from './pages/homepage/Home';
 import HousesToRent from './components/houses-to-rent/HousesToRent';
 import About from './components/about/About';
@@ -28,7 +33,7 @@ const App = () => {
           setSelectedIndex={setSelectedIndex}
         />
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' component={() => <Home />} />
           <Route
             path='/imoveis-para-alugar'
             component={() => <HousesToRent />}
@@ -41,7 +46,9 @@ const App = () => {
           />
           <Route path='/meus-imoveis' component={() => <MyHouses />} />
           <Route path='/contato' component={() => <Contact />} />
-          <Route path='/signin' component={() => <SignInSginUp />} />
+          <Route path='/signin' component={() => <SignIn />} />
+          <Route path='/cliente' component={() => <MyHouses />} />
+          <Route path='/user'>User...</Route>
         </Switch>
         <Footer
           value={value}

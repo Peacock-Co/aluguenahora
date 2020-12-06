@@ -1,47 +1,20 @@
 import React, { useState } from 'react';
+import CustomButton from '../../components/custom-button/CustomButton';
 
 //Material UI
-import {
-  Grid,
-  TextField,
-  Typography,
-  MenuItem,
-  Button,
-} from '@material-ui/core';
+import { Grid, TextField, Typography, MenuItem } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/styles';
 
 //Styles
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    height: '35em',
-    [theme.breakpoints.down('md')]: {
-      height: '33em',
-    },
-    [theme.breakpoints.down('xs')]: {
-      height: '20em',
-      marginTop: '5em',
-    },
-  },
-  searchBlock: {
+    marginTop: '5em',
+    alignCenter: 'center',
     width: '100%',
-    textAlign: 'center',
   },
-  Typography: {
-    h3: {
-      [theme.breakpoints.down('md')]: {
-        fontVariant: 'h2',
-      },
-    },
-  },
-  separateItem: {
+  filterContainer: {
     marginTop: '1em',
-  },
-  buttomForm: {
-    marginTop: '2em',
-    width: '20em',
-    height: '3.5em',
-    borderRadius: '0.5em',
   },
 }));
 
@@ -105,15 +78,9 @@ function Home(props) {
   };
 
   return (
-    <Grid container direction='column'>
-      <Grid
-        item
-        container
-        className={classes.mainContainer}
-        justify='center'
-        alignItems='center'
-      >
-        <Grid item container direction='column' className={classes.searchBlock}>
+    <>
+      <Grid container direction='column'>
+        <Grid container className={classes.mainContainer} justify='center'>
           <Grid item>
             <Typography variant='h2' className='h2'>
               Alugue na Hora
@@ -121,28 +88,18 @@ function Home(props) {
             <Typography variant='h3' className='h3'>
               Encontre seu imóvel
             </Typography>
-          </Grid>
-          <Grid
-            container
-            direction='column'
-            justify='center'
-            alignContent='center'
-          >
             <form>
-              <Grid container>
-                <TextField
-                  fullWidth
-                  disabled
-                  id='outlined-disabled'
-                  label='Cidade'
-                  defaultValue='Campo Grande'
-                  variant='outlined'
-                  md={6}
-                  xs={12}
-                />
-              </Grid>
-              <Grid item className={classes.separateItem}></Grid>
-              <Grid container>
+              <TextField
+                fullWidth
+                disabled
+                id='outlined-disabled'
+                label='Cidade'
+                defaultValue='Campo Grande'
+                variant='outlined'
+                md={6}
+                xs={12}
+              />
+              <Grid container className={classes.filterContainer}>
                 <TextField
                   id='outlined-search'
                   label='Busque por bairro'
@@ -182,21 +139,15 @@ function Home(props) {
                   ))}
                 </TextField>
               </Grid>
-              <Button
-                variant='contained'
-                size='medium'
-                color='secondary'
-                className={classes.buttomForm}
-              >
+              <CustomButton variant='contained' size='medium' color='secondary'>
                 Encontrar imóveis
-              </Button>
+              </CustomButton>
             </form>
           </Grid>
         </Grid>
+        <Grid item className={classes.formContainer}></Grid>
       </Grid>
-
-      <Grid item className={classes.formContainer}></Grid>
-    </Grid>
+    </>
   );
 }
 

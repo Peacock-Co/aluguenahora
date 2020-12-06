@@ -1,10 +1,11 @@
 import React from 'react';
+import { Grid, Typography } from '@material-ui/core';
 
 const MyHouses = () => {
   return (
-    <div>
-      <h2>Meus imóveis</h2>
-    </div>
+    <Grid container justify='center'>
+      <Typography variant='h3'>Meus Imóveis</Typography>
+    </Grid>
   );
 };
 

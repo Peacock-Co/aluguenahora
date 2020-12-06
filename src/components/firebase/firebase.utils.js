@@ -1,8 +1,8 @@
-import firebase from 'firebase/app';
+import app from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-const config = {
+const firebaseConfig = {
   apiKey: 'AIzaSyA79cJIiu3En1dHAPg3wGWBZF_qfs6DRMw',
   authDomain: 'alugue-na-hora-a427b.firebaseapp.com',
   databaseURL: 'https://alugue-na-hora-a427b.firebaseio.com',
@@ -12,15 +12,15 @@ const config = {
   appId: '1:825237480393:web:455014ad2e22c305dcbe18',
 };
 
-firebase.initializeApp(config);
+app.initializeApp(firebaseConfig);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+const db = app.firestore();
+const auth = app.auth();
 
-const provider = new firebase.auth.GoogleAuthProvider();
+const provider = new app.auth.GoogleAuthProvider();
 
 provider.setCustomParameters({ prompt: 'select_account' });
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export default firebase;
+export { db, auth };
