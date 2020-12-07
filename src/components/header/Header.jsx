@@ -2,7 +2,10 @@
 import React, { useState, useEffect } from 'react';
 
 // React router
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
+// Firebase
+import { auth } from '../firebase/firebase.utils';
 
 // M-U Components
 import {
@@ -132,6 +135,7 @@ const Header = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [user, setUser] = useState(null);
 
   // Handler Functions
   const handleChange = (e, newValue) => {
@@ -154,6 +158,12 @@ const Header = (props) => {
     setOpenMenu(false);
   };
 
+  const closeSession = () => {
+    auth.signOut().then(() => {
+      props.history.push('/signin');
+    });
+  };
+
   const menuOptions = [
     {
       name: 'Para proprietários',
@@ -163,7 +173,7 @@ const Header = (props) => {
     },
     {
       name: 'Anunciar imóvel para alugar',
-      link: '/anunciar-para-alugar',
+      link: '/meus-imoveis',
       activeIndex: 2,
       selectedIndex: 1,
     },
@@ -199,6 +209,13 @@ const Header = (props) => {
     [...menuOptions, ...routes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
+          if (auth.currentUser) {
+            console.log('existe usuario');
+            setUser(auth.currentUser);
+          } else {
+            console.log('nao existe usuario');
+            props.history.push('/signin');
+          }
           if (props.value !== route.activeIndex) {
             props.setValue(route.activeIndex);
             if (
@@ -213,7 +230,15 @@ const Header = (props) => {
           break;
       }
     });
-  }, [props.value, menuOptions, props.selectedIndex, routes, props]);
+  }, [
+    props.value,
+    menuOptions,
+    props.selectedIndex,
+    routes,
+    props,
+    props.history,
+    user,
+  ]);
 
   const tabs = (
     <>
@@ -326,16 +351,30 @@ const Header = (props) => {
             </Button>
             {matches ? drawer : tabs}
             <Hidden xsDown>
-              <Link to='/signin' style={{ textDecoration: 'none' }}>
+              {props.firebaseUser !== null ? (
                 <Button
                   variant='contained'
                   color='default'
                   className={classes.accountButtom}
                   startIcon={<AccountCircleIcon />}
+                  onClick={() => {
+                    closeSession();
+                  }}
                 >
-                  Area cliente
+                  Fechar sessão
                 </Button>
-              </Link>
+              ) : (
+                <Link to='/signin' style={{ textDecoration: 'none' }}>
+                  <Button
+                    variant='contained'
+                    color='default'
+                    className={classes.accountButtom}
+                    startIcon={<AccountCircleIcon />}
+                  >
+                    Area cliente
+                  </Button>
+                </Link>
+              )}
             </Hidden>
           </Toolbar>
         </AppBar>
@@ -345,4 +384,4 @@ const Header = (props) => {
     </>
   );
 };
-export default Header;
+export default withRouter(Header);

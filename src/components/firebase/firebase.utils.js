@@ -3,13 +3,13 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA79cJIiu3En1dHAPg3wGWBZF_qfs6DRMw',
-  authDomain: 'alugue-na-hora-a427b.firebaseapp.com',
-  databaseURL: 'https://alugue-na-hora-a427b.firebaseio.com',
-  projectId: 'alugue-na-hora-a427b',
-  storageBucket: 'alugue-na-hora-a427b.appspot.com',
-  messagingSenderId: '825237480393',
-  appId: '1:825237480393:web:455014ad2e22c305dcbe18',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_API_ID,
 };
 
 app.initializeApp(firebaseConfig);

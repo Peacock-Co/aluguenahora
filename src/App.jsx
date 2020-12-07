@@ -1,5 +1,5 @@
 // React, Router
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Material UI
@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from './components/ui/Theme';
 
 // Firebase Auth
+import { auth } from './components/firebase/firebase.utils';
 
 // Components
 import Header from './components/header/Header';
@@ -22,11 +23,24 @@ import Footer from './components/footer/Footer';
 const App = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [value, setValue] = useState(0);
+  const [firebaseUser, setFirebaseUser] = useState(false);
 
-  return (
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        setFirebaseUser(user);
+      } else {
+        setFirebaseUser(null);
+      }
+    });
+  }, []);
+
+  return firebaseUser !== false ? (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header
+          firebaseUser={firebaseUser}
           value={value}
           setValue={setValue}
           selectedIndex={selectedIndex}
@@ -47,7 +61,6 @@ const App = () => {
           <Route path='/meus-imoveis' component={() => <MyHouses />} />
           <Route path='/contato' component={() => <Contact />} />
           <Route path='/signin' component={() => <SignIn />} />
-          <Route path='/cliente' component={() => <MyHouses />} />
           <Route path='/user'>User...</Route>
         </Switch>
         <Footer
@@ -58,6 +71,8 @@ const App = () => {
         />
       </BrowserRouter>
     </ThemeProvider>
+  ) : (
+    <p>Loading...</p>
   );
 };
 

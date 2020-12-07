@@ -50,7 +50,7 @@ const SignIn = (props) => {
       setEmail('');
       setPassword('');
       setError(null);
-      props.history.push('/cliente');
+      props.history.push('/meus-imoveis');
     } catch (error) {
       console.log(error);
       if (error.code === 'auth/invalid-email') {
@@ -76,7 +76,7 @@ const SignIn = (props) => {
       setEmail('');
       setPassword('');
       setError(null);
-      props.history.push('/cliente');
+      props.history.push('/meus-imoveis');
     } catch (error) {
       console.log(error);
       if (error.code === 'auth/invalid-email') {

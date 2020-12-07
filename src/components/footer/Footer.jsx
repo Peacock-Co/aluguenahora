@@ -1,5 +1,10 @@
+// React
 import React from 'react';
+
+// React router
 import { Link } from 'react-router-dom';
+
+// Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -126,7 +131,7 @@ const Footer = (props) => {
                       props.setValue(2);
                       props.setSelectedIndex(1);
                     }}
-                    to='/anunciar-para-alugar'
+                    to='/meus-imoveis'
                     className={classes.link}
                   >
                     Anunciar imóvel para alugar
