@@ -158,12 +158,6 @@ const Header = (props) => {
     setOpenMenu(false);
   };
 
-  const closeSession = () => {
-    auth.signOut().then(() => {
-      props.history.push('/signin');
-    });
-  };
-
   const menuOptions = [
     {
       name: 'Para proprietários',
@@ -209,13 +203,6 @@ const Header = (props) => {
     [...menuOptions, ...routes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if (auth.currentUser) {
-            console.log('existe usuario');
-            setUser(auth.currentUser);
-          } else {
-            console.log('nao existe usuario');
-            props.history.push('/signin');
-          }
           if (props.value !== route.activeIndex) {
             props.setValue(route.activeIndex);
             if (

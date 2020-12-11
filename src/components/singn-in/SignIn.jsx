@@ -1,5 +1,5 @@
 // React
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // React router
 import { withRouter } from 'react-router-dom';
@@ -43,9 +43,9 @@ const SignIn = (props) => {
     }
   };
 
-  const login = useCallback(async () => {
+  const login = useEffect(() => {
     try {
-      const res = await auth.signInWithEmailAndPassword(email, password);
+      const res = auth.signInWithEmailAndPassword(email, password);
       console.log(res.user);
       setEmail('');
       setPassword('');
@@ -65,11 +65,11 @@ const SignIn = (props) => {
     }
   }, [email, password, props.history]);
 
-  const registerUser = useCallback(async () => {
+  const registerUser = useEffect(() => {
     try {
-      const res = await auth.createUserWithEmailAndPassword(email, password);
+      const res = auth.createUserWithEmailAndPassword(email, password);
       console.log(res.user);
-      await db.collection('users').doc(res.user.email).set({
+      db.collection('users').doc(res.user.email).set({
         email: res.user.email,
         uid: res.user.uid,
       });
