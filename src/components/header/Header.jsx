@@ -2,10 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 // React router
-import { Link, withRouter } from 'react-router-dom';
-
-// Firebase
-import { auth } from '../firebase/firebase.utils';
+import { Link } from 'react-router-dom';
 
 // M-U Components
 import {
@@ -135,7 +132,6 @@ const Header = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [user, setUser] = useState(null);
 
   // Handler Functions
   const handleChange = (e, newValue) => {
@@ -167,7 +163,7 @@ const Header = (props) => {
     },
     {
       name: 'Anunciar imóvel para alugar',
-      link: '/meus-imoveis',
+      link: '/anunciar-para-alugar',
       activeIndex: 2,
       selectedIndex: 1,
     },
@@ -217,15 +213,7 @@ const Header = (props) => {
           break;
       }
     });
-  }, [
-    props.value,
-    menuOptions,
-    props.selectedIndex,
-    routes,
-    props,
-    props.history,
-    user,
-  ]);
+  }, [props.value, menuOptions, props.selectedIndex, routes, props]);
 
   const tabs = (
     <>
@@ -338,30 +326,16 @@ const Header = (props) => {
             </Button>
             {matches ? drawer : tabs}
             <Hidden xsDown>
-              {props.firebaseUser !== null ? (
+              <Link to='/signin' style={{ textDecoration: 'none' }}>
                 <Button
                   variant='contained'
                   color='default'
                   className={classes.accountButtom}
                   startIcon={<AccountCircleIcon />}
-                  onClick={() => {
-                    closeSession();
-                  }}
                 >
-                  Fechar sessão
+                  Area cliente
                 </Button>
-              ) : (
-                <Link to='/signin' style={{ textDecoration: 'none' }}>
-                  <Button
-                    variant='contained'
-                    color='default'
-                    className={classes.accountButtom}
-                    startIcon={<AccountCircleIcon />}
-                  >
-                    Area cliente
-                  </Button>
-                </Link>
-              )}
+              </Link>
             </Hidden>
           </Toolbar>
         </AppBar>
@@ -371,4 +345,4 @@ const Header = (props) => {
     </>
   );
 };
-export default withRouter(Header);
+export default Header;
