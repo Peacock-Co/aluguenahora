@@ -39,6 +39,7 @@ export const startRegisterWithNameEmailPassword = (name, email, password) => {
   };
 };
 
+// Firebase SignIn with Google
 export const startGoogleLogin = () => {
   return (dispatch) => {
     firebase
@@ -50,10 +51,23 @@ export const startGoogleLogin = () => {
   };
 };
 
+// Firebase Login
 export const login = (uid, displayName) => ({
   type: types.login,
   payload: {
     uid,
     displayName,
   },
+});
+
+// Firebase Logout
+export const startLogout = () => {
+  return async (dispath) => {
+    await firebase.auth().signOut();
+    dispath(logout());
+  };
+};
+
+export const logout = () => ({
+  type: types.logout,
 });

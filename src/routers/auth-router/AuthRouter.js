@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Router
 import { Switch, Route, Redirect } from 'react-router-dom';
-
-// Firebase
-import { firebase } from '../../components/firebase/firebase.utils';
 
 import LoginScreen from '../../components/auth/login/LoginScreen';
 import RegisterScreen from '../../components/auth/register/RegisterScreen';
 
 const AuthRouter = () => {
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-    });
-  }, []);
-
   return (
     <div>
       <Switch>

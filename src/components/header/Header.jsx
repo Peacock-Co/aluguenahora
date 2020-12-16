@@ -1,6 +1,9 @@
 // React
 import React, { useState, useEffect } from 'react';
 
+// Redux
+import { useDispatch } from 'react-redux';
+
 // React router
 import { Link } from 'react-router-dom';
 
@@ -30,6 +33,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 // Logo from assets
 import logo from '../../assets/aluguenahora.logo.svg';
+
+import isLoggedIn from '../../App';
+import { startLogout } from '../../actions/Auth';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -128,6 +134,9 @@ const Header = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
+  // Dispatch Redux
+  const dispatch = useDispatch();
+
   // Use states Hooks
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
@@ -152,6 +161,10 @@ const Header = (props) => {
   const handleClose = (e) => {
     setAnchorEl(null);
     setOpenMenu(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(startLogout());
   };
 
   const menuOptions = [
@@ -332,8 +345,9 @@ const Header = (props) => {
                   color='default'
                   className={classes.accountButtom}
                   startIcon={<AccountCircleIcon />}
+                  onClick={handleLogout}
                 >
-                  Area cliente
+                  {isLoggedIn ? 'Area cliente' : 'Sair sessão'}
                 </Button>
               </Link>
             </Hidden>
