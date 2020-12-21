@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.js": "/static/js/main.4fbb09c2.chunk.js",
-    "main.js.map": "/static/js/main.4fbb09c2.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.a50da8c4.js",
-    "runtime-main.js.map": "/static/js/runtime-main.a50da8c4.js.map",
-    "static/js/2.c2d54d01.chunk.js": "/static/js/2.c2d54d01.chunk.js",
-    "static/js/2.c2d54d01.chunk.js.map": "/static/js/2.c2d54d01.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.88f3d9bab6cab24c800b7837f5fed9cd.js": "/precache-manifest.88f3d9bab6cab24c800b7837f5fed9cd.js",
-    "service-worker.js": "/service-worker.js",
-    "static/js/2.c2d54d01.chunk.js.LICENSE.txt": "/static/js/2.c2d54d01.chunk.js.LICENSE.txt",
-    "static/media/aluguenahora.logo.svg": "/static/media/aluguenahora.logo.f496b5f0.svg",
-    "static/media/facebook-square-brands.svg": "/static/media/facebook-square-brands.34e73505.svg",
-    "static/media/instagram-square-brands.svg": "/static/media/instagram-square-brands.6c6931f4.svg",
-    "static/media/linkedin-brands.svg": "/static/media/linkedin-brands.d9049f46.svg",
-    "static/media/twitter-brands.svg": "/static/media/twitter-brands.6620c8ae.svg"
+    "main.js": "/aluguenahora/static/js/main.4fbb09c2.chunk.js",
+    "main.js.map": "/aluguenahora/static/js/main.4fbb09c2.chunk.js.map",
+    "runtime-main.js": "/aluguenahora/static/js/runtime-main.f9943323.js",
+    "runtime-main.js.map": "/aluguenahora/static/js/runtime-main.f9943323.js.map",
+    "static/js/2.dba3734e.chunk.js": "/aluguenahora/static/js/2.dba3734e.chunk.js",
+    "static/js/2.dba3734e.chunk.js.map": "/aluguenahora/static/js/2.dba3734e.chunk.js.map",
+    "index.html": "/aluguenahora/index.html",
+    "precache-manifest.bd008c22f3cf84cc60961facb67671fc.js": "/aluguenahora/precache-manifest.bd008c22f3cf84cc60961facb67671fc.js",
+    "service-worker.js": "/aluguenahora/service-worker.js",
+    "static/js/2.dba3734e.chunk.js.LICENSE.txt": "/aluguenahora/static/js/2.dba3734e.chunk.js.LICENSE.txt",
+    "static/media/aluguenahora.logo.svg": "/aluguenahora/static/media/aluguenahora.logo.f496b5f0.svg",
+    "static/media/facebook-square-brands.svg": "/aluguenahora/static/media/facebook-square-brands.34e73505.svg",
+    "static/media/instagram-square-brands.svg": "/aluguenahora/static/media/instagram-square-brands.6c6931f4.svg",
+    "static/media/linkedin-brands.svg": "/aluguenahora/static/media/linkedin-brands.d9049f46.svg",
+    "static/media/twitter-brands.svg": "/aluguenahora/static/media/twitter-brands.6620c8ae.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a50da8c4.js",
-    "static/js/2.c2d54d01.chunk.js",
+    "static/js/runtime-main.f9943323.js",
+    "static/js/2.dba3734e.chunk.js",
     "static/js/main.4fbb09c2.chunk.js"
   ]
 }
