@@ -3,8 +3,8 @@ import React from 'react';
 // Router
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import LoginScreen from '../../components/auth/login/LoginScreen';
-import RegisterScreen from '../../components/auth/register/RegisterScreen';
+import { LoginScreen } from '../pages/login/LoginScreen';
+import { RegisterScreen } from '../pages/register/RegisterScreen';
 
 const AuthRouter = () => {
   return (

@@ -1,8 +1,8 @@
 // React
 import React, { useState, useEffect } from 'react';
 
-// Redux
-import { useDispatch } from 'react-redux';
+// // Redux
+// import { useDispatch } from 'react-redux';
 
 // React router
 import { Link } from 'react-router-dom';
@@ -34,8 +34,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // Logo from assets
 import logo from '../../assets/aluguenahora.logo.svg';
 
-import isLoggedIn from '../../App';
-import { startLogout } from '../../actions/Auth';
+// import { startLogout } from '../../actions/Auth';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -134,8 +133,8 @@ const Header = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  // Dispatch Redux
-  const dispatch = useDispatch();
+  // // Dispatch Redux
+  // const dispatch = useDispatch();
 
   // Use states Hooks
   const [anchorEl, setAnchorEl] = useState(null);
@@ -163,9 +162,9 @@ const Header = (props) => {
     setOpenMenu(false);
   };
 
-  const handleLogout = () => {
-    dispatch(startLogout());
-  };
+  // const handleLogout = () => {
+  //   dispatch(startLogout());
+  // };
 
   const menuOptions = [
     {
@@ -339,15 +338,14 @@ const Header = (props) => {
             </Button>
             {matches ? drawer : tabs}
             <Hidden xsDown>
-              <Link to='/login' style={{ textDecoration: 'none' }}>
+              <Link to='/auth/login' style={{ textDecoration: 'none' }}>
                 <Button
                   variant='contained'
                   color='default'
                   className={classes.accountButtom}
                   startIcon={<AccountCircleIcon />}
-                  onClick={handleLogout}
                 >
-                  {isLoggedIn ? 'Area cliente' : 'Sair sessão'}
+                  Area cliente
                 </Button>
               </Link>
             </Hidden>

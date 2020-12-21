@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 
-// React Redux
+// // React Redux
 import { useDispatch, useSelector } from 'react-redux';
 
 // React router
@@ -9,18 +9,15 @@ import { Link } from 'react-router-dom';
 
 // Material UI
 import { Grid, Typography, TextField, Icon, Button } from '@material-ui/core';
-import CustomButton from '../../custom-button/CustomButton';
+import CustomButton from '../../components/custom-button/CustomButton';
 
 // Custom Hooks
-import { useForm } from '../../../hooks/useForm';
+import { useForm } from '../../hooks/useForm';
 
 // Redux
-import {
-  startGoogleLogin,
-  startLoginEmailPassword,
-} from '../../../actions/Auth';
+import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 
-const LoginScreen = () => {
+export const LoginScreen = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
 
@@ -94,14 +91,14 @@ const LoginScreen = () => {
             </CustomButton>
           </Grid>
           <Grid container justify='center'>
-            <Link to='/register'>
+            <Link to='/auth/register' style={{ textDecoration: 'none' }}>
               <Button
                 size='small'
                 style={{ justifyContent: 'center', marginTop: '2em' }}
                 onClick={handleInputChange}
                 type='button'
               >
-                Não tenho conta
+                Criar uma conta
               </Button>
             </Link>
           </Grid>
@@ -110,5 +107,3 @@ const LoginScreen = () => {
     </Grid>
   );
 };
-
-export default LoginScreen;
