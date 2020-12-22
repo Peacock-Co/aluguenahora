@@ -23,23 +23,23 @@ export const startLoginEmailPassword = (email, password) => {
   };
 };
 
-// // Firebase register email password
-// export const startRegisterWithNameEmailPassword = (name, email, password) => {
-//   return (dispatch) => {
-//     firebase
-//       .auth()
-//       .createUserWithEmailAndPassword(email, password)
-//       .then(async ({ user }) => {
-//         await user.updateProfile({ displayName: name });
-//         console.log(user);
+// Firebase register email password
+export const startRegisterWithNameEmailPassword = (name, email, password) => {
+  return (dispatch) => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(async ({ user }) => {
+        await user.updateProfile({ displayName: name });
+        console.log(user);
 
-//         dispatch(login(user.uid, user.displayName));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
-// };
+        dispatch(login(user.uid, user.displayName));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 //Firebase SignIn with Google
 export const startGoogleLogin = () => {
@@ -62,14 +62,14 @@ export const login = (uid, displayName) => ({
   },
 });
 
-// // Firebase Logout
-// export const startLogout = () => {
-//   return async (dispath) => {
-//     await firebase.auth().signOut();
-//     dispath(logout());
-//   };
-// };
+// Firebase Logout
+export const startLogout = () => {
+  return async (dispath) => {
+    await firebase.auth().signOut();
+    dispath(logout());
+  };
+};
 
-// export const logout = () => ({
-//   type: types.logout,
-// });
+export const logout = () => ({
+  type: types.logout,
+});

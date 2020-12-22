@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 
-// // React Redux
+// React Redux
 import { useDispatch, useSelector } from 'react-redux';
 
 // React router
@@ -14,7 +14,7 @@ import CustomButton from '../../components/custom-button/CustomButton';
 // Custom Hooks
 import { useForm } from '../../hooks/useForm';
 
-// Redux
+// Firebase
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 
 export const LoginScreen = () => {

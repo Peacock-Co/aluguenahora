@@ -1,8 +1,8 @@
 // React
 import React, { useState, useEffect } from 'react';
 
-// // Redux
-// import { useDispatch } from 'react-redux';
+// Redux
+import { useDispatch } from 'react-redux';
 
 // React router
 import { Link } from 'react-router-dom';
@@ -34,7 +34,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // Logo from assets
 import logo from '../../assets/aluguenahora.logo.svg';
 
-// import { startLogout } from '../../actions/Auth';
+import { startLogout } from '../../actions/auth';
+import { login } from '../../actions/auth';
+
+// Firebase
+import { firebase } from '../firebase/firebase.utils';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -133,13 +137,14 @@ const Header = (props) => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  // // Dispatch Redux
-  // const dispatch = useDispatch();
+  // Dispatch Redux
+  const dispatch = useDispatch();
 
   // Use states Hooks
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Handler Functions
   const handleChange = (e, newValue) => {
@@ -162,9 +167,9 @@ const Header = (props) => {
     setOpenMenu(false);
   };
 
-  // const handleLogout = () => {
-  //   dispatch(startLogout());
-  // };
+  const handleLogout = () => {
+    dispatch(startLogout());
+  };
 
   const menuOptions = [
     {
@@ -188,7 +193,7 @@ const Header = (props) => {
   ];
 
   const routes = [
-    { name: 'Home', link: '/', activeIndex: 0 },
+    { name: 'Home', link: '/aluguenahora', activeIndex: 0 },
     {
       name: 'Imóveis para alugar',
       link: '/imoveis-para-alugar',
@@ -226,6 +231,17 @@ const Header = (props) => {
       }
     });
   }, [props.value, menuOptions, props.selectedIndex, routes, props]);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user?.uid) {
+        dispatch(login(user.uid, user.displayName));
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, [dispatch, setIsLoggedIn]);
 
   const tabs = (
     <>
@@ -330,7 +346,7 @@ const Header = (props) => {
             </Hidden>
             <Button
               component={Link}
-              to='/'
+              to='/aluguenahora'
               className={classes.logoContainer}
               onClick={() => props.setValue(0)}
             >
@@ -339,14 +355,26 @@ const Header = (props) => {
             {matches ? drawer : tabs}
             <Hidden xsDown>
               <Link to='/auth/login' style={{ textDecoration: 'none' }}>
-                <Button
-                  variant='contained'
-                  color='default'
-                  className={classes.accountButtom}
-                  startIcon={<AccountCircleIcon />}
-                >
-                  Area cliente
-                </Button>
+                {isLoggedIn ? (
+                  <Button
+                    variant='contained'
+                    color='default'
+                    className={classes.accountButtom}
+                    startIcon={<AccountCircleIcon />}
+                    onClick={handleLogout}
+                  >
+                    Sair sessão
+                  </Button>
+                ) : (
+                  <Button
+                    variant='contained'
+                    color='default'
+                    className={classes.accountButtom}
+                    startIcon={<AccountCircleIcon />}
+                  >
+                    Area cliente
+                  </Button>
+                )}
               </Link>
             </Hidden>
           </Toolbar>
