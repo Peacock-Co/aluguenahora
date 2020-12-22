@@ -9,7 +9,7 @@ const PublicRoute = ({ isAuthenticated, component: Component, ...rest }) => {
       {...rest}
       component={(props) =>
         isAuthenticated ? (
-          <Redirect to='/auth/login' />
+          <Redirect to='/aluguenahora' />
         ) : (
           <Component {...props} />
         )

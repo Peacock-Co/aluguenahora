@@ -16,8 +16,8 @@ import HomePage from '../pages/homepage/HomePage';
 // Material UI
 import { ThemeProvider, Typography, Grid } from '@material-ui/core';
 import theme from '../components/ui/Theme';
-import PrivateRoute from '../routers/privateRoute';
-import PublicRoute from '../routers/publicRouter';
+import PrivateRoute from '../routers/PrivateRoute';
+import PublicRoute from '../routers/PublicRouter';
 
 import { login } from '../actions/auth';
 
@@ -62,34 +62,16 @@ export const AppRouter = () => {
           setSelectedIndex={setSelectedIndex}
         />
         <Switch>
-          <Route path='/auth' component={AuthRouter} />
           <PublicRoute
             isAuthenticated={isLoggedIn}
-            exact
-            path='/'
-            component={HomePage}
+            path='/auth'
+            component={AuthRouter}
           />
-          <PublicRoute
-            isAuthenticated={isLoggedIn}
-            exact
-            path='/aluguenahora'
-            component={HomePage}
-          />
-          <PublicRoute
-            isAuthenticated={isLoggedIn}
-            path='/imoveis-para-alugar'
-            component={HousesToRent}
-          />
-          <PublicRoute
-            isAuthenticated={isLoggedIn}
-            path='/quem-somos'
-            component={About}
-          />
-          <PublicRoute
-            isAuthenticated={isLoggedIn}
-            path='/contato'
-            component={Contact}
-          />
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/aluguenahora' component={HomePage} />
+          <Route path='/imoveis-para-alugar' component={HousesToRent} />
+          <Route path='/quem-somos' component={About} />
+          <Route path='/contato' component={Contact} />
           <PrivateRoute
             isAuthenticated={isLoggedIn}
             path='/anunciar-para-alugar'
