@@ -12,8 +12,18 @@ import { Grid, Typography } from '@material-ui/core';
 
 const MyHouses = (props) => {
   return (
-    <Grid container justify='center'>
-      <Typography variant='h3'>Meus Imóveis!!</Typography>
+    <Grid
+      container
+      direction='row'
+      justify='center'
+      alignItems='center'
+      style={{ height: '35em' }}
+    >
+      <Grid item>
+        <Typography variant='h3'>
+          Ainda não há inserido nenhum imóvel
+        </Typography>
+      </Grid>
     </Grid>
   );
 };
