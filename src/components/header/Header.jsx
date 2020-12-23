@@ -363,6 +363,7 @@ const Header = (props) => {
                     startIcon={<AccountCircleIcon />}
                     onClick={handleLogout}
                   >
+                    {}
                     Sair sessão
                   </Button>
                 ) : (

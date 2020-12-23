@@ -131,7 +131,7 @@ const Footer = (props) => {
                       props.setValue(2);
                       props.setSelectedIndex(1);
                     }}
-                    to='/meus-imoveis'
+                    to='/anunciar-para-alugar'
                     className={classes.link}
                   >
                     Anunciar imóvel para alugar

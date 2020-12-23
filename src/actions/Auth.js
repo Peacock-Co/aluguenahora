@@ -1,9 +1,13 @@
+// Firebase
 import {
   firebase,
   googleAuthProvider,
 } from '../components/firebase/firebase.utils';
+
+// Components
 import { types } from '../types/types';
 import { startLoading, finishLoading } from './ui';
+import Swal from 'sweetalert2';
 
 // Firebase Login email password
 export const startLoginEmailPassword = (email, password) => {
@@ -19,6 +23,7 @@ export const startLoginEmailPassword = (email, password) => {
       .catch((err) => {
         console.log(err);
         dispatch(finishLoading());
+        Swal.fire('Error', err.message, 'error');
       });
   };
 };
@@ -37,6 +42,8 @@ export const startRegisterWithNameEmailPassword = (name, email, password) => {
       })
       .catch((err) => {
         console.log(err);
+        dispatch(finishLoading());
+        Swal.fire('Error', err.message, 'error');
       });
   };
 };

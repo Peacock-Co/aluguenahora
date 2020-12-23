@@ -16,8 +16,8 @@ import HomePage from '../pages/homepage/HomePage';
 // Material UI
 import { ThemeProvider, Typography, Grid } from '@material-ui/core';
 import theme from '../components/ui/Theme';
-import PrivateRoute from '../routers/PrivateRoute';
-import PublicRoute from '../routers/PublicRouter';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRouter';
 
 import { login } from '../actions/auth';
 
