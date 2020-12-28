@@ -68,7 +68,7 @@ const prices = [
 export const HomePage = (props) => {
   const classes = useStyles();
   const [room, setRoom] = useState('2');
-  const [price, setPrice] = React.useState('2');
+  const [price, setPrice] = useState('2');
 
   const handleChangeRoom = (event) => {
     setRoom(event.target.value);

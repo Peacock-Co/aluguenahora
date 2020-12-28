@@ -1,16 +1,10 @@
 // React
 import React from 'react';
 
-// React router
-import { withRouter } from 'react-router-dom';
-
 // Material
 import { Grid, Typography } from '@material-ui/core';
 
-// Firebase
-//import { auth } from '../firebase/firebase.utils';
-
-const MyHouses = (props) => {
+const MyHouses = () => {
   return (
     <Grid
       container
@@ -28,4 +22,4 @@ const MyHouses = (props) => {
   );
 };
 
-export default withRouter(MyHouses);
+export default MyHouses;

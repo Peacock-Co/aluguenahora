@@ -24,6 +24,8 @@ import { login } from '../actions/auth';
 // Firebase
 import { firebase } from '../components/firebase/firebase.utils';
 
+import { startLoadingProperties } from '../actions/properties';
+
 export const AppRouter = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [value, setValue] = useState(0);
@@ -33,10 +35,12 @@ export const AppRouter = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
+
+        dispatch(startLoadingProperties(user.uid));
       } else {
         setIsLoggedIn(false);
       }

@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+// Redux
+import dispatch from 'react-redux';
+
+import { addNewPropertie } from '../../actions/properties';
+
 // // React router
 // import { Link } from 'react-router-dom';
 
@@ -54,7 +59,9 @@ const prices = [
 
 const AnounceToRent = () => {
   const [room, setRoom] = useState('2');
-  const [price, setPrice] = React.useState('2');
+  const [price, setPrice] = useState('2');
+  const [street, setStreet] = useState('');
+  const [neighbour, setNeighbour] = useState('');
 
   const handleChangeRoom = (event) => {
     setRoom(event.target.value);
@@ -62,6 +69,14 @@ const AnounceToRent = () => {
 
   const handleChangePrice = (event) => {
     setPrice(event.target.value);
+  };
+
+  const handleChangeStreet = (event) => {
+    setStreet(event.targe.value);
+  };
+
+  const handleInputProperty = () => {
+    dispatch(addNewPropertie);
   };
 
   return (
@@ -96,6 +111,7 @@ const AnounceToRent = () => {
           <TextField
             fullWidth
             name='rua'
+            value={street}
             type='text'
             autoComplete='on'
             label='Rua'
@@ -107,7 +123,7 @@ const AnounceToRent = () => {
           />
           <TextField
             fullWidth
-            name='rua'
+            name='bairro'
             type='text'
             autoComplete='on'
             label='Bairro'
@@ -134,7 +150,12 @@ const AnounceToRent = () => {
             ))}
           </TextField>
           <Grid container justify='space-between'>
-            <CustomButton variant='contained' type='submit' color='secondary'>
+            <CustomButton
+              variant='contained'
+              type='submit'
+              color='secondary'
+              onClick={handleInputProperty}
+            >
               Anunciar
             </CustomButton>
           </Grid>

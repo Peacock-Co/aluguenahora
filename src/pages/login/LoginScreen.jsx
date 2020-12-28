@@ -38,7 +38,7 @@ export const LoginScreen = () => {
   };
 
   return (
-    <Grid container justify='center'>
+    <Grid container justify='center' alignItems='center'>
       <Grid item style={{ marginTop: '5em' }}>
         <Typography variant='h2'>Login</Typography>
         <Typography variant='h3'>Entra com seu email e contrasenha</Typography>
