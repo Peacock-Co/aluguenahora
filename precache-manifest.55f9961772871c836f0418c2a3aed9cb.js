@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6ce164c8c3e991c4f769ec94d6fa4794",
+    "revision": "462aabbfb28ee203753d9993aa348f30",
     "url": "/aluguenahora/index.html"
   },
   {
-    "revision": "f816837ed95baf080bc3",
-    "url": "/aluguenahora/static/js/2.3a849c7a.chunk.js"
+    "revision": "d0c3ec2f8871e20aafd0",
+    "url": "/aluguenahora/static/js/2.b94f767e.chunk.js"
   },
   {
     "revision": "d584d19d868e0c02863831be2b58edee",
-    "url": "/aluguenahora/static/js/2.3a849c7a.chunk.js.LICENSE.txt"
+    "url": "/aluguenahora/static/js/2.b94f767e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d10ff672479675c7f7b0",
-    "url": "/aluguenahora/static/js/main.930b6fca.chunk.js"
+    "revision": "0d3f049cfc445eace42c",
+    "url": "/aluguenahora/static/js/main.f40b7b28.chunk.js"
   },
   {
     "revision": "854d34716c7e9a37f7f0",
@@ -22,6 +22,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f496b5f004afa9a5d8eb32909a0cd494",
     "url": "/aluguenahora/static/media/aluguenahora.logo.f496b5f0.svg"
+  },
+  {
+    "revision": "5f6273a38af6c8dc6b7292bcc430623c",
+    "url": "/aluguenahora/static/media/ararahome.5f6273a3.jpg"
   },
   {
     "revision": "34e73505be53a83b3d32236dab04f124",
