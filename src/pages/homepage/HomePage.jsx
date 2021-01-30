@@ -88,7 +88,7 @@ export const HomePage = (props) => {
                 Alugue na Hora
               </Typography>
               <Typography variant='h3' className='h3'>
-                Encontre seu imóvel
+                Encontre seu imóvel!
               </Typography>
               <form>
                 <TextField
@@ -131,7 +131,7 @@ export const HomePage = (props) => {
                     select
                     value={room}
                     onChange={handleChangeRoom}
-                    helperText='Selecione precio'
+                    helperText='Selecione preço'
                     variant='outlined'
                   >
                     {prices.map((option) => (

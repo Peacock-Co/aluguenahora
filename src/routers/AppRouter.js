@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 import HousesToRent from '../components/houses-to-rent/HousesToRent';
 import About from '../components/about/About';
 import Contact from '../components/contact/Contact';
-import AnnounceToRent from '../components/owners/AnnounceToRent';
-import MyHouses from '../components/owners/MyHouses';
+import { AnnounceToRent } from '../components/owners/AnnounceToRent';
+import { MyHouses } from '../components/owners/MyHouses';
 import AuthRouter from '../routers/AuthRouter';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
@@ -51,7 +51,7 @@ export const AppRouter = () => {
   if (checking) {
     return (
       <Grid container justify='center'>
-        <Typography variant='h4'>Loading...</Typography>
+        <Typography variant='h4'>Carregando...</Typography>
       </Grid>
     );
   }

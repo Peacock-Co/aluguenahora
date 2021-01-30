@@ -2,17 +2,13 @@ import { types } from '../types/types';
 /* 
   {
     properties: [],
-    active: null,
+    active: null, if it is null it will appear the message "Ainda nao tem um imovel anunciado"
     active: {
       id: 'kahjsfsjkhfjsahfaf',
+      title: '',
+      body: '',
       imageUrl: '',
-      type: '',
-      street: '',
-      neighborhood: '',
-      squaremeters: number,
-      rooms: number,
-      parking: number,
-      renting: number
+      date: 30102021
     }
   }
 */

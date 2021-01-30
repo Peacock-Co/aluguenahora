@@ -1,7 +1,7 @@
 import { db } from '../firebase/firebase.utils';
 
 export const loadProperties = async (uid) => {
-  const propertySnap = await db.collection(`${uid}/houses/anuncios`).get();
+  const propertySnap = await db.collection(`${uid}/adverts/properties`).get();
   const properties = [];
 
   propertySnap.forEach((snapHijo) => {
@@ -10,8 +10,6 @@ export const loadProperties = async (uid) => {
       ...snapHijo.data(),
     });
   });
-
-  console.log(properties);
 
   return properties;
 };

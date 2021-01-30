@@ -12,7 +12,7 @@ export const types = {
   uiFinishLoading: '[UI] Finish loading',
 
   // Property database actions
-  propertyAddNew: '[Property] Add new property',
+  propertyAnnounceNew: '[Property] Announce new property',
   propertyActive: '[Property] Set active property',
   propertyLoad: '[Property] Load properties',
   propertyUpdated: '[Property] Update property saved',

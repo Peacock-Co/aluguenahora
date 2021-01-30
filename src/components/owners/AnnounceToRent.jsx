@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
 // Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { addNewPropertie } from '../../actions/properties';
-
-// // React router
-// import { Link } from 'react-router-dom';
+import { announceNewPropertie } from '../../actions/properties';
 
 // Material UI
 import { Grid, Typography, TextField, MenuItem } from '@material-ui/core';
@@ -57,10 +54,13 @@ const prices = [
   },
 ];
 
-const AnounceToRent = () => {
+export const AnnounceToRent = () => {
   const dispatch = useDispatch();
   const [room, setRoom] = useState('2');
   const [price, setPrice] = useState('2');
+
+  const { active } = useSelector((state) => state.properties);
+  console.log(active);
 
   const [formValues, handleInputChange] = useForm({
     street: 'Rua Afro Puga',
@@ -77,8 +77,8 @@ const AnounceToRent = () => {
     setPrice(event.target.value);
   };
 
-  const handleInputProperty = () => {
-    dispatch(addNewPropertie);
+  const handleAnnounceProperty = () => {
+    dispatch(announceNewPropertie());
   };
 
   return (
@@ -154,20 +154,18 @@ const AnounceToRent = () => {
               </MenuItem>
             ))}
           </TextField>
-          <Grid container justify='space-between'>
-            <CustomButton
-              variant='contained'
-              type='submit'
-              color='secondary'
-              onClick={handleInputProperty}
-            >
-              Anunciar
-            </CustomButton>
-          </Grid>
         </form>
+        <Grid container justify='space-between'>
+          <CustomButton
+            variant='contained'
+            type='submit'
+            color='secondary'
+            onClick={handleAnnounceProperty}
+          >
+            Anunciar
+          </CustomButton>
+        </Grid>
       </Grid>
     </Grid>
   );
 };
-
-export default AnounceToRent;

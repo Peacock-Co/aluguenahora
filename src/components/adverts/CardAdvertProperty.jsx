@@ -1,11 +1,21 @@
+// React redux
+
 import React from 'react';
+
+import { useDispatch } from 'react-redux';
+
+import { propertyActive } from '../../actions/properties';
+
+// Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, Button } from '@material-ui/core/';
-
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-
 import Typography from '@material-ui/core/Typography';
+
+// Moment js
+import moment from 'moment';
+import 'moment/locale/pt-br';
 
 const useStyles = makeStyles({
   root: {
@@ -16,20 +26,37 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardHouse() {
+export const CardAdvertProperty = ({ id, date, title, body, url }) => {
+  moment.locale('pt-br');
+  const advertDate = moment().format('LL');
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleAdvertClick = () => {
+    dispatch(
+      propertyActive(id, {
+        date,
+        title,
+        body,
+        url,
+      })
+    );
+  };
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component='img'
-          alt='image'
-          height='140'
-          image={require('../../assets/ararahome.jpg')}
-          title='Image'
-          className={classes.image}
-        />
+      <CardActionArea onClick={handleAdvertClick}>
+        {url && (
+          <CardMedia
+            component='img'
+            alt='image'
+            height='140'
+            image={`url(${url})`}
+            title='Image'
+            className={classes.image}
+          />
+        )}
         <CardContent>
           <Typography gutterBottom variant='h6' component='h2'>
             Apartamento
@@ -50,6 +77,7 @@ export default function CardHouse() {
           3 Quartos
         </Button>
       </CardActions>
+      <Typography style={{ fontSize: '.8rem' }}>{advertDate}</Typography>
     </Card>
   );
-}
+};

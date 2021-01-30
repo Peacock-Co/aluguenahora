@@ -1,43 +1,46 @@
-// React
+// React Redux
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 // Material UI
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-import CardHouseGrid from '../card-house-grid/CardHouseGrid';
+import { CardAdvertProperty } from '../adverts/CardAdvertProperty';
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    marginTop: '7em',
+    marginTop: '6em',
     alignCenter: 'center',
     width: '100%',
-    padding: theme.spacing(1),
   },
   card: {
     padding: theme.spacing(1),
   },
 }));
 
-const MyHouses = () => {
-  const entries = [1, 2, 3, 4, 5];
+export const MyHouses = ({ id }) => {
+  const { properties, active } = useSelector((state) => state.properties);
+  console.log(active);
+
   const classes = useStyles();
+
   return (
     <Grid className={classes.mainContainer} container spacing={2}>
-      {/* <Typography variant='h3'>
+      {id ? (
+        <Typography variant='h3'>
           Ainda não há inserido nenhum imóvel
-        </Typography> */}
-      <Grid item xs={12}>
-        <Grid container justify='center'>
-          {entries.map((value) => (
-            <Grid key={value} item className={classes.card}>
-              <CardHouseGrid />
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
+        </Typography>
+      ) : (
+        <>
+          <Grid container justify='center'>
+            {properties.map((property) => (
+              <Grid key={property.id} item className={classes.card}>
+                <CardAdvertProperty {...property} />
+              </Grid>
+            ))}
+          </Grid>
+        </>
+      )}
     </Grid>
   );
 };
-
-export default MyHouses;

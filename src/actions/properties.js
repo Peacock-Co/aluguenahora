@@ -2,29 +2,31 @@ import { db } from '../components/firebase/firebase.utils';
 import { loadProperties } from '../components/helpers/loadProperties';
 import { types } from '../types/types';
 
-export const addNewPropertie = () => {
+export const announceNewPropertie = () => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid;
     console.log(uid);
 
-    const newProperty = {
-      type: '',
-      street: '',
-      neighbor: '',
-      value: '',
+    const newAnnoucedProperty = {
+      title: '',
+      body: '',
       date: new Date().getTime(),
     };
 
-    const doc = await db.collection(`${uid}/houses/anuncios`).add(newProperty);
-    dispatch(propertyActive(doc.id, newProperty));
+    const docRef = await db
+      .collection(`${uid}/adverts/properties`)
+      .add(newAnnoucedProperty);
+    dispatch(propertyActive(docRef.id, newAnnoucedProperty));
+
+    console.log(docRef);
   };
 };
 
-export const propertyActive = (id, properties) => ({
+export const propertyActive = (id, property) => ({
   type: types.propertyActive,
   payload: {
     id,
-    ...properties,
+    ...property,
   },
 });
 
