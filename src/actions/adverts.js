@@ -2,28 +2,29 @@ import { db } from '../components/firebase/firebase.utils';
 import { loadProperties } from '../components/helpers/loadProperties';
 import { types } from '../types/types';
 
-export const announceNewPropertie = () => {
+export const startNewAdvert = () => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid;
-    console.log(uid);
 
-    const newAnnoucedProperty = {
-      title: '',
-      body: '',
+    const newAdvert = {
+      type: '',
+      street: '',
+      neighbour: '',
+      price: '',
       date: new Date().getTime(),
     };
 
     const docRef = await db
       .collection(`${uid}/adverts/properties`)
-      .add(newAnnoucedProperty);
-    dispatch(propertyActive(docRef.id, newAnnoucedProperty));
+      .add(newAdvert);
+    dispatch(advertActive(docRef.id, newAdvert));
 
     console.log(docRef);
   };
 };
 
-export const propertyActive = (id, property) => ({
-  type: types.propertyActive,
+export const advertActive = (id, property) => ({
+  type: types.advertActive,
   payload: {
     id,
     ...property,
@@ -33,11 +34,11 @@ export const propertyActive = (id, property) => ({
 export const startLoadingProperties = (uid) => {
   return async (dispatch) => {
     const properties = await loadProperties(uid);
-    dispatch(setProperties(properties));
+    dispatch(advertActive(properties));
   };
 };
 
-export const setProperties = (properties) => ({
-  type: types.propertyLoad,
+export const setAdvert = (properties) => ({
+  type: types.advertLoad,
   payload: properties,
 });

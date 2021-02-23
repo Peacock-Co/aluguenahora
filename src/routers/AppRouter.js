@@ -24,7 +24,7 @@ import { login } from '../actions/auth';
 // Firebase
 import { firebase } from '../components/firebase/firebase.utils';
 
-import { startLoadingProperties } from '../actions/properties';
+import { startLoadingProperties } from '../actions/adverts';
 
 export const AppRouter = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);

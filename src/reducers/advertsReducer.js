@@ -14,11 +14,11 @@ import { types } from '../types/types';
 */
 
 const initialState = {
-  properties: [],
+  adverts: [],
   active: null,
 };
 
-export const propertiesReducer = (state = initialState, action) => {
+export const advertsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.propertyActive:
       return {
@@ -30,7 +30,7 @@ export const propertiesReducer = (state = initialState, action) => {
     case types.propertyLoad:
       return {
         ...state,
-        properties: [...action.payload],
+        adverts: [...action.payload],
       };
 
     default:

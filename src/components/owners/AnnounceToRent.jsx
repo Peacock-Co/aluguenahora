@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 
-// Redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { announceNewPropertie } from '../../actions/properties';
+import { startNewAdvert } from '../../actions/adverts';
 
 // Material UI
-import { Grid, Typography, TextField, MenuItem } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  TextField,
+  MenuItem,
+  makeStyles,
+} from '@material-ui/core';
 import CustomButton from '../../components/custom-button/CustomButton';
 
-// Custom Hooks
-import { useForm } from '../../hooks/useForm';
+//Styles
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiFormControl-root': {
+      width: '80%',
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
-const tipo = [
+const types = [
   {
     value: '1',
     label: 'Casa',
@@ -54,118 +66,109 @@ const prices = [
   },
 ];
 
-export const AnnounceToRent = () => {
+export function AnnounceToRent() {
+  const classes = useStyles();
   const dispatch = useDispatch();
-  const [room, setRoom] = useState('2');
-  const [price, setPrice] = useState('2');
 
-  const { active } = useSelector((state) => state.properties);
-  console.log(active);
-
-  const [formValues, handleInputChange] = useForm({
-    street: 'Rua Afro Puga',
-    neighbour: 'Mata do Jacinto',
-  });
-
-  const { street, neighbour } = formValues;
-
-  const handleChangeRoom = (event) => {
-    setRoom(event.target.value);
+  const initialValues = {
+    types: { value: '' },
+    rua: '',
+    bairro: '',
+    prices: { value: '' },
   };
 
-  const handleChangePrice = (event) => {
-    setPrice(event.target.value);
+  const [values, setValues] = useState(initialValues);
+
+  function handleFormSubmit() {
+    console.log(values);
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
 
-  const handleAnnounceProperty = () => {
-    dispatch(announceNewPropertie());
+  const handleAddNewAdvert = () => {
+    dispatch(startNewAdvert());
   };
 
   return (
-    <Grid
-      container
-      justify='center'
-      direction='row'
-      alignItems='center'
-      style={{ height: '25em' }}
-    >
-      <Grid item style={{ marginTop: '1em' }}>
-        <Typography variant='h2'>Anunciar seu imóvel</Typography>
-        <Typography variant='h3'>Preencha os dados necessários</Typography>
-        <form>
-          <TextField
-            id='outlined-select-price'
-            fullWidth
-            select
-            value={price}
-            onChange={handleChangePrice}
-            helperText='Selecione tipo de imóvel '
-            variant='outlined'
-            md={3}
-            xs={6}
-          >
-            {tipo.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            fullWidth
-            name='rua'
-            value={street}
-            onChange={handleInputChange}
-            type='text'
-            autoComplete='on'
-            label='Rua'
-            variant='outlined'
-            required
-            md={6}
-            xs={12}
-            style={{ marginTop: '2em' }}
-          />
-          <TextField
-            fullWidth
-            name='bairro'
-            value={neighbour}
-            onChange={handleInputChange}
-            type='text'
-            autoComplete='on'
-            label='Bairro'
-            variant='outlined'
-            required
-            md={6}
-            xs={12}
-            style={{ marginTop: '2em' }}
-          />
-          <TextField
-            id='outlined-select-room'
-            select
-            value={room}
-            onChange={handleChangeRoom}
-            helperText='Selecione valor do aluguel'
-            variant='outlined'
-            fullWidth
-            style={{ marginTop: '1em' }}
-          >
-            {prices.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </form>
-        <Grid container justify='space-between'>
-          <CustomButton
-            variant='contained'
-            type='submit'
-            color='secondary'
-            onClick={handleAnnounceProperty}
-          >
-            Anunciar
-          </CustomButton>
+    <>
+      <form classes={classes.root} onSubmit={handleFormSubmit}>
+        <Grid
+          container
+          justify='center'
+          direction='row'
+          alignItems='center'
+          style={{ height: '25em' }}
+        >
+          <Grid item style={{ marginTop: '1em' }}>
+            <Typography variant='h2'>Anunciar seu imóvel</Typography>
+            <Typography variant='h3'>Preencha os dados necessários</Typography>
+
+            <TextField
+              defaultValue={'2'}
+              fullWidth
+              select
+              helperText='Selecione tipo de imóvel '
+              variant='outlined'
+            >
+              {types.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              fullWidth
+              name='rua'
+              value={values.rua}
+              type='text'
+              autoComplete='on'
+              label='Rua'
+              variant='outlined'
+              required
+              style={{ marginTop: '2em' }}
+              onChange={handleInputChange}
+            />
+            <TextField
+              fullWidth
+              name='bairro'
+              value={values.bairro}
+              type='text'
+              autoComplete='on'
+              label='Bairro'
+              variant='outlined'
+              required
+              style={{ marginTop: '2em' }}
+              onChange={handleInputChange}
+            />
+            <TextField
+              defaultValue={'2'}
+              select
+              helperText='Selecione valor do aluguel'
+              variant='outlined'
+              fullWidth
+              style={{ marginTop: '1em' }}
+            >
+              {prices.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Grid container justify='space-between'></Grid>
+          </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      </form>
+      <CustomButton
+        variant='contained'
+        type='submit'
+        color='secondary'
+        onClick={handleAddNewAdvert}
+      >
+        Anunciar
+      </CustomButton>
+    </>
   );
-};
+}

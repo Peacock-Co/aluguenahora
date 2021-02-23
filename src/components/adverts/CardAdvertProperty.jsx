@@ -4,11 +4,9 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { propertyActive } from '../../actions/properties';
-
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, Button } from '@material-ui/core/';
+import { Card, CardActionArea } from '@material-ui/core/';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -26,7 +24,15 @@ const useStyles = makeStyles({
   },
 });
 
-export const CardAdvertProperty = ({ id, date, title, body, url }) => {
+export const CardAdvertProperty = ({
+  id,
+  date,
+  type,
+  street,
+  neighbour,
+  price,
+  url,
+}) => {
   moment.locale('pt-br');
   const advertDate = moment().format('LL');
   const classes = useStyles();
@@ -35,10 +41,12 @@ export const CardAdvertProperty = ({ id, date, title, body, url }) => {
 
   const handleAdvertClick = () => {
     dispatch(
-      propertyActive(id, {
+      advertDate(id, {
         date,
-        title,
-        body,
+        type,
+        street,
+        neighbour,
+        price,
         url,
       })
     );
@@ -59,24 +67,20 @@ export const CardAdvertProperty = ({ id, date, title, body, url }) => {
         )}
         <CardContent>
           <Typography gutterBottom variant='h6' component='h2'>
-            Apartamento
+            {type}
           </Typography>
           <Typography variant='h6' color='textSecondary' component='p'>
-            Rua Praia de Itaparica
+            {street}
           </Typography>
           <Typography variant='h5' color='textSecondary' component='p'>
-            Aluguel R$ 1200
+            {neighbour}
+          </Typography>
+          <Typography variant='h5' color='textSecondary' component='p'>
+            {price}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size='small' color='secondary'>
-          60 m2
-        </Button>
-        <Button size='small' color='inherit'>
-          3 Quartos
-        </Button>
-      </CardActions>
+
       <Typography style={{ fontSize: '.8rem' }}>{advertDate}</Typography>
     </Card>
   );

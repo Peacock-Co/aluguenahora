@@ -11,12 +11,12 @@ export const types = {
   uiStartLoading: '[UI] Start loading',
   uiFinishLoading: '[UI] Finish loading',
 
-  // Property database actions
-  propertyAnnounceNew: '[Property] Announce new property',
-  propertyActive: '[Property] Set active property',
-  propertyLoad: '[Property] Load properties',
-  propertyUpdated: '[Property] Update property saved',
-  propertyFileUrl: '[Property] Updated image url',
-  propertyDelete: '[Property] Delete property',
-  propertyLogoutCleaning: '[Property] Logout cleaning',
+  // Adverts database actions
+  advertAnnounceNew: '[Advert] Announce new property',
+  advertActive: '[Advert] Set active advert',
+  advertLoad: '[Advert] Load adverts',
+  advertUpdated: '[Advert] Update advert saved',
+  advertFileUrl: '[Advert] Updated image url',
+  advertDelete: '[Advert] Delete advert',
+  advertLogoutCleaning: '[Advert] Logout cleaning',
 };
