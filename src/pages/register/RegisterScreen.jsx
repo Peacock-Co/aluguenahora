@@ -128,7 +128,7 @@ export const RegisterScreen = () => {
           />
           <Grid container justify='center'>
             <CustomButton variant='contained' type='submit' color='secondary'>
-              Entrar
+              Registrar
             </CustomButton>
           </Grid>
           <Grid container justify='center'>

@@ -12,7 +12,7 @@ export const types = {
   uiFinishLoading: '[UI] Finish loading',
 
   // Adverts database actions
-  advertAnnounceNew: '[Advert] Announce new property',
+  advertAddNew: '[Advert] Announce new property',
   advertActive: '[Advert] Set active advert',
   advertLoad: '[Advert] Load adverts',
   advertUpdated: '[Advert] Update advert saved',

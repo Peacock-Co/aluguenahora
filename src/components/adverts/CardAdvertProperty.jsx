@@ -55,16 +55,14 @@ export const CardAdvertProperty = ({
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={handleAdvertClick}>
-        {url && (
-          <CardMedia
-            component='img'
-            alt='image'
-            height='140'
-            image={`url(${url})`}
-            title='Image'
-            className={classes.image}
-          />
-        )}
+        <CardMedia
+          component='img'
+          alt='image'
+          height='140'
+          image='../../assets/ararahome.jpg'
+          title='Image'
+          className={classes.image}
+        />
         <CardContent>
           <Typography gutterBottom variant='h6' component='h2'>
             {type}

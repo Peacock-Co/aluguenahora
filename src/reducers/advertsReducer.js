@@ -1,13 +1,13 @@
 import { types } from '../types/types';
 /* 
   {
-    properties: [],
+    adverts: [],
     active: null, if it is null it will appear the message "Ainda nao tem um imovel anunciado"
     active: {
       id: 'kahjsfsjkhfjsahfaf',
+      imageUrl: '',
       title: '',
       body: '',
-      imageUrl: '',
       date: 30102021
     }
   }
@@ -20,7 +20,7 @@ const initialState = {
 
 export const advertsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.propertyActive:
+    case types.advertActive:
       return {
         ...state,
         active: {

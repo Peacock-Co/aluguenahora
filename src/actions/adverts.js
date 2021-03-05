@@ -5,8 +5,10 @@ import { types } from '../types/types';
 export const startNewAdvert = () => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid;
+    console.log(uid);
 
     const newAdvert = {
+      imageUrl: '',
       type: '',
       street: '',
       neighbour: '',
@@ -23,11 +25,11 @@ export const startNewAdvert = () => {
   };
 };
 
-export const advertActive = (id, property) => ({
+export const advertActive = (id, advert) => ({
   type: types.advertActive,
   payload: {
     id,
-    ...property,
+    ...advert,
   },
 });
 

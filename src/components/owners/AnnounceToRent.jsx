@@ -160,15 +160,15 @@ export function AnnounceToRent() {
             <Grid container justify='space-between'></Grid>
           </Grid>
         </Grid>
+        <CustomButton
+          variant='contained'
+          type='submit'
+          color='secondary'
+          onClick={handleAddNewAdvert}
+        >
+          Anunciar
+        </CustomButton>
       </form>
-      <CustomButton
-        variant='contained'
-        type='submit'
-        color='secondary'
-        onClick={handleAddNewAdvert}
-      >
-        Anunciar
-      </CustomButton>
     </>
   );
 }

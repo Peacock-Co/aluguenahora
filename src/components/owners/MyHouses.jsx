@@ -19,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const MyHouses = ({ id }) => {
-  const { adverts, active } = useSelector((state) => state.adverts);
-  console.log(active);
+  const { adverts } = useSelector((state) => state.adverts);
 
   const classes = useStyles();
 
@@ -33,9 +32,9 @@ export const MyHouses = ({ id }) => {
       ) : (
         <>
           <Grid container justify='center'>
-            {adverts.map((property) => (
-              <Grid key={property.id} item className={classes.card}>
-                <CardAdvertProperty {...property} />
+            {adverts.map((adverts) => (
+              <Grid key={adverts.id} item className={classes.card}>
+                <CardAdvertProperty {...adverts} />
               </Grid>
             ))}
           </Grid>

@@ -24,7 +24,7 @@ import { login } from '../actions/auth';
 // Firebase
 import { firebase } from '../components/firebase/firebase.utils';
 
-import { startLoadingProperties } from '../actions/adverts';
+// import { startLoadingProperties } from '../actions/adverts';
 
 export const AppRouter = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -40,7 +40,7 @@ export const AppRouter = () => {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
 
-        dispatch(startLoadingProperties(user.uid));
+        // dispatch(startLoadingProperties(user.uid));
       } else {
         setIsLoggedIn(false);
       }
