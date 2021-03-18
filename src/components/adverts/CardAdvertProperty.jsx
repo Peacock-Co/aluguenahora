@@ -1,8 +1,11 @@
 // React redux
-
 import React from 'react';
-
 import { useDispatch } from 'react-redux';
+
+// React router
+import { Link } from 'react-router-dom';
+
+// import { useDispatch } from 'react-redux';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 // Moment js
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import { advertActive } from '../../actions/adverts';
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +30,6 @@ const useStyles = makeStyles({
 
 export const CardAdvertProperty = ({
   id,
-  date,
   type,
   street,
   neighbour,
@@ -36,13 +39,11 @@ export const CardAdvertProperty = ({
   moment.locale('pt-br');
   const advertDate = moment().format('LL');
   const classes = useStyles();
-
   const dispatch = useDispatch();
 
-  const handleAdvertClick = () => {
+  const handleEntryClik = () => {
     dispatch(
-      advertDate(id, {
-        date,
+      advertActive(id, {
         type,
         street,
         neighbour,
@@ -53,13 +54,12 @@ export const CardAdvertProperty = ({
   };
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea onClick={handleAdvertClick}>
+    <Card className={classes.root} onClick={handleEntryClik}>
+      <CardActionArea component={Link} to='/editar-anuncio'>
         <CardMedia
           component='img'
           alt='image'
-          height='140'
-          image='../../assets/ararahome.jpg'
+          image={require('../../assets/ararahome.jpg')}
           title='Image'
           className={classes.image}
         />

@@ -1,5 +1,5 @@
 import { db } from '../components/firebase/firebase.utils';
-import { loadProperties } from '../components/helpers/loadProperties';
+import { loadAdverts } from '../components/helpers/loadAdverts';
 import { types } from '../types/types';
 
 export const startNewAdvert = () => {
@@ -33,14 +33,14 @@ export const advertActive = (id, advert) => ({
   },
 });
 
-export const startLoadingProperties = (uid) => {
+export const startLoadingAdverts = (uid) => {
   return async (dispatch) => {
-    const properties = await loadProperties(uid);
-    dispatch(advertActive(properties));
+    const adverts = await loadAdverts(uid);
+    dispatch(setAdverts(adverts));
   };
 };
 
-export const setAdvert = (properties) => ({
+export const setAdverts = (adverts) => ({
   type: types.advertLoad,
-  payload: properties,
+  payload: adverts,
 });

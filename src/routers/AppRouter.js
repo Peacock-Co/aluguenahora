@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 import HousesToRent from '../components/houses-to-rent/HousesToRent';
 import About from '../components/about/About';
 import Contact from '../components/contact/Contact';
-import { AnnounceToRent } from '../components/owners/AnnounceToRent';
-import { MyHouses } from '../components/owners/MyHouses';
+import { AnnounceToRent } from '../components/adverts/AnnounceToRent.jsx';
+import { MyAdverts } from '../components/adverts/MyAdverts';
+import { EditCardAdvert } from '../components/adverts/EditCardAdvert';
 import AuthRouter from '../routers/AuthRouter';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
@@ -24,6 +25,8 @@ import { login } from '../actions/auth';
 // Firebase
 import { firebase } from '../components/firebase/firebase.utils';
 
+import { startLoadingAdverts } from '../actions/adverts';
+
 // import { startLoadingProperties } from '../actions/adverts';
 
 export const AppRouter = () => {
@@ -35,12 +38,12 @@ export const AppRouter = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(async (user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
 
-        // dispatch(startLoadingProperties(user.uid));
+        dispatch(startLoadingAdverts(user.uid));
       } else {
         setIsLoggedIn(false);
       }
@@ -82,8 +85,13 @@ export const AppRouter = () => {
             component={AnnounceToRent}
           />
           <PrivateRoute
-            path='/meus-imoveis'
-            component={MyHouses}
+            path='/meus-anuncios'
+            component={MyAdverts}
+            isAuthenticated={isLoggedIn}
+          />
+          <PrivateRoute
+            path='/editar-anuncio'
+            component={EditCardAdvert}
             isAuthenticated={isLoggedIn}
           />
           <Route path='/contato' component={Contact} />

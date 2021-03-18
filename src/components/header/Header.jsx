@@ -192,7 +192,7 @@ const Header = (props) => {
     },
     {
       name: 'Meus Imóveis',
-      link: '/meus-imoveis',
+      link: '/meus-anuncios',
       activeIndex: 2,
       selectedIndex: 2,
     },

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+// React
+import React, { useState, useEffect, useRef } from 'react';
 
-import { useDispatch } from 'react-redux';
-
-import { startNewAdvert } from '../../actions/adverts';
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
 
 // Material UI
 import {
@@ -12,7 +12,8 @@ import {
   MenuItem,
   makeStyles,
 } from '@material-ui/core';
-import CustomButton from '../../components/custom-button/CustomButton';
+import CustomButton from '../custom-button/CustomButton';
+import { advertActive } from '../../actions/adverts';
 
 //Styles
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +22,11 @@ const useStyles = makeStyles((theme) => ({
       width: '80%',
       margin: theme.spacing(1),
     },
+  },
+  buttons: {
+    marginTop: '4rem',
+    marginLeft: '1rem',
+    justifyContent: 'space-evenly',
   },
 }));
 
@@ -39,42 +45,19 @@ const types = [
   },
 ];
 
-const prices = [
-  {
-    value: '1',
-    label: 'R$ 1.000',
-  },
-  {
-    value: '2',
-    label: 'R$ 2.000',
-  },
-  {
-    value: '3',
-    label: 'R$ 3.000',
-  },
-  {
-    value: '4',
-    label: 'R$ 4.000',
-  },
-  {
-    value: '5',
-    label: 'R$ 5.000',
-  },
-  {
-    value: '6',
-    label: 'R$ 10.000 +',
-  },
-];
-
-export function AnnounceToRent() {
+export function EditCardAdvert() {
   const classes = useStyles();
+
+  const { active: advert } = useSelector((state) => state.adverts);
+  console.log(advert);
+
   const dispatch = useDispatch();
 
   const initialValues = {
     types: { value: '' },
     rua: '',
     bairro: '',
-    prices: { value: '' },
+    valor: '',
   };
 
   const [values, setValues] = useState(initialValues);
@@ -88,9 +71,21 @@ export function AnnounceToRent() {
     setValues({ ...values, [name]: value });
   };
 
-  const handleAddNewAdvert = () => {
-    dispatch(startNewAdvert());
-  };
+  const activeId = useRef(advert.id);
+
+  useEffect(() => {
+    const reset = (newFormValues = initialValues) => {
+      setValues(newFormValues);
+    };
+    if (advert.id !== activeId.current) {
+      reset(advert);
+      activeId.current = advert.id;
+    }
+  }, [advert, initialValues]);
+
+  // useEffect(() => {
+  //   dispatch(advertActive(initialValues.id, { ...initialValues }));
+  // }, [initialValues, dispatch]);
 
   return (
     <>
@@ -103,7 +98,7 @@ export function AnnounceToRent() {
           style={{ height: '25em' }}
         >
           <Grid item style={{ marginTop: '1em' }}>
-            <Typography variant='h2'>Anunciar seu imóvel</Typography>
+            <Typography variant='h2'>Editar seu imóvel</Typography>
             <Typography variant='h3'>Preencha os dados necessários</Typography>
 
             <TextField
@@ -128,6 +123,7 @@ export function AnnounceToRent() {
               label='Rua'
               variant='outlined'
               required
+              helperText='introduza o endereço'
               style={{ marginTop: '2em' }}
               onChange={handleInputChange}
             />
@@ -139,36 +135,41 @@ export function AnnounceToRent() {
               autoComplete='on'
               label='Bairro'
               variant='outlined'
+              helperText='Introduza o nome do bairro'
               required
               style={{ marginTop: '2em' }}
               onChange={handleInputChange}
             />
             <TextField
-              defaultValue={'2'}
-              select
-              helperText='Selecione valor do aluguel'
-              variant='outlined'
               fullWidth
+              name='valor'
+              value={values.valor}
+              type='text'
+              autoComplete='on'
+              label='R$'
+              variant='outlined'
+              required
+              helperText='Introduza o valor do aluguel'
+              onChange={handleInputChange}
               style={{ marginTop: '1em' }}
-            >
-              {prices.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+            />
             <Grid container justify='space-between'></Grid>
           </Grid>
         </Grid>
-        <CustomButton
-          variant='contained'
-          type='submit'
-          color='secondary'
-          onClick={handleAddNewAdvert}
-        >
-          Anunciar
-        </CustomButton>
       </form>
+      <Grid
+        container
+        justify='center'
+        direction='row'
+        className={classes.buttons}
+      >
+        <CustomButton variant='contained' type='submit' color='default'>
+          Editar
+        </CustomButton>
+        <CustomButton variant='contained' type='submit' color='secondary'>
+          Deletar
+        </CustomButton>
+      </Grid>
     </>
   );
 }

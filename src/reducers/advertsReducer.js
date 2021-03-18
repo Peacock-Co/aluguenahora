@@ -27,7 +27,7 @@ export const advertsReducer = (state = initialState, action) => {
           ...action.payload,
         },
       };
-    case types.propertyLoad:
+    case types.advertLoad:
       return {
         ...state,
         adverts: [...action.payload],
