@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // Material UI
 import {
@@ -13,7 +13,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import CustomButton from '../custom-button/CustomButton';
-import { advertActive } from '../../actions/adverts';
+// import { advertActive } from '../../actions/adverts';
 
 //Styles
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +51,7 @@ export function EditCardAdvert() {
   const { active: advert } = useSelector((state) => state.adverts);
   console.log(advert);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const initialValues = {
     types: { value: '' },

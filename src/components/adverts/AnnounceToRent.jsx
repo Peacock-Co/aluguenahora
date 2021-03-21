@@ -39,27 +39,18 @@ const types = [
   },
 ];
 
-export function AnnounceToRent() {
+export function AnnounceToRent(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const initialValues = {
-    types: { value: '' },
-    rua: '',
-    bairro: '',
-    valor: '',
-  };
-
-  const [values, setValues] = useState(initialValues);
+  const [type, setType] = useState('1');
+  const [street, setStreet] = useState('');
+  const [neighbour, setNeighbour] = useState('');
+  const [price, setPrice] = useState('');
 
   function handleFormSubmit() {
-    console.log(values);
+    console.log(type, street, neighbour, price);
   }
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-  };
 
   const handleAddNewAdvert = () => {
     dispatch(startNewAdvert());
@@ -67,24 +58,31 @@ export function AnnounceToRent() {
 
   return (
     <>
-      <form classes={classes.root} onSubmit={handleFormSubmit}>
-        <Grid
-          container
-          justify='center'
-          direction='row'
-          alignItems='center'
-          style={{ height: '25em' }}
-        >
-          <Grid item style={{ marginTop: '1em' }}>
-            <Typography variant='h2'>Anunciar seu imóvel</Typography>
-            <Typography variant='h3'>Preencha os dados necessários</Typography>
-
+      <Grid
+        direction='row'
+        container
+        justify='center'
+        alignItems='center'
+        style={{ height: '25em' }}
+      >
+        <Grid item style={{ marginTop: '1em' }}>
+          <Typography variant='h2'>Anunciar seu imóvel</Typography>
+          <Typography variant='h3'>Preencha os dados necessários</Typography>
+        </Grid>
+        <Grid item container justify='center'>
+          <form
+            classes={classes.root}
+            onSubmit={handleFormSubmit}
+            type='submit'
+          >
             <TextField
-              defaultValue={'2'}
+              id='type'
+              value={type}
               fullWidth
               select
               helperText='Selecione tipo de imóvel '
               variant='outlined'
+              onChange={(event) => setType(event.target.value)}
             >
               {types.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -94,53 +92,54 @@ export function AnnounceToRent() {
             </TextField>
             <TextField
               fullWidth
-              name='rua'
-              value={values.rua}
+              id='rua'
+              value={street}
               type='text'
               autoComplete='on'
               label='Rua'
               variant='outlined'
               required
               style={{ marginTop: '2em' }}
-              onChange={handleInputChange}
+              onChange={(event) => setStreet(event.target.value)}
             />
             <TextField
               fullWidth
-              name='bairro'
-              value={values.bairro}
+              id='bairro'
+              value={neighbour}
               type='text'
               autoComplete='on'
               label='Bairro'
               variant='outlined'
               required
               style={{ marginTop: '2em' }}
-              onChange={handleInputChange}
+              onChange={(event) => setNeighbour(event.target.value)}
             />
             <TextField
               fullWidth
-              name='valor'
-              value={values.valor}
+              id='valor'
+              value={price}
               type='text'
               autoComplete='on'
               label='R$'
               variant='outlined'
               required
               helperText='Introduza o valor do aluguel'
-              onChange={handleInputChange}
+              onChange={(event) => setPrice(event.target.value)}
               style={{ marginTop: '1em' }}
             />
-            <Grid container justify='space-between'></Grid>
-          </Grid>
+            <Grid item container justify='center'>
+              <CustomButton
+                variant='contained'
+                type='submit'
+                color='secondary'
+                onClick={handleAddNewAdvert}
+              >
+                Anunciar
+              </CustomButton>
+            </Grid>
+          </form>
         </Grid>
-      </form>
-      <CustomButton
-        variant='contained'
-        type='submit'
-        color='secondary'
-        onClick={handleAddNewAdvert}
-      >
-        Anunciar
-      </CustomButton>
+      </Grid>
     </>
   );
 }
