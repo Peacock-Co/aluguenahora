@@ -6,10 +6,10 @@ import { store } from './store/store';
 // React Router
 import { AppRouter } from './routers/AppRouter';
 
-export const AlugueApp = () => {
+export default function AlugueApp() {
   return (
     <Provider store={store}>
       <AppRouter />
     </Provider>
   );
-};
+}

@@ -32,7 +32,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 // Logo from assets
-import logo from '../../assets/aluguenahora.logo.svg';
+import logo from '../../assets/pics/aluguenahora.logo.svg';
 
 import { startLogout } from '../../actions/auth';
 import { login } from '../../actions/auth';
