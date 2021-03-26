@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // React router
 import { Link } from 'react-router-dom';
@@ -32,7 +32,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 // Logo from assets
-import logo from '../../assets/aluguenahora.logo.svg';
+import logo from '../../assets/pics/aluguenahora.logo.svg';
 
 import { startLogout } from '../../actions/auth';
 import { login } from '../../actions/auth';
@@ -129,6 +129,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '1.5em',
     borderRadius: '5em',
   },
+  logoutButton: {
+    marginRight: '1.5em',
+    borderRadius: '5em',
+    backgroundColor: 'transparent',
+  },
 }));
 
 const Header = (props) => {
@@ -139,6 +144,7 @@ const Header = (props) => {
 
   // Dispatch Redux
   const dispatch = useDispatch();
+  const { name } = useSelector((state) => state.auth);
 
   // Use states Hooks
   const [anchorEl, setAnchorEl] = useState(null);
@@ -186,7 +192,7 @@ const Header = (props) => {
     },
     {
       name: 'Meus Imóveis',
-      link: '/meus-imoveis',
+      link: '/meus-anuncios',
       activeIndex: 2,
       selectedIndex: 2,
     },
@@ -356,15 +362,25 @@ const Header = (props) => {
             <Hidden xsDown>
               <Link to='/auth/login' style={{ textDecoration: 'none' }}>
                 {isLoggedIn ? (
-                  <Button
-                    variant='contained'
-                    color='default'
-                    className={classes.accountButtom}
-                    startIcon={<AccountCircleIcon />}
-                    onClick={handleLogout}
-                  >
-                    Sair sessão
-                  </Button>
+                  <>
+                    <Button
+                      variant='contained'
+                      color='default'
+                      className={classes.accountButtom}
+                      startIcon={<AccountCircleIcon />}
+                    >
+                      {name}
+                    </Button>
+
+                    <Button
+                      color='default'
+                      onClick={handleLogout}
+                      variant='contained'
+                      className={classes.logoutButton}
+                    >
+                      Sair
+                    </Button>
+                  </>
                 ) : (
                   <Button
                     variant='contained'
