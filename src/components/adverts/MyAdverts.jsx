@@ -25,7 +25,7 @@ export const MyAdverts = () => {
   return (
     <>
       <Grid className={classes.mainContainer} container spacing={2}>
-        <CardAdvertPropertyList />
+        <CardAdvertPropertyList adverts={sampleData} />
       </Grid>
     </>
   );

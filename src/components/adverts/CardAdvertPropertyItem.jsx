@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
   card_details: {
     display: 'flex',
-    msFlexDirection: 'column',
+    flexDirection: 'column',
   },
   directions: {
     display: 'flex',
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function CardAdvertPropertyItem() {
+export function CardAdvertPropertyItem({ advert }) {
   const classes = useStyles();
 
   return (
@@ -50,36 +50,36 @@ export function CardAdvertPropertyItem() {
         <CardMedia
           component='img'
           alt='image'
-          image={require('../../assets/pics/ararahome.jpg')}
+          // image={require('advert.advertPhotosUrl')}
+          image={advert.advertPhotosUrl.photoUrl}
           title='Image'
           className={classes.image}
         />
         <CardContent>
           <div className={classes.card_details}>
-            <Typography gutterBottom variant='h6' component='h2'></Typography>
+            <Typography gutterBottom variant='h6' component='h2'>
+              {advert.type}
+            </Typography>
             <div className={classes.directions}>
-              <Typography
-                variant='h6'
-                color='textSecondary'
-                component='p'
-              ></Typography>
-              <Typography
-                variant='h5'
-                color='textSecondary'
-                component='p'
-              ></Typography>
+              <Typography variant='h6' color='textSecondary' component='p'>
+                {advert.region}
+              </Typography>
+              <Typography variant='h5' color='textSecondary' component='p'>
+                {advert.city}
+              </Typography>
             </div>
             <div className={classes.icons}>
               <span>
                 <HotelTwoToneIcon />
+                {advert.rooms}
               </span>
               <span>
                 <SquareFootIcon />
+                {advert.squareMeters}
               </span>
             </div>
             <div className={classes.prices}>
-              <Typography></Typography>
-              <Typography></Typography>
+              <Typography>R$ {advert.rentPrice}</Typography>
             </div>
           </div>
         </CardContent>

@@ -12,7 +12,7 @@ export const sampleData = [
       },
     ],
     type: 'casa',
-    neighbour: 'Carandá Bosque',
+    region: 'Carandá Bosque',
     city: 'Campo Grande',
     squareMeters: '200m2',
     rooms: '4',
@@ -22,16 +22,16 @@ export const sampleData = [
     id: '2',
     advertPhotosUrl: [
       {
-        id: 'a',
+        id: 'c',
         photoUrl: '../pics/mobileBackground.jpg',
       },
       {
-        id: 'b',
+        id: 'd',
         photoUrl: '../pics/home.jpg',
       },
     ],
     type: 'apartamento',
-    neighbour: 'Centro',
+    region: 'Centro',
     city: 'Campo Grande',
     squareMeters: '110m2',
     rooms: '3',
@@ -41,16 +41,16 @@ export const sampleData = [
     id: '3',
     advertPhotosUrl: [
       {
-        id: 'a',
+        id: 'e',
         photoUrl: '../pics/background.jpg',
       },
       {
-        id: 'b',
+        id: 'f',
         photoUrl: '../pics/home.jpg',
       },
     ],
     type: 'apartamento',
-    neighbour: 'Chacara cachoeira',
+    region: 'Chacara cachoeira',
     city: 'Campo Grande',
     squareMeters: '90m2',
     rooms: '3',
@@ -60,16 +60,16 @@ export const sampleData = [
     id: '4',
     advertPhotosUrl: [
       {
-        id: 'a',
+        id: 'g',
         photoUrl: '../pics/homeclock.jpg',
       },
       {
-        id: 'b',
+        id: 'h',
         photoUrl: '../pics/homeclock2.jpg',
       },
     ],
     type: 'casa',
-    neighbour: 'Santa Fé',
+    region: 'Santa Fé',
     city: 'Campo Grande',
     squareMeters: '160m2',
     rooms: '4',
