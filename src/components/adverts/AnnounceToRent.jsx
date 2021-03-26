@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { startNewAdvert } from '../../actions/adverts';
+import { startNewAdvert } from '../../actions/Adverts';
 
 // Material UI
 import {
