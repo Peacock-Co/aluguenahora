@@ -15,7 +15,7 @@ import CustomButton from '../../components/custom-button/CustomButton';
 import { useForm } from '../../hooks/useForm';
 
 // Firebase
-import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
+import { startGoogleLogin, startLoginEmailPassword } from '../../actions/Auth';
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();

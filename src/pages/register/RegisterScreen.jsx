@@ -15,8 +15,8 @@ import { useForm } from '../../hooks/useForm';
 // Custom button
 import CustomButton from '../../components/custom-button/CustomButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { setErrorAction, unsetErrorAction } from '../../actions/ui';
-import { startRegisterWithNameEmailPassword } from '../../actions/auth';
+import { setErrorAction, unsetErrorAction } from '../../actions/Ui';
+import { startRegisterWithNameEmailPassword } from '../../actions/Auth';
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();

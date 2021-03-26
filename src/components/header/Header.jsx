@@ -34,8 +34,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // Logo from assets
 import logo from '../../assets/pics/aluguenahora.logo.svg';
 
-import { startLogout } from '../../actions/auth';
-import { login } from '../../actions/auth';
+import { startLogout } from '../../actions/Auth';
+import { login } from '../../actions/Auth';
 
 // Firebase
 import { firebase } from '../firebase/firebase.utils';

@@ -6,7 +6,7 @@ import {
 
 // Components
 import { types } from '../types/types';
-import { startLoading, finishLoading } from './ui';
+import { startLoading, finishLoading } from './Ui';
 import Swal from 'sweetalert2';
 
 // Firebase Login email password

@@ -20,14 +20,12 @@ import theme from '../components/ui/Theme';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRouter';
 
-import { login } from '../actions/auth';
+import { login } from '../actions/Auth';
 
 // Firebase
 import { firebase } from '../components/firebase/firebase.utils';
 
-import { startLoadingAdverts } from '../actions/adverts';
-
-// import { startLoadingProperties } from '../actions/adverts';
+import { startLoadingAdverts } from '../actions/Adverts';
 
 export const AppRouter = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
