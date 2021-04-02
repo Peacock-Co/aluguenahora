@@ -3,11 +3,11 @@ export const sampleData = [
     id: '1',
     advertPhotosUrl: [
       {
-        id: 'a',
+        id: '1',
         photoUrl: '../pics/ararahome.jpg',
       },
       {
-        id: 'b',
+        id: '2',
         photoUrl: '../pics/home.jpg',
       },
     ],
@@ -22,11 +22,11 @@ export const sampleData = [
     id: '2',
     advertPhotosUrl: [
       {
-        id: 'c',
+        id: '1',
         photoUrl: '../pics/mobileBackground.jpg',
       },
       {
-        id: 'd',
+        id: '2',
         photoUrl: '../pics/home.jpg',
       },
     ],
@@ -41,11 +41,11 @@ export const sampleData = [
     id: '3',
     advertPhotosUrl: [
       {
-        id: 'e',
+        id: '1',
         photoUrl: '../pics/background.jpg',
       },
       {
-        id: 'f',
+        id: '2',
         photoUrl: '../pics/home.jpg',
       },
     ],
@@ -60,11 +60,11 @@ export const sampleData = [
     id: '4',
     advertPhotosUrl: [
       {
-        id: 'g',
+        id: '1',
         photoUrl: '../pics/homeclock.jpg',
       },
       {
-        id: 'h',
+        id: '2',
         photoUrl: '../pics/homeclock2.jpg',
       },
     ],

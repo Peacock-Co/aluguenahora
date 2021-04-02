@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea } from '@material-ui/core/';
+import { Paper } from '@material-ui/core/';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+
 import Typography from '@material-ui/core/Typography';
 import HotelTwoToneIcon from '@material-ui/icons/HotelTwoTone';
 import SquareFootIcon from '@material-ui/icons/SquareFoot';
@@ -45,45 +45,37 @@ export function CardAdvertPropertyItem({ advert }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea component={Link} to='/editar-anuncio'>
-        <CardMedia
-          component='img'
-          alt='image'
-          // image={require('advert.advertPhotosUrl')}
-          image={advert.advertPhotosUrl.photoUrl}
-          title='Image'
-          className={classes.image}
-        />
-        <CardContent>
-          <div className={classes.card_details}>
-            <Typography gutterBottom variant='h6' component='h2'>
-              {advert.type}
+    <div className={classes.root}>
+      <Paper square elevation={0} component={Link} to='/editar-anuncio'>
+        <img className={classes.image} src={} alt={} />
+
+        <div className={classes.card_details}>
+          <Typography gutterBottom variant='h6' component='h2'>
+            {advert.type}
+          </Typography>
+          <div className={classes.directions}>
+            <Typography variant='h6' color='textSecondary' component='p'>
+              {advert.region}
             </Typography>
-            <div className={classes.directions}>
-              <Typography variant='h6' color='textSecondary' component='p'>
-                {advert.region}
-              </Typography>
-              <Typography variant='h5' color='textSecondary' component='p'>
-                {advert.city}
-              </Typography>
-            </div>
-            <div className={classes.icons}>
-              <span>
-                <HotelTwoToneIcon />
-                {advert.rooms}
-              </span>
-              <span>
-                <SquareFootIcon />
-                {advert.squareMeters}
-              </span>
-            </div>
-            <div className={classes.prices}>
-              <Typography>R$ {advert.rentPrice}</Typography>
-            </div>
+            <Typography variant='h5' color='textSecondary' component='p'>
+              {advert.city}
+            </Typography>
           </div>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+          <div className={classes.icons}>
+            <span>
+              <HotelTwoToneIcon />
+              {advert.rooms}
+            </span>
+            <span>
+              <SquareFootIcon />
+              {advert.squareMeters}
+            </span>
+          </div>
+          <div className={classes.prices}>
+            <Typography>R$ {advert.rentPrice}</Typography>
+          </div>
+        </div>
+      </Paper>
+    </div>
   );
 }
