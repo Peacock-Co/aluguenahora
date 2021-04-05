@@ -3,12 +3,12 @@ export const sampleData = [
     id: '1',
     advertPhotosUrl: [
       {
-        id: '1',
-        photoUrl: '../pics/ararahome.jpg',
+        photoUrl:
+          'https://s03.s3c.es/imag/_v0/770x420/4/c/2/490x_casas-prefabricadas-modulares-mobil-home.jpg',
       },
       {
-        id: '2',
-        photoUrl: '../pics/home.jpg',
+        photoUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Mj20WW_H_2O4cfk_xuNRpIC8Z_AA9wN_RA&usqp=CAU',
       },
     ],
     type: 'casa',
@@ -22,11 +22,9 @@ export const sampleData = [
     id: '2',
     advertPhotosUrl: [
       {
-        id: '1',
         photoUrl: '../pics/mobileBackground.jpg',
       },
       {
-        id: '2',
         photoUrl: '../pics/home.jpg',
       },
     ],
@@ -41,11 +39,9 @@ export const sampleData = [
     id: '3',
     advertPhotosUrl: [
       {
-        id: '1',
         photoUrl: '../pics/background.jpg',
       },
       {
-        id: '2',
         photoUrl: '../pics/home.jpg',
       },
     ],
@@ -60,12 +56,11 @@ export const sampleData = [
     id: '4',
     advertPhotosUrl: [
       {
-        id: '1',
-        photoUrl: '../pics/homeclock.jpg',
+        photoUrl: 'https://www.sort-7.com/media/items/af572-D96.jpg',
       },
       {
-        id: '2',
-        photoUrl: '../pics/homeclock2.jpg',
+        photoUrl:
+          'https://www.sort-7.com/media/items/medium/5f5cc-casas-modulares.jpg',
       },
     ],
     type: 'casa',

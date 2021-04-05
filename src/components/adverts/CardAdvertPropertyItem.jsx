@@ -1,13 +1,14 @@
 // React redux
-import React from 'react';
+import React, { useState } from 'react';
 
 // React router
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core/';
-import CardContent from '@material-ui/core/CardContent';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 import Typography from '@material-ui/core/Typography';
 import HotelTwoToneIcon from '@material-ui/icons/HotelTwoTone';
@@ -15,16 +16,50 @@ import SquareFootIcon from '@material-ui/icons/SquareFoot';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 240,
+    width: '15em',
     margin: '0.5rem',
     borderRadius: '.5rem',
   },
-  image: {
-    height: '10em',
+  carousel: {
+    width: '100%',
+    height: '12em',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  carouselInner: {
+    height: '100%',
+    maxWidth: '100%',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    display: 'flex',
+  },
+  left: {
+    flex: '25%',
+    height: '100%',
+    backgroundColor: 'rgb(0, 0, 0, 0.6)',
+    display: 'grid',
+    placeItems: 'center',
+    color: 'white',
+    cursor: 'pointer',
+  },
+  center: {
+    flex: '50%',
+    height: '100%',
+  },
+  right: {
+    flex: '25%',
+    height: '100%',
+    backgroundColor: 'rgb(0, 0, 0, 0.6)',
+    display: 'grid',
+    placeItems: 'center',
+    color: 'white',
+    cursor: 'pointer',
   },
   card_details: {
     display: 'flex',
     flexDirection: 'column',
+    width: '100%',
   },
   directions: {
     display: 'flex',
@@ -43,11 +78,39 @@ const useStyles = makeStyles({
 
 export function CardAdvertPropertyItem({ advert }) {
   const classes = useStyles();
+  const [currImg, setCurrImg] = useState(0);
 
   return (
     <div className={classes.root}>
-      <Paper square elevation={0} component={Link} to='/editar-anuncio'>
-        <img className={classes.image} src={} alt={} />
+      <Paper borderRadius={5}>
+        <div className={classes.carousel}>
+          <div
+            className={classes.carouselInner}
+            style={{
+              backgroundImage: `url(${advert.advertPhotosUrl[currImg].photoUrl})`,
+            }}
+            alt={advert.photoUrl}
+          >
+            <div
+              className={classes.left}
+              onClick={() => {
+                currImg > 0 && setCurrImg(currImg - 1);
+              }}
+            >
+              <KeyboardArrowLeft />
+            </div>
+            <div className={classes.center}></div>
+            <div
+              className={classes.right}
+              onClick={() => {
+                currImg < advert.advertPhotosUrl.length - 1 &&
+                  setCurrImg(currImg + 1);
+              }}
+            >
+              <KeyboardArrowRight />
+            </div>
+          </div>
+        </div>
 
         <div className={classes.card_details}>
           <Typography gutterBottom variant='h6' component='h2'>
