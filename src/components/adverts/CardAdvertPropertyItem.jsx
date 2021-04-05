@@ -37,7 +37,7 @@ const useStyles = makeStyles({
   left: {
     flex: '25%',
     height: '100%',
-    backgroundColor: 'rgb(0, 0, 0, 0.6)',
+    backgroundColor: 'rgb(0, 0, 0, 0.3)',
     display: 'grid',
     placeItems: 'center',
     color: 'white',
@@ -50,7 +50,7 @@ const useStyles = makeStyles({
   right: {
     flex: '25%',
     height: '100%',
-    backgroundColor: 'rgb(0, 0, 0, 0.6)',
+    backgroundColor: 'rgb(0, 0, 0, 0.3)',
     display: 'grid',
     placeItems: 'center',
     color: 'white',
