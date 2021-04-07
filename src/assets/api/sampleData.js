@@ -22,10 +22,16 @@ export const sampleData = [
     id: '2',
     advertPhotosUrl: [
       {
-        photoUrl: '../pics/mobileBackground.jpg',
+        photoUrl: require('../pics/homeclock.jpg'),
       },
       {
-        photoUrl: '../pics/home.jpg',
+        photoUrl: require('../pics/home.jpg'),
+      },
+      {
+        photoUrl: require('../pics/ararahome.jpg'),
+      },
+      {
+        photoUrl: require('../pics/campogrande.jpg'),
       },
     ],
     type: 'apartamento',
@@ -39,10 +45,13 @@ export const sampleData = [
     id: '3',
     advertPhotosUrl: [
       {
-        photoUrl: '../pics/background.jpg',
+        photoUrl: require('../pics/background.jpg'),
       },
       {
-        photoUrl: '../pics/home.jpg',
+        photoUrl: require('../pics/home.jpg'),
+      },
+      {
+        photoUrl: require('../pics/homeclock2.jpg'),
       },
     ],
     type: 'apartamento',

@@ -82,7 +82,7 @@ export function CardAdvertPropertyItem({ advert }) {
 
   return (
     <div className={classes.root}>
-      <Paper borderRadius={5}>
+      <Paper borderRadius={true}>
         <div className={classes.carousel}>
           <div
             className={classes.carouselInner}
