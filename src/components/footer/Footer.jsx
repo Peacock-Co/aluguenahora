@@ -10,25 +10,25 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 // assets imgs
-import facebook from '../../assets/facebook-square-brands.svg';
-import twitter from '../../assets/twitter-brands.svg';
-import instagram from '../../assets/instagram-square-brands.svg';
-import linkedin from '../../assets/linkedin-brands.svg';
+import facebook from '../../assets/pics/facebook-square-brands.svg';
+import twitter from '../../assets/pics/twitter-brands.svg';
+import instagram from '../../assets/pics/instagram-square-brands.svg';
+import linkedin from '../../assets/pics/linkedin-brands.svg';
 import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: 'white',
     width: '100%',
-    height: '11em',
+    height: '8em',
     zIndex: 1302,
     position: 'absolute',
     bottom: 0,
     [theme.breakpoints.down('md')]: {
-      height: '8em',
+      height: '6em',
     },
     [theme.breakpoints.down('xs')]: {
-      height: '6em',
+      height: '4em',
     },
   },
   mainContainer: {
@@ -131,7 +131,7 @@ const Footer = (props) => {
                       props.setValue(2);
                       props.setSelectedIndex(1);
                     }}
-                    to='/meus-imoveis'
+                    to='/anunciar-para-alugar'
                     className={classes.link}
                   >
                     Anunciar imóvel para alugar

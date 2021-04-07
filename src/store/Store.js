@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import { authReducer } from '../reducers/authReducer';
 import { uiReducer } from '../reducers/uiReducer';
+import { advertsReducer } from '../reducers/advertsReducer';
 
 const composeEnhancers =
   (typeof window !== 'undefined' &&
@@ -13,6 +14,7 @@ const composeEnhancers =
 const reducers = combineReducers({
   auth: authReducer,
   ui: uiReducer,
+  adverts: advertsReducer,
 });
 
 export const store = createStore(

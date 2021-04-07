@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 import HousesToRent from '../components/houses-to-rent/HousesToRent';
 import About from '../components/about/About';
 import Contact from '../components/contact/Contact';
-import AnnounceToRent from '../components/owners/AnnounceToRent';
-import MyHouses from '../components/owners/MyHouses';
+import { AnnounceToRent } from '../components/adverts/AnnounceToRent.jsx';
+import { MyAdverts } from '../components/adverts/MyAdverts';
+import { EditCardAdvert } from '../components/adverts/EditCardAdvert';
 import AuthRouter from '../routers/AuthRouter';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
@@ -16,13 +17,15 @@ import HomePage from '../pages/homepage/HomePage';
 // Material UI
 import { ThemeProvider, Typography, Grid } from '@material-ui/core';
 import theme from '../components/ui/Theme';
-import PrivateRoute from '../routers/PrivateRoute';
-import PublicRoute from '../routers/PublicRouter';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRouter';
 
-import { login } from '../actions/auth';
+import { login } from '../actions/Auth';
 
 // Firebase
 import { firebase } from '../components/firebase/firebase.utils';
+
+import { startLoadingAdverts } from '../actions/Adverts';
 
 export const AppRouter = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -37,6 +40,8 @@ export const AppRouter = () => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
+
+        dispatch(startLoadingAdverts(user.uid));
       } else {
         setIsLoggedIn(false);
       }
@@ -47,7 +52,7 @@ export const AppRouter = () => {
   if (checking) {
     return (
       <Grid container justify='center'>
-        <Typography variant='h4'>Loading...</Typography>
+        <Typography variant='h4'>Carregando...</Typography>
       </Grid>
     );
   }
@@ -78,8 +83,13 @@ export const AppRouter = () => {
             component={AnnounceToRent}
           />
           <PrivateRoute
-            path='/meus-imoveis'
-            component={MyHouses}
+            path='/meus-anuncios'
+            component={MyAdverts}
+            isAuthenticated={isLoggedIn}
+          />
+          <PrivateRoute
+            path='/editar-anuncio'
+            component={EditCardAdvert}
             isAuthenticated={isLoggedIn}
           />
           <Route path='/contato' component={Contact} />

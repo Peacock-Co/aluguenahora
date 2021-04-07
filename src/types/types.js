@@ -10,4 +10,13 @@ export const types = {
   // Loading
   uiStartLoading: '[UI] Start loading',
   uiFinishLoading: '[UI] Finish loading',
+
+  // Adverts database actions
+  advertAddNew: '[Advert] Announce new property',
+  advertActive: '[Advert] Set active advert',
+  advertLoad: '[Advert] Load adverts',
+  advertUpdated: '[Advert] Update advert saved',
+  advertFileUrl: '[Advert] Updated image url',
+  advertDelete: '[Advert] Delete advert',
+  advertLogoutCleaning: '[Advert] Logout cleaning',
 };

@@ -68,7 +68,7 @@ const prices = [
 export const HomePage = (props) => {
   const classes = useStyles();
   const [room, setRoom] = useState('2');
-  const [price, setPrice] = React.useState('2');
+  const [price, setPrice] = useState('2');
 
   const handleChangeRoom = (event) => {
     setRoom(event.target.value);
@@ -88,7 +88,7 @@ export const HomePage = (props) => {
                 Alugue na Hora
               </Typography>
               <Typography variant='h3' className='h3'>
-                Encontre seu imóvel
+                Encontre seu imóvel!
               </Typography>
               <form>
                 <TextField
@@ -131,7 +131,7 @@ export const HomePage = (props) => {
                     select
                     value={room}
                     onChange={handleChangeRoom}
-                    helperText='Selecione precio'
+                    helperText='Selecione preço'
                     variant='outlined'
                   >
                     {prices.map((option) => (
