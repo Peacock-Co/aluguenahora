@@ -1,5 +1,6 @@
 // React redux
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 // React router
 // import { Link } from 'react-router-dom';
@@ -7,12 +8,13 @@ import React, { useState } from 'react';
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core/';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+// import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+// import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 import Typography from '@material-ui/core/Typography';
 import HotelTwoToneIcon from '@material-ui/icons/HotelTwoTone';
 import SquareFootIcon from '@material-ui/icons/SquareFoot';
+import { advertActive } from '../../actions/Adverts';
 
 const useStyles = makeStyles({
   root: {
@@ -76,66 +78,96 @@ const useStyles = makeStyles({
   },
 });
 
-export function CardAdvertPropertyItem({ advert }) {
+export function CardAdvertPropertyItem({
+  id,
+  imageUrl,
+  type,
+  region,
+  city,
+  room,
+  squareMeters,
+  rentPrice,
+  street,
+}) {
   const classes = useStyles();
-  const [currImg, setCurrImg] = useState(0);
+  const dispatch = useDispatch();
+  // const [currImg, setCurrImg] = useState(0);
+
+  const handleEntryClick = () => {
+    dispatch(
+      advertActive(id, {
+        type,
+        region,
+        city,
+        room,
+        squareMeters,
+        rentPrice,
+        street,
+      })
+    );
+  };
 
   return (
     <div className={classes.root}>
-      <Paper borderRadius={true}>
-        <div className={classes.carousel}>
-          <div
-            className={classes.carouselInner}
-            style={{
-              backgroundImage: `url(${advert.advertPhotosUrl[currImg].photoUrl})`,
-            }}
-            alt={advert.photoUrl}
-          >
+      <Paper onClick={handleEntryClick}>
+        {/* {imageUrl &&
+          {
+            /* <div className={classes.carousel}>
             <div
-              className={classes.left}
-              onClick={() => {
-                currImg > 0 && setCurrImg(currImg - 1);
+              className={classes.carouselInner}
+              style={{
+                backgroundImage: `url(${imageUrl.advertPhotosUrl[currImg].photoUrl})`,
               }}
+              alt={imageUrl.photoUrl}
             >
-              <KeyboardArrowLeft />
+              <div
+                className={classes.left}
+                onClick={() => {
+                  currImg > 0 && setCurrImg(currImg - 1);
+                }}
+              >
+                <KeyboardArrowLeft />
+              </div>
+              <div className={classes.center}></div>
+              <div
+                className={classes.right}
+                onClick={() => {
+                  currImg < imageUrl.advertPhotosUrl.length - 1 &&
+                    setCurrImg(currImg + 1);
+                }}
+              >
+                <KeyboardArrowRight />
+              </div>
             </div>
-            <div className={classes.center}></div>
-            <div
-              className={classes.right}
-              onClick={() => {
-                currImg < advert.advertPhotosUrl.length - 1 &&
-                  setCurrImg(currImg + 1);
-              }}
-            >
-              <KeyboardArrowRight />
-            </div>
-          </div>
-        </div>
+          </div> */}
 
         <div className={classes.card_details}>
           <Typography gutterBottom variant='h6' component='h2'>
-            {advert.type}
+            {type}
           </Typography>
           <div className={classes.directions}>
             <Typography variant='h6' color='textSecondary' component='p'>
-              {advert.region}
+              {region}
+            </Typography>
+            <Typography variant='h6' color='textSecondary' component='p'>
+              {street}
             </Typography>
             <Typography variant='h5' color='textSecondary' component='p'>
-              {advert.city}
+              {city}
             </Typography>
           </div>
           <div className={classes.icons}>
             <span>
               <HotelTwoToneIcon />
-              {advert.rooms}
+              {room}
             </span>
             <span>
               <SquareFootIcon />
-              {advert.squareMeters}
+              {squareMeters}
             </span>
           </div>
           <div className={classes.prices}>
-            <Typography>R$ {advert.rentPrice}</Typography>
+            <Typography>R$ {rentPrice}</Typography>
           </div>
         </div>
       </Paper>

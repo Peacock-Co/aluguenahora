@@ -2,26 +2,25 @@ import { db } from '../components/firebase/firebase.utils';
 import { loadAdverts } from '../components/helpers/loadAdverts';
 import { types } from '../types/types';
 
-export const startNewAdvert = () => {
+export const createNewAdvert = () => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid;
     console.log(uid);
 
     const newAdvert = {
-      imageUrl: '',
       type: '',
+      city: '',
       street: '',
-      neighbour: '',
-      price: '',
-      date: new Date().getTime(),
+      region: '',
+      room: '',
+      squareMeters: '',
+      rentPrice: '',
     };
 
     const docRef = await db
       .collection(`${uid}/adverts/properties`)
       .add(newAdvert);
     dispatch(advertActive(docRef.id, newAdvert));
-
-    console.log(docRef);
   };
 };
 
@@ -44,3 +43,15 @@ export const setAdverts = (adverts) => ({
   type: types.advertLoad,
   payload: adverts,
 });
+
+export const startSaveAdvert = (adverts) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+
+    const advertToFirestore = { ...adverts };
+    delete advertToFirestore.id;
+    await db
+      .doc(`${uid}/adverts/properties/${adverts.id}`)
+      .update(advertToFirestore);
+  };
+};

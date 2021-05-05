@@ -24,6 +24,7 @@ import { login } from '../actions/Auth';
 
 // Firebase
 import { firebase } from '../components/firebase/firebase.utils';
+import { loadAdverts } from '../components/helpers/loadAdverts';
 
 import { startLoadingAdverts } from '../actions/Adverts';
 
@@ -41,6 +42,7 @@ export const AppRouter = () => {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
 
+        loadAdverts(user.uid);
         dispatch(startLoadingAdverts(user.uid));
       } else {
         setIsLoggedIn(false);
