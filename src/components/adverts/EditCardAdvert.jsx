@@ -13,20 +13,13 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import CustomButton from '../custom-button/CustomButton';
-// import { advertActive } from '../../actions/adverts';
 
 //Styles
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiFormControl-root': {
-      width: '80%',
-      margin: theme.spacing(1),
-    },
-  },
-  buttons: {
-    marginTop: '4rem',
-    marginLeft: '1rem',
-    justifyContent: 'space-evenly',
+    width: '100%',
+    margin: theme.spacing(1),
+    marginBottom: '3em',
   },
 }));
 
@@ -45,131 +38,183 @@ const types = [
   },
 ];
 
-export function EditCardAdvert() {
+const rooms = [
+  {
+    value: '1',
+    label: '1 quarto',
+  },
+  {
+    value: '2',
+    label: '2 quartos',
+  },
+  {
+    value: '3',
+    label: '3 quartos',
+  },
+  {
+    value: '4',
+    label: '4 + quartos',
+  },
+];
+
+export function EditCardAdvert({ id }) {
   const classes = useStyles();
-
-  const { active: advert } = useSelector((state) => state.adverts);
-  console.log(advert);
-
   // const dispatch = useDispatch();
 
-  const initialValues = {
-    types: { value: '' },
-    rua: '',
-    bairro: '',
-    valor: '',
-  };
+  const [type, setType] = useState('');
+  const [room, setRoom] = useState('');
+  const [city, setCity] = useState('');
+  const [street, setStreet] = useState('');
+  const [region, setRegion] = useState('');
+  const [price, setPrice] = useState('');
+  const [meters, setMeters] = useState('');
 
-  const [values, setValues] = useState(initialValues);
+  const { active } = useSelector((state) => state.adverts);
+  console.log(active);
 
-  function handleFormSubmit() {
-    console.log(values);
+  function handleFormSubmit(e) {
+    e.preventDefault();
   }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-  };
-
-  const activeId = useRef(advert.id);
+  const activeId = useRef(id);
 
   useEffect(() => {
-    const reset = (newFormValues = initialValues) => {
-      setValues(newFormValues);
-    };
-    if (advert.id !== activeId.current) {
-      reset(advert);
-      activeId.current = advert.id;
+    if (id !== activeId.current) {
+      handleFormSubmit();
+      activeId.current = id;
     }
-  }, [advert, initialValues]);
-
-  // useEffect(() => {
-  //   dispatch(advertActive(initialValues.id, { ...initialValues }));
-  // }, [initialValues, dispatch]);
+  }, [id]);
 
   return (
-    <>
-      <form classes={classes.root} onSubmit={handleFormSubmit}>
-        <Grid
-          container
-          justify='center'
-          direction='row'
-          alignItems='center'
-          style={{ height: '25em' }}
-        >
-          <Grid item style={{ marginTop: '1em' }}>
-            <Typography variant='h2'>Editar seu imóvel</Typography>
-            <Typography variant='h3'>Preencha os dados necessários</Typography>
-
-            <TextField
-              defaultValue={'2'}
-              fullWidth
-              select
-              helperText='Selecione tipo de imóvel '
-              variant='outlined'
-            >
-              {types.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <TextField
-              fullWidth
-              name='rua'
-              value={values.rua}
-              type='text'
-              autoComplete='on'
-              label='Rua'
-              variant='outlined'
-              required
-              helperText='introduza o endereço'
-              style={{ marginTop: '2em' }}
-              onChange={handleInputChange}
-            />
-            <TextField
-              fullWidth
-              name='bairro'
-              value={values.bairro}
-              type='text'
-              autoComplete='on'
-              label='Bairro'
-              variant='outlined'
-              helperText='Introduza o nome do bairro'
-              required
-              style={{ marginTop: '2em' }}
-              onChange={handleInputChange}
-            />
-            <TextField
-              fullWidth
-              name='valor'
-              value={values.valor}
-              type='text'
-              autoComplete='on'
-              label='R$'
-              variant='outlined'
-              required
-              helperText='Introduza o valor do aluguel'
-              onChange={handleInputChange}
-              style={{ marginTop: '1em' }}
-            />
-            <Grid container justify='space-between'></Grid>
-          </Grid>
-        </Grid>
-      </form>
-      <Grid
-        container
-        justify='center'
-        direction='row'
-        className={classes.buttons}
-      >
-        <CustomButton variant='contained' type='submit' color='default'>
-          Editar
-        </CustomButton>
-        <CustomButton variant='contained' type='submit' color='secondary'>
-          Deletar
-        </CustomButton>
+    <Grid
+      direction='column'
+      container
+      alignItems='center'
+      className={classes.root}
+    >
+      <Grid item style={{ marginTop: '1em' }}>
+        <Typography variant='h2'>Editar seu imóvel</Typography>
+        <Typography variant='h3'>Preencha os dados necessários</Typography>
       </Grid>
-    </>
+      <Grid item container justify='center'>
+        <form onSubmit={handleFormSubmit} type='submit'>
+          <TextField
+            id='type'
+            value={type}
+            fullWidth
+            select
+            helperText='Selecione tipo de imóvel '
+            variant='outlined'
+            onChange={(event) => setType(event.target.value)}
+          >
+            {types.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            fullWidth
+            id='city'
+            value={city}
+            type='text'
+            autoComplete='on'
+            label='Cidade'
+            variant='outlined'
+            required
+            helperText='Cidade'
+            style={{ marginTop: '1em' }}
+            onChange={(event) => setCity(event.target.value)}
+          />
+          <TextField
+            fullWidth
+            id='rua'
+            value={street}
+            type='text'
+            autoComplete='on'
+            label='Rua'
+            variant='outlined'
+            required
+            helperText='Introduza o endereço'
+            style={{ marginTop: '1em' }}
+            onChange={(event) => setStreet(event.target.value)}
+          />
+          <TextField
+            fullWidth
+            id='region'
+            value={region}
+            type='text'
+            autoComplete='on'
+            label='Bairro'
+            variant='outlined'
+            required
+            helperText='Introduza o bairro'
+            style={{ marginTop: '1em' }}
+            onChange={(event) => setRegion(event.target.value)}
+          />
+          <TextField
+            fullWidth
+            id='valor'
+            value={price}
+            type='text'
+            autoComplete='on'
+            label='R$'
+            variant='outlined'
+            required
+            helperText='Introduza o valor do aluguel'
+            onChange={(event) => setPrice(event.target.value)}
+            style={{ marginTop: '1em', width: '100%' }}
+          />
+          <Grid container direction='row'>
+            <Grid item xs={6} md={6}>
+              <TextField
+                id='room'
+                value={room}
+                fullWidth
+                select
+                helperText='Selecione quantos quartos'
+                variant='outlined'
+                onChange={(event) => setRoom(event.target.value)}
+                style={{ marginTop: '1em', width: '100%' }}
+              >
+                {rooms.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={6} md={6}>
+              <TextField
+                fullWidth
+                id='meters'
+                value={meters}
+                type='text'
+                autoComplete='on'
+                label='m2'
+                variant='outlined'
+                required
+                helperText='Introduza os metros quadrados'
+                onChange={(event) => setMeters(event.target.value)}
+                style={{ marginTop: '1em' }}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            justify='center'
+            direction='row'
+            className={classes.buttons}
+          >
+            <CustomButton variant='contained' type='submit' color='default'>
+              Editar
+            </CustomButton>
+            <CustomButton variant='contained' type='submit' color='secondary'>
+              Deletar
+            </CustomButton>
+          </Grid>
+        </form>
+      </Grid>
+    </Grid>
   );
 }

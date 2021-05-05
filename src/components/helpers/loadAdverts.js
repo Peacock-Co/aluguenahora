@@ -11,5 +11,7 @@ export const loadAdverts = async (uid) => {
     });
   });
 
+  console.log(adverts);
+
   return adverts;
 };

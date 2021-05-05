@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     marginTop: '5em',
+    marginBottom: '9em',
     alignCenter: 'center',
     width: '100%',
   },

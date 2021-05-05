@@ -20,22 +20,20 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: 'white',
     width: '100%',
-    height: '8em',
+
     zIndex: 1302,
-    position: 'absolute',
-    bottom: 0,
+    position: 'relative',
+
     [theme.breakpoints.down('md')]: {
-      height: '6em',
+      height: '1em',
     },
     [theme.breakpoints.down('xs')]: {
       height: '4em',
     },
   },
   mainContainer: {
-    // height: '13em',
-    // zIndex: 1302,
     [theme.breakpoints.down('md')]: {
-      height: '8em',
+      height: '6',
     },
     [theme.breakpoints.down('xs')]: {
       height: '6em',

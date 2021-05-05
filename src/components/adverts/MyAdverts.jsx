@@ -1,16 +1,17 @@
 // React Redux
-import React from 'react';
+import React, { useState } from 'react';
 
 // Material UI
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import CardAdvertPropertyList from './CardAdvertPropertyList';
-import { sampleData } from '../../assets/api/sampleData';
+// import { sampleData } from '../../assets/api/sampleData';
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     marginTop: '6em',
+    marginBottom: '10em',
     alignCenter: 'center',
     width: '100%',
   },
@@ -25,7 +26,7 @@ export const MyAdverts = () => {
   return (
     <>
       <Grid className={classes.mainContainer} container spacing={2}>
-        <CardAdvertPropertyList adverts={sampleData} />
+        <CardAdvertPropertyList />
       </Grid>
     </>
   );
