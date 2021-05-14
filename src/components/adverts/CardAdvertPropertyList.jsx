@@ -3,9 +3,6 @@ import { Grid, Typography, makeStyles } from '@material-ui/core';
 
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
-import CustomButton from '../custom-button/CustomButton';
 import { CardAdvertPropertyItem } from './CardAdvertPropertyItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     margin: theme.spacing(1),
     marginBottom: '9em',
+    height: '18em',
   },
 }));
 

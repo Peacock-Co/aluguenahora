@@ -21,17 +21,18 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '4em',
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    borderRadius: '5px',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    height: '42em',
   },
   root: {
     width: '100%',
     margin: theme.spacing(1),
-    marginBottom: '3em',
   },
 }));
 
@@ -294,6 +295,7 @@ export function AnnounceToRent() {
                       color='secondary'
                       component={Link}
                       to='/meus-anuncios'
+                      size='small'
                     >
                       Anunciar
                     </CustomButton>

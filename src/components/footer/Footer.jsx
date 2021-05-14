@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     width: '100%',
 
-    zIndex: 1302,
+    zIndex: 0,
     position: 'relative',
 
     [theme.breakpoints.down('md')]: {
