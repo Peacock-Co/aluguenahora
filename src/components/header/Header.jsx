@@ -185,12 +185,6 @@ const Header = (props) => {
       selectedIndex: 0,
     },
     {
-      name: 'Anunciar imóvel para alugar',
-      link: '/anunciar-para-alugar',
-      activeIndex: 2,
-      selectedIndex: 1,
-    },
-    {
       name: 'Meus Imóveis',
       link: '/meus-anuncios',
       activeIndex: 2,
