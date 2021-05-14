@@ -1,13 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { useDispatch } from 'react-redux';
-
-import {
-  advertActive,
-  createNewAdvert,
-  startSaveAdvert,
-} from '../../actions/Adverts';
 
 // Material UI
 import {
@@ -18,9 +10,24 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import CustomButton from '../custom-button/CustomButton';
+import PropTypes from 'prop-types';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 
 //Styles
 const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
   root: {
     width: '100%',
     margin: theme.spacing(1),
@@ -62,9 +69,40 @@ const rooms = [
   },
 ];
 
+const Fade = React.forwardRef(function Fade(props, ref) {
+  const { in: open, children, onEnter, onExited, ...other } = props;
+  const style = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: open ? 1 : 0 },
+    onStart: () => {
+      if (open && onEnter) {
+        onEnter();
+      }
+    },
+    onRest: () => {
+      if (!open && onExited) {
+        onExited();
+      }
+    },
+  });
+
+  return (
+    <animated.div ref={ref} style={style} {...other}>
+      {children}
+    </animated.div>
+  );
+});
+
+Fade.propTypes = {
+  children: PropTypes.element,
+  in: PropTypes.bool.isRequired,
+  onEnter: PropTypes.func,
+  onExited: PropTypes.func,
+};
+
 export function AnnounceToRent() {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
   const initialValues = {
     imageUrl: [{}],
@@ -79,6 +117,14 @@ export function AnnounceToRent() {
 
   const [values, setValues] = useState(initialValues);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   function handleInputChange(e) {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -86,152 +132,178 @@ export function AnnounceToRent() {
 
   function handleFormSubmit(e) {
     e.preventDefault();
+    console.log(values);
   }
-
-  function handleCreateNewAdvert() {
-    dispatch(createNewAdvert());
-  }
-
-  useEffect(() => {
-    dispatch(advertActive(values.id, { ...values }));
-  }, [values, dispatch]);
 
   return (
-    <Grid
-      direction='column'
-      container
-      alignItems='center'
-      className={classes.root}
-    >
-      <Grid item style={{ marginTop: '1em' }}>
-        <Typography variant='h2'>Anunciar seu imóvel</Typography>
-        <Typography variant='h3'>Preencha os dados necessários</Typography>
-      </Grid>
-      <Grid item container justify='center'>
-        <form onSubmit={handleFormSubmit} type='submit'>
-          <TextField
-            id='type'
-            value={values.type}
-            name='type'
-            fullWidth
-            select
-            helperText='Selecione tipo de imóvel '
-            variant='outlined'
-            onChange={(e) => handleInputChange(e)}
-          >
-            {types.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            disabled
-            fullWidth
-            id='city'
-            value={values.city}
-            name='city'
-            type='text'
-            autoComplete='on'
-            label='Cidade'
-            variant='outlined'
-            required
-            style={{ marginTop: '1em' }}
-            onChange={(e) => handleInputChange(e)}
-          />
-          <TextField
-            fullWidth
-            id='rua'
-            value={values.street}
-            name='street'
-            type='text'
-            autoComplete='on'
-            label='Rua'
-            variant='outlined'
-            required
-            helperText='Introduza o endereço'
-            style={{ marginTop: '2em' }}
-            onChange={(e) => handleInputChange(e)}
-          />
-          <TextField
-            fullWidth
-            id='region'
-            value={values.region}
-            name='region'
-            type='text'
-            autoComplete='on'
-            label='Bairro'
-            variant='outlined'
-            required
-            helperText='Introduza o bairro'
-            style={{ marginTop: '1em' }}
-            onChange={(e) => handleInputChange(e)}
-          />
-          <TextField
-            fullWidth
-            id='valor'
-            value={values.rentPrice}
-            name='rentPrice'
-            type='text'
-            autoComplete='on'
-            label='R$'
-            variant='outlined'
-            required
-            helperText='Introduza o valor do aluguel'
-            onChange={(e) => handleInputChange(e)}
-            style={{ marginTop: '1em', width: '100%' }}
-          />
-          <Grid container direction='row'>
-            <Grid item xs={6} md={6}>
-              <TextField
-                id='room'
-                value={values.room}
-                name='room'
-                fullWidth
-                select
-                helperText='Selecione quantos quartos'
-                variant='outlined'
-                onChange={(e) => handleInputChange(e)}
-                style={{ marginTop: '1em', width: '100%' }}
-              >
-                {rooms.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item xs={6} md={6}>
-              <TextField
-                fullWidth
-                id='meters'
-                value={values.squareMeters}
-                name='squareMeters'
-                type='text'
-                autoComplete='on'
-                label='m2'
-                variant='outlined'
-                required
-                helperText='Introduza os metros quadrados'
-                onChange={(e) => handleInputChange(e)}
-                style={{ marginTop: '1em' }}
-              />
-            </Grid>
-          </Grid>
-          <Grid item container justify='center'>
-            <CustomButton
-              variant='contained'
-              type='submit'
-              color='secondary'
-              onClick={handleCreateNewAdvert}
-              component={Link}
-              to='/meus-anuncios'
+    <div>
+      <button type='button' onClick={handleOpen}>
+        react-spring
+      </button>
+      <Modal
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <Grid
+              direction='column'
+              container
+              alignItems='center'
+              className={classes.root}
             >
-              Anunciar
-            </CustomButton>
-          </Grid>
-        </form>
-      </Grid>
-    </Grid>
+              <Grid item style={{ marginTop: '1em' }}>
+                <Typography variant='h2'>Anunciar seu imóvel</Typography>
+                <Typography variant='h3'>
+                  Preencha os dados necessários
+                </Typography>
+              </Grid>
+              <Grid
+                item
+                container
+                justify='center'
+                style={{ marginTop: '1em' }}
+              >
+                <form onSubmit={handleFormSubmit} type='submit'>
+                  <Grid container direction='row'>
+                    <Grid item xs={6} md={6}>
+                      <TextField
+                        id='type'
+                        value={values.type}
+                        name='type'
+                        fullWidth
+                        select
+                        helperText='Selecione tipo de imóvel '
+                        variant='outlined'
+                        onChange={(e) => handleInputChange(e)}
+                      >
+                        {types.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    </Grid>
+                    <Grid item xs={6} md={6}>
+                      <TextField
+                        disabled
+                        fullWidth
+                        id='city'
+                        value={values.city}
+                        name='city'
+                        type='text'
+                        autoComplete='on'
+                        label='Cidade'
+                        variant='outlined'
+                        required
+                        onChange={(e) => handleInputChange(e)}
+                      />
+                    </Grid>
+                  </Grid>
+                  <TextField
+                    fullWidth
+                    id='rua'
+                    value={values.street}
+                    name='street'
+                    type='text'
+                    autoComplete='on'
+                    label='Rua'
+                    variant='outlined'
+                    required
+                    helperText='Introduza o endereço'
+                    style={{ marginTop: '1em' }}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                  <TextField
+                    fullWidth
+                    id='region'
+                    value={values.region}
+                    name='region'
+                    type='text'
+                    autoComplete='on'
+                    label='Bairro'
+                    variant='outlined'
+                    required
+                    helperText='Introduza o bairro'
+                    style={{ marginTop: '1em' }}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                  <TextField
+                    fullWidth
+                    id='valor'
+                    value={values.rentPrice}
+                    name='rentPrice'
+                    type='text'
+                    autoComplete='on'
+                    label='R$'
+                    variant='outlined'
+                    required
+                    helperText='Introduza o valor do aluguel'
+                    onChange={(e) => handleInputChange(e)}
+                    style={{ marginTop: '1em', width: '100%' }}
+                  />
+                  <Grid container direction='row'>
+                    <Grid item xs={6} md={6}>
+                      <TextField
+                        id='room'
+                        value={values.room}
+                        name='room'
+                        fullWidth
+                        select
+                        helperText='Selecione quantos quartos'
+                        variant='outlined'
+                        onChange={(e) => handleInputChange(e)}
+                        style={{ marginTop: '1em', width: '100%' }}
+                      >
+                        {rooms.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    </Grid>
+                    <Grid item xs={6} md={6}>
+                      <TextField
+                        fullWidth
+                        id='meters'
+                        value={values.squareMeters}
+                        name='squareMeters'
+                        type='text'
+                        autoComplete='on'
+                        label='m2'
+                        variant='outlined'
+                        required
+                        helperText='Introduza os metros quadrados'
+                        onChange={(e) => handleInputChange(e)}
+                        style={{ marginTop: '1em' }}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid item container justify='center'>
+                    <CustomButton
+                      variant='contained'
+                      type='submit'
+                      color='secondary'
+                      component={Link}
+                      to='/meus-anuncios'
+                    >
+                      Anunciar
+                    </CustomButton>
+                  </Grid>
+                </form>
+              </Grid>
+            </Grid>
+          </div>
+        </Fade>
+      </Modal>
+    </div>
   );
 }

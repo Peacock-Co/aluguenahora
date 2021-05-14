@@ -5,7 +5,6 @@ import { types } from '../types/types';
 export const createNewAdvert = () => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid;
-    console.log(uid);
 
     const newAdvert = {
       type: '',

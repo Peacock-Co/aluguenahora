@@ -3,29 +3,21 @@ import { Grid, Typography, makeStyles } from '@material-ui/core';
 
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import CustomButton from '../custom-button/CustomButton';
 import { CardAdvertPropertyItem } from './CardAdvertPropertyItem';
-import { createNewAdvert } from '../../actions/Adverts';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     margin: theme.spacing(1),
-    marginBottom: '11em',
+    marginBottom: '9em',
   },
 }));
 
-export default function CardAdvertPropertyList() {
+export default function CardAdvertPropertyList({ adverts }) {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const { adverts } = useSelector((state) => state.adverts);
-
-  function handleCreateNewAdvert() {
-    dispatch(createNewAdvert());
-  }
 
   return (
     <>
@@ -43,21 +35,12 @@ export default function CardAdvertPropertyList() {
                   Você ainda não possui nenhum imóvel anunciado
                 </Typography>
               </Grid>
-              <Grid item>
-                <CustomButton
-                  component={Link}
-                  to='/anunciar-para-alugar'
-                  onClick={handleCreateNewAdvert}
-                >
-                  Anunciar imóvel
-                </CustomButton>
-              </Grid>
             </Grid>
           </Grid>
         ) : (
           <Grid item container justify='center'>
             {adverts.map((advert) => (
-              <CardAdvertPropertyItem key={advert.id} {...advert} />
+              <CardAdvertPropertyItem advert={advert} key={advert.id} />
             ))}
           </Grid>
         )}
