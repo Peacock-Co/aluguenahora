@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core/';
+import { Button, Grid, Paper } from '@material-ui/core/';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
@@ -76,7 +76,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function CardAdvertPropertyItem({ advert }) {
+export function CardAdvertPropertyItem({ advert, selectAdvert }) {
   const classes = useStyles();
   // const dispatch = useDispatch();
   const [currImg, setCurrImg] = useState(0);
@@ -149,12 +149,27 @@ export function CardAdvertPropertyItem({ advert }) {
             </div>
             <span>
               <SquareFootIcon />
-              {advert.squareMeters}
+              {advert.squareMeters}m2
             </span>
           </div>
           <div className={classes.prices}>
             <Typography>R$ {advert.rentPrice}</Typography>
           </div>
+          <Grid container alignItems='center' justify='center'>
+            <Grid item>
+              <Button
+                size='small'
+                style={{
+                  backgroundColor: '#312783',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+                onClick={() => selectAdvert(advert)}
+              >
+                Editar
+              </Button>
+            </Grid>
+          </Grid>
         </div>
       </Paper>
     </div>

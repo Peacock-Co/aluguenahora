@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardAdvertPropertyList({ adverts }) {
+export default function CardAdvertPropertyList({ adverts, selectAdvert }) {
   const classes = useStyles();
 
   return (
@@ -38,7 +38,11 @@ export default function CardAdvertPropertyList({ adverts }) {
         ) : (
           <Grid item container justify='center'>
             {adverts.map((advert) => (
-              <CardAdvertPropertyItem advert={advert} key={advert.id} />
+              <CardAdvertPropertyItem
+                advert={advert}
+                key={advert.id}
+                selectAdvert={selectAdvert}
+              />
             ))}
           </Grid>
         )}
