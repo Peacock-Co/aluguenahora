@@ -3,9 +3,6 @@ import { Grid, Typography, makeStyles } from '@material-ui/core';
 
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
-import CustomButton from '../custom-button/CustomButton';
 import { CardAdvertPropertyItem } from './CardAdvertPropertyItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,10 +10,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     margin: theme.spacing(1),
     marginBottom: '9em',
+    height: '18em',
   },
 }));
 
-export default function CardAdvertPropertyList({ adverts }) {
+export default function CardAdvertPropertyList({ adverts, selectAdvert }) {
   const classes = useStyles();
 
   return (
@@ -40,7 +38,11 @@ export default function CardAdvertPropertyList({ adverts }) {
         ) : (
           <Grid item container justify='center'>
             {adverts.map((advert) => (
-              <CardAdvertPropertyItem advert={advert} key={advert.id} />
+              <CardAdvertPropertyItem
+                advert={advert}
+                key={advert.id}
+                selectAdvert={selectAdvert}
+              />
             ))}
           </Grid>
         )}

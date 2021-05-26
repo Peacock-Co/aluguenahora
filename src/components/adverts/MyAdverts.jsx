@@ -2,13 +2,12 @@
 import React, { useState } from 'react';
 
 // Material UI
-import { Button, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import CardAdvertPropertyList from './CardAdvertPropertyList';
 import { sampleData } from '../../assets/api/sampleData';
 import { AnnounceToRent } from './AnnounceToRent';
-import CustomButton from '../custom-button/CustomButton';
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -25,27 +24,57 @@ const useStyles = makeStyles((theme) => ({
 export const MyAdverts = () => {
   const classes = useStyles();
   const [adverts, setAdverts] = useState(sampleData);
-  const [formOpen, setFormOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedAdvert, setSelectedAdvert] = useState(null);
+
+  function handleCreateAdvert(advert) {
+    setAdverts([...adverts, advert]);
+  }
+
+  function handleOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  function handleSelectAdvert(advert) {
+    setSelectedAdvert(advert);
+    handleOpen(true);
+    console.log(advert);
+  }
+
+  function handleCreateFormOpen() {
+    setSelectedAdvert(null);
+    handleOpen(true);
+  }
 
   return (
     <>
       <Grid
+        className={classes.mainContainer}
         container
         direction='column'
-        className={classes.mainContainer}
         spacing={2}
-        justify='center'
         alignItems='center'
       >
         <Grid item>
-          <CardAdvertPropertyList adverts={adverts} formOpen={formOpen} />
+          <CardAdvertPropertyList
+            adverts={adverts}
+            selectAdvert={handleSelectAdvert}
+          />
         </Grid>
         <Grid item>
-          <CustomButton onClick={() => setFormOpen(true)}>
-            Anunciar imóvel
-          </CustomButton>
+          <AnnounceToRent
+            setAdverts={setAdverts}
+            createAdvert={handleCreateAdvert}
+            handleClose={handleClose}
+            handleOpen={handleCreateFormOpen}
+            open={open}
+            selectedAdvert={selectedAdvert}
+          />
         </Grid>
-        <Grid item>{formOpen && <AnnounceToRent />}</Grid>
       </Grid>
     </>
   );

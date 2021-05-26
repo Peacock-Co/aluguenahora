@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import cuid from 'cuid';
 
 // Material UI
 import {
@@ -13,7 +14,7 @@ import CustomButton from '../custom-button/CustomButton';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
+import { useSpring, animated } from '@react-spring/web'; // web.cjs is required for IE 11 support
 
 //Styles
 const useStyles = makeStyles((theme) => ({
@@ -21,17 +22,18 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '4em',
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    borderRadius: '5px',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    height: '42em',
   },
   root: {
     width: '100%',
     margin: theme.spacing(1),
-    marginBottom: '3em',
   },
 }));
 
@@ -100,15 +102,22 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export function AnnounceToRent() {
+export function AnnounceToRent({
+  setAdverts,
+  createAdvert,
+  handleClose,
+  handleOpen,
+  open,
+  selectedAdvert,
+}) {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
 
-  const initialValues = {
+  const initialValues = selectedAdvert ?? {
+    // null conditional operator
     imageUrl: [{}],
     city: 'Campo Grande',
     type: 'Casa',
-    room: '2 quartos',
+    rooms: '2 quartos',
     street: '',
     region: '',
     rentPrice: '',
@@ -117,14 +126,6 @@ export function AnnounceToRent() {
 
   const [values, setValues] = useState(initialValues);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   function handleInputChange(e) {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -132,14 +133,14 @@ export function AnnounceToRent() {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    console.log(values);
+    createAdvert({ ...values, id: cuid(), advertPhotosUrl: [{}] });
   }
 
   return (
     <div>
-      <button type='button' onClick={handleOpen}>
-        react-spring
-      </button>
+      <CustomButton type='button' onClick={handleOpen}>
+        Anunciar imóvel
+      </CustomButton>
       <Modal
         aria-labelledby='spring-modal-title'
         aria-describedby='spring-modal-description'
@@ -254,7 +255,7 @@ export function AnnounceToRent() {
                     <Grid item xs={6} md={6}>
                       <TextField
                         id='room'
-                        value={values.room}
+                        value={values.rooms}
                         name='room'
                         fullWidth
                         select
@@ -294,6 +295,8 @@ export function AnnounceToRent() {
                       color='secondary'
                       component={Link}
                       to='/meus-anuncios'
+                      size='small'
+                      onClick={handleFormSubmit}
                     >
                       Anunciar
                     </CustomButton>
