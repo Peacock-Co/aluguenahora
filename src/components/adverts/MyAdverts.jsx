@@ -50,6 +50,12 @@ export const MyAdverts = () => {
     handleOpen(true);
   }
 
+  function handleUpdateAdvert(updatedAdvert) {
+    setAdverts(
+      adverts.map((adv) => (adv.id === updatedAdvert.id ? updatedAdvert : adv))
+    );
+  }
+
   return (
     <>
       <Grid
@@ -73,6 +79,8 @@ export const MyAdverts = () => {
             handleOpen={handleCreateFormOpen}
             open={open}
             selectedAdvert={selectedAdvert}
+            key={selectedAdvert ? selectedAdvert.id : null}
+            updatedAdvert={handleUpdateAdvert}
           />
         </Grid>
       </Grid>

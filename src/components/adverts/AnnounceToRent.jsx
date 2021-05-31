@@ -109,6 +109,7 @@ export function AnnounceToRent({
   handleOpen,
   open,
   selectedAdvert,
+  updatedAdvert,
 }) {
   const classes = useStyles();
 
@@ -117,7 +118,7 @@ export function AnnounceToRent({
     imageUrl: [{}],
     city: 'Campo Grande',
     type: 'Casa',
-    rooms: '2 quartos',
+    room: '2 quartos',
     street: '',
     region: '',
     rentPrice: '',
@@ -132,8 +133,11 @@ export function AnnounceToRent({
   }
 
   function handleFormSubmit(e) {
+    selectedAdvert
+      ? updatedAdvert({ ...selectedAdvert, ...values })
+      : createAdvert({ ...values, id: cuid(), advertPhotosUrl: [{}] });
+    handleClose();
     e.preventDefault();
-    createAdvert({ ...values, id: cuid(), advertPhotosUrl: [{}] });
   }
 
   return (
@@ -162,9 +166,11 @@ export function AnnounceToRent({
               className={classes.root}
             >
               <Grid item style={{ marginTop: '1em' }}>
-                <Typography variant='h2'>Anunciar seu imóvel</Typography>
+                <Typography variant='h2'>
+                  {selectedAdvert ? 'Editar anuncio' : 'Anunciar seu imóvel'}
+                </Typography>
                 <Typography variant='h3'>
-                  Preencha os dados necessários
+                  {selectedAdvert ? '' : 'Preencha os dados necessários'}
                 </Typography>
               </Grid>
               <Grid
@@ -255,7 +261,7 @@ export function AnnounceToRent({
                     <Grid item xs={6} md={6}>
                       <TextField
                         id='room'
-                        value={values.rooms}
+                        value={values.room}
                         name='room'
                         fullWidth
                         select
@@ -298,7 +304,7 @@ export function AnnounceToRent({
                       size='small'
                       onClick={handleFormSubmit}
                     >
-                      Anunciar
+                      {selectedAdvert ? 'Editar' : 'Anunciar'}
                     </CustomButton>
                   </Grid>
                 </form>

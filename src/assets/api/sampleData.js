@@ -18,7 +18,7 @@ export const sampleData = [
     street: 'Rua afro puga, 18',
     region: 'Carandá Bosque',
     squareMeters: '200',
-    rooms: '3 quartos',
+    room: '3 quartos',
     rentPrice: '6.400',
   },
   {
@@ -46,7 +46,7 @@ export const sampleData = [
     street: 'Rua Abrao Julio Rae, 18',
     region: 'Centro',
     squareMeters: '110',
-    rooms: '3 quartos',
+    room: '3 quartos',
     rentPrice: '5.400',
   },
   {
@@ -70,7 +70,7 @@ export const sampleData = [
     street: 'Avenida Afonso Pena, 118',
     region: 'Chacara cachoeira',
     squareMeters: '90',
-    rooms: '3 quartos',
+    room: '3 quartos',
     rentPrice: '4.400',
   },
   {
@@ -91,7 +91,7 @@ export const sampleData = [
     region: 'Santa Fé',
     street: 'Avenida Mato Grosso, 68',
     squareMeters: '160',
-    rooms: '2 quartos',
+    room: '2 quartos',
     rentPrice: '3.550',
   },
 ];

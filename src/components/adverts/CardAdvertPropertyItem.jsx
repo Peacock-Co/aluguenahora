@@ -145,7 +145,7 @@ export function CardAdvertPropertyItem({ advert, selectAdvert }) {
           <div className={classes.icons}>
             <div>
               <HotelTwoToneIcon />
-              {advert.rooms}
+              {advert.room}
             </div>
             <span>
               <SquareFootIcon />
