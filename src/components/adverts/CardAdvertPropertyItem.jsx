@@ -169,6 +169,20 @@ export function CardAdvertPropertyItem({ advert, selectAdvert }) {
                 Editar
               </Button>
             </Grid>
+            <Grid item>
+              <Button
+                size='small'
+                style={{
+                  backgroundColor: '#C82E29',
+                  color: 'white',
+                  cursor: 'pointer',
+                  margin: '0.5em',
+                }}
+                onClick={() => selectAdvert(advert)}
+              >
+                Deletar
+              </Button>
+            </Grid>
           </Grid>
         </div>
       </Paper>

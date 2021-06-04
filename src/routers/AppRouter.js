@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import HousesToRent from '../components/houses-to-rent/HousesToRent';
 import About from '../components/about/About';
 import Contact from '../components/contact/Contact';
-import { AnnounceToRent } from '../components/adverts/AnnounceToRent.jsx';
+import ScrollDialog from '../components/adverts/AnnounceToRent.jsx';
 import { MyAdverts } from '../components/adverts/MyAdverts';
 import { EditCardAdvert } from '../components/adverts/EditCardAdvert';
 import AuthRouter from '../routers/AuthRouter';
@@ -53,8 +53,10 @@ export const AppRouter = () => {
 
   if (checking) {
     return (
-      <Grid container justify='center'>
-        <Typography variant='h4'>Carregando...</Typography>
+      <Grid container justify='center' style={{ marginTop: '20em' }}>
+        <Grid item>
+          <Typography variant='h4'>Carregando...</Typography>
+        </Grid>
       </Grid>
     );
   }
@@ -82,7 +84,7 @@ export const AppRouter = () => {
           <PrivateRoute
             isAuthenticated={isLoggedIn}
             path='/anunciar-para-alugar'
-            component={AnnounceToRent}
+            component={ScrollDialog}
           />
           <PrivateRoute
             path='/meus-anuncios'

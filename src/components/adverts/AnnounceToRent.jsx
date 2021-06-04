@@ -11,14 +11,22 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import CustomButton from '../custom-button/CustomButton';
-import PropTypes from 'prop-types';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import { useSpring, animated } from '@react-spring/web'; // web.cjs is required for IE 11 support
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 //Styles
 const useStyles = makeStyles((theme) => ({
   modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '4em',
+  },
+  dialog: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -71,45 +79,14 @@ const rooms = [
   },
 ];
 
-const Fade = React.forwardRef(function Fade(props, ref) {
-  const { in: open, children, onEnter, onExited, ...other } = props;
-  const style = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
-    onStart: () => {
-      if (open && onEnter) {
-        onEnter();
-      }
-    },
-    onRest: () => {
-      if (!open && onExited) {
-        onExited();
-      }
-    },
-  });
-
-  return (
-    <animated.div ref={ref} style={style} {...other}>
-      {children}
-    </animated.div>
-  );
-});
-
-Fade.propTypes = {
-  children: PropTypes.element,
-  in: PropTypes.bool.isRequired,
-  onEnter: PropTypes.func,
-  onExited: PropTypes.func,
-};
-
-export function AnnounceToRent({
-  setAdverts,
+export default function ScrollDialog({
   createAdvert,
-  handleClose,
-  handleOpen,
-  open,
   selectedAdvert,
   updatedAdvert,
+  open,
+  handleClose,
+  handleOpen,
+  scroll,
 }) {
   const classes = useStyles();
 
@@ -140,179 +117,183 @@ export function AnnounceToRent({
     e.preventDefault();
   }
 
+  const descriptionElementRef = React.useRef(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
+
   return (
     <div>
-      <CustomButton type='button' onClick={handleOpen}>
-        Anunciar imóvel
-      </CustomButton>
-      <Modal
-        aria-labelledby='spring-modal-title'
-        aria-describedby='spring-modal-description'
-        className={classes.modal}
+      <CustomButton onClick={handleOpen}>Announce</CustomButton>
+
+      <Dialog
         open={open}
         onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        scroll={scroll}
+        className={classes.dialog}
       >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <Grid
-              direction='column'
-              container
-              alignItems='center'
-              className={classes.root}
-            >
-              <Grid item style={{ marginTop: '1em' }}>
-                <Typography variant='h2'>
-                  {selectedAdvert ? 'Editar anuncio' : 'Anunciar seu imóvel'}
-                </Typography>
-                <Typography variant='h3'>
-                  {selectedAdvert ? '' : 'Preencha os dados necessários'}
-                </Typography>
-              </Grid>
-              <Grid
-                item
-                container
-                justify='center'
-                style={{ marginTop: '1em' }}
-              >
-                <form onSubmit={handleFormSubmit} type='submit'>
-                  <Grid container direction='row'>
-                    <Grid item xs={6} md={6}>
-                      <TextField
-                        id='type'
-                        value={values.type}
-                        name='type'
-                        fullWidth
-                        select
-                        helperText='Selecione tipo de imóvel '
-                        variant='outlined'
-                        onChange={(e) => handleInputChange(e)}
-                      >
-                        {types.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-                    <Grid item xs={6} md={6}>
-                      <TextField
-                        disabled
-                        fullWidth
-                        id='city'
-                        value={values.city}
-                        name='city'
-                        type='text'
-                        autoComplete='on'
-                        label='Cidade'
-                        variant='outlined'
-                        required
-                        onChange={(e) => handleInputChange(e)}
-                      />
-                    </Grid>
-                  </Grid>
-                  <TextField
-                    fullWidth
-                    id='rua'
-                    value={values.street}
-                    name='street'
-                    type='text'
-                    autoComplete='on'
-                    label='Rua'
-                    variant='outlined'
-                    required
-                    helperText='Introduza o endereço'
-                    style={{ marginTop: '1em' }}
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                  <TextField
-                    fullWidth
-                    id='region'
-                    value={values.region}
-                    name='region'
-                    type='text'
-                    autoComplete='on'
-                    label='Bairro'
-                    variant='outlined'
-                    required
-                    helperText='Introduza o bairro'
-                    style={{ marginTop: '1em' }}
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                  <TextField
-                    fullWidth
-                    id='valor'
-                    value={values.rentPrice}
-                    name='rentPrice'
-                    type='text'
-                    autoComplete='on'
-                    label='R$'
-                    variant='outlined'
-                    required
-                    helperText='Introduza o valor do aluguel'
-                    onChange={(e) => handleInputChange(e)}
-                    style={{ marginTop: '1em', width: '100%' }}
-                  />
-                  <Grid container direction='row'>
-                    <Grid item xs={6} md={6}>
-                      <TextField
-                        id='room'
-                        value={values.room}
-                        name='room'
-                        fullWidth
-                        select
-                        helperText='Selecione quantos quartos'
-                        variant='outlined'
-                        onChange={(e) => handleInputChange(e)}
-                        style={{ marginTop: '1em', width: '100%' }}
-                      >
-                        {rooms.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-                    <Grid item xs={6} md={6}>
-                      <TextField
-                        fullWidth
-                        id='meters'
-                        value={values.squareMeters}
-                        name='squareMeters'
-                        type='text'
-                        autoComplete='on'
-                        label='m2'
-                        variant='outlined'
-                        required
-                        helperText='Introduza os metros quadrados'
-                        onChange={(e) => handleInputChange(e)}
-                        style={{ marginTop: '1em' }}
-                      />
-                    </Grid>
-                  </Grid>
-                  <Grid item container justify='center'>
-                    <CustomButton
-                      variant='contained'
-                      type='submit'
-                      color='secondary'
-                      component={Link}
-                      to='/meus-anuncios'
-                      size='small'
-                      onClick={handleFormSubmit}
-                    >
-                      {selectedAdvert ? 'Editar' : 'Anunciar'}
-                    </CustomButton>
-                  </Grid>
-                </form>
-              </Grid>
+        <DialogTitle>
+          <Grid container alignItems='center' direction='column'>
+            <Grid item>
+              <Typography variant='h2'>
+                {selectedAdvert ? 'Editar anuncio' : 'Anunciar seu imóvel'}
+              </Typography>
             </Grid>
-          </div>
-        </Fade>
-      </Modal>
+            <Typography variant='h3'>
+              {selectedAdvert ? '' : 'Preencha os dados necessários'}
+            </Typography>
+          </Grid>
+        </DialogTitle>
+        <DialogContent dividers={scroll === 'paper'}>
+          <Grid
+            direction='column'
+            container
+            alignItems='center'
+            className={classes.root}
+          >
+            <Grid item container justify='center' style={{ marginTop: '1em' }}>
+              <form onSubmit={handleFormSubmit} type='submit'>
+                <Grid container direction='row'>
+                  <Grid item xs={6} md={6}>
+                    <TextField
+                      id='type'
+                      value={values.type}
+                      name='type'
+                      fullWidth
+                      select
+                      helperText='Selecione tipo de imóvel '
+                      variant='outlined'
+                      onChange={(e) => handleInputChange(e)}
+                    >
+                      {types.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={6} md={6}>
+                    <TextField
+                      disabled
+                      fullWidth
+                      id='city'
+                      value={values.city}
+                      name='city'
+                      type='text'
+                      autoComplete='on'
+                      label='Cidade'
+                      variant='outlined'
+                      required
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </Grid>
+                </Grid>
+                <TextField
+                  fullWidth
+                  id='rua'
+                  value={values.street}
+                  name='street'
+                  type='text'
+                  autoComplete='on'
+                  label='Rua'
+                  variant='outlined'
+                  required
+                  helperText='Introduza o endereço'
+                  style={{ marginTop: '1em' }}
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <TextField
+                  fullWidth
+                  id='region'
+                  value={values.region}
+                  name='region'
+                  type='text'
+                  autoComplete='on'
+                  label='Bairro'
+                  variant='outlined'
+                  required
+                  helperText='Introduza o bairro'
+                  style={{ marginTop: '1em' }}
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <TextField
+                  fullWidth
+                  id='valor'
+                  value={values.rentPrice}
+                  name='rentPrice'
+                  type='text'
+                  autoComplete='on'
+                  label='R$'
+                  variant='outlined'
+                  required
+                  helperText='Introduza o valor do aluguel'
+                  onChange={(e) => handleInputChange(e)}
+                  style={{ marginTop: '1em', width: '100%' }}
+                />
+                <Grid container direction='row'>
+                  <Grid item xs={6} md={6}>
+                    <TextField
+                      id='room'
+                      value={values.room}
+                      name='room'
+                      fullWidth
+                      select
+                      helperText='Selecione quantos quartos'
+                      variant='outlined'
+                      onChange={(e) => handleInputChange(e)}
+                      style={{ marginTop: '1em', width: '100%' }}
+                    >
+                      {rooms.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={6} md={6}>
+                    <TextField
+                      fullWidth
+                      id='meters'
+                      value={values.squareMeters}
+                      name='squareMeters'
+                      type='text'
+                      autoComplete='on'
+                      label='m2'
+                      variant='outlined'
+                      required
+                      helperText='Introduza os metros quadrados'
+                      onChange={(e) => handleInputChange(e)}
+                      style={{ marginTop: '1em' }}
+                    />
+                  </Grid>
+                </Grid>
+              </form>
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Grid container justify='center'>
+            <Grid item>
+              <CustomButton
+                variant='contained'
+                type='submit'
+                color='secondary'
+                component={Link}
+                to='/meus-anuncios'
+                size='small'
+                onClick={handleFormSubmit}
+              >
+                {selectedAdvert ? 'Editar' : 'Anunciar'}
+              </CustomButton>
+            </Grid>
+          </Grid>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

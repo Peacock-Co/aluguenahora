@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import CardAdvertPropertyList from './CardAdvertPropertyList';
 import { sampleData } from '../../assets/api/sampleData';
-import { AnnounceToRent } from './AnnounceToRent';
+import ScrollDialog from './AnnounceToRent';
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -31,10 +31,6 @@ export const MyAdverts = () => {
     setAdverts([...adverts, advert]);
   }
 
-  function handleOpen() {
-    setOpen(true);
-  }
-
   function handleClose() {
     setOpen(false);
   }
@@ -46,14 +42,18 @@ export const MyAdverts = () => {
   }
 
   function handleCreateFormOpen() {
-    setSelectedAdvert(null);
     handleOpen(true);
+    setSelectedAdvert(null);
   }
 
   function handleUpdateAdvert(updatedAdvert) {
     setAdverts(
       adverts.map((adv) => (adv.id === updatedAdvert.id ? updatedAdvert : adv))
     );
+  }
+
+  function handleOpen() {
+    setOpen(true);
   }
 
   return (
@@ -72,17 +72,27 @@ export const MyAdverts = () => {
           />
         </Grid>
         <Grid item>
-          <AnnounceToRent
+          {/* <AnnounceToRent
             setAdverts={setAdverts}
             createAdvert={handleCreateAdvert}
             handleClose={handleClose}
-            handleOpen={handleCreateFormOpen}
+            handleOpen={handleOpen}
             open={open}
             selectedAdvert={selectedAdvert}
             key={selectedAdvert ? selectedAdvert.id : null}
             updatedAdvert={handleUpdateAdvert}
-          />
+          /> */}
         </Grid>
+        <ScrollDialog
+          open={open}
+          handleClose={handleClose}
+          handleOpen={handleCreateFormOpen}
+          setAdverts={setAdverts}
+          createAdvert={handleCreateAdvert}
+          selectedAdvert={selectedAdvert}
+          key={selectedAdvert ? selectedAdvert.id : null}
+          updatedAdvert={handleUpdateAdvert}
+        />
       </Grid>
     </>
   );

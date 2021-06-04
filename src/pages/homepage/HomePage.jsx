@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   mainContainer: {
     marginTop: '5em',
     marginBottom: '9em',
-    alignCenter: 'center',
     width: '100%',
   },
   filterContainer: {
@@ -82,15 +81,19 @@ export const HomePage = (props) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Grid container direction='column'>
-          <Grid container className={classes.mainContainer} justify='center'>
+        <Grid container className={classes.mainContainer}>
+          <Grid container direction='column' alignItems='center'>
             <Grid item>
               <Typography variant='h2' className='h2'>
                 Alugue na Hora
               </Typography>
+            </Grid>
+            <Grid item>
               <Typography variant='h3' className='h3'>
                 Encontre seu imóvel!
               </Typography>
+            </Grid>
+            <Grid item>
               <form>
                 <TextField
                   fullWidth
@@ -102,7 +105,7 @@ export const HomePage = (props) => {
                   md={6}
                   xs={12}
                 />
-                <Grid container className={classes.filterContainer}>
+                <Grid item className={classes.filterContainer}>
                   <TextField
                     id='outlined-search'
                     label='Busque por bairro'
@@ -142,17 +145,18 @@ export const HomePage = (props) => {
                     ))}
                   </TextField>
                 </Grid>
-                <CustomButton
-                  variant='contained'
-                  size='medium'
-                  color='secondary'
-                >
-                  Encontrar imóveis
-                </CustomButton>
+                <Grid item container justify='center'>
+                  <CustomButton
+                    variant='contained'
+                    size='medium'
+                    color='secondary'
+                  >
+                    Encontrar imóveis
+                  </CustomButton>
+                </Grid>
               </form>
             </Grid>
           </Grid>
-          <Grid item className={classes.formContainer}></Grid>
         </Grid>
       </ThemeProvider>
     </>
