@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import HousesToRent from '../components/houses-to-rent/HousesToRent';
 import About from '../components/about/About';
 import Contact from '../components/contact/Contact';
-import ScrollDialog from '../components/adverts/AnnounceToRent.jsx';
+import AnnounceToRent from '../components/adverts/AnnounceToRent.jsx';
 import { MyAdverts } from '../components/adverts/MyAdverts';
 import { EditCardAdvert } from '../components/adverts/EditCardAdvert';
 import AuthRouter from '../routers/AuthRouter';
@@ -84,7 +84,7 @@ export const AppRouter = () => {
           <PrivateRoute
             isAuthenticated={isLoggedIn}
             path='/anunciar-para-alugar'
-            component={ScrollDialog}
+            component={AnnounceToRent}
           />
           <PrivateRoute
             path='/meus-anuncios'

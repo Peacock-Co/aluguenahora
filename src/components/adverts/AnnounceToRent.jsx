@@ -79,7 +79,7 @@ const rooms = [
   },
 ];
 
-export default function ScrollDialog({
+export default function AnnounceToRent({
   createAdvert,
   selectedAdvert,
   updatedAdvert,

@@ -14,7 +14,6 @@ import {
   Tabs,
   Tab,
   Button,
-  Menu,
   MenuItem,
   IconButton,
   useScrollTrigger,
@@ -25,11 +24,26 @@ import {
   ListItemText,
   Divider,
   Hidden,
+  Popper,
+  Grow,
+  ClickAwayListener,
+  MenuList,
+  Paper,
+  ListItemIcon,
+  Collapse,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import PublishTwoToneIcon from '@material-ui/icons/PublishTwoTone';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import CardMembershipTwoToneIcon from '@material-ui/icons/CardMembershipTwoTone';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import StarBorder from '@material-ui/icons/StarBorder';
+import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
+import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
 
 // Logo from assets
 import logo from '../../assets/pics/aluguenahora.logo.svg';
@@ -57,6 +71,7 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
+    width: '18rem',
   },
   tabContainer: {
     marginRight: 'auto',
@@ -151,6 +166,7 @@ const Header = (props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [open, setOpen] = useState(true);
 
   // Handler Functions
   const handleChange = (e, newValue) => {
@@ -160,6 +176,7 @@ const Header = (props) => {
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
     setOpenMenu(true);
+    setOpen(!open);
   };
 
   const handleMenuItemClick = (e, i) => {
@@ -177,13 +194,14 @@ const Header = (props) => {
     dispatch(startLogout());
   };
 
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpenMenu(false);
+    }
+  }
+
   const menuOptions = [
-    {
-      name: 'Para proprietários',
-      link: '/para-proprietarios',
-      activeIndex: 2,
-      selectedIndex: 0,
-    },
     {
       name: 'Meus Imóveis',
       link: '/meus-anuncios',
@@ -261,10 +279,62 @@ const Header = (props) => {
             aria-owns={route.ariaOwns}
             aria-haspopup={route.ariaPopup}
             onMouseOver={route.mouseOver}
+            onMouseLeave={() => setOpenMenu(false)}
           />
         ))}
       </Tabs>
-      <Menu
+      <Popper
+        open={openMenu}
+        anchorEl={anchorEl}
+        placement='bottom-start'
+        role={undefined}
+        transition
+        disablePortal
+      >
+        {({ TransitionProps }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin: 'top-left',
+            }}
+          >
+            <Paper classes={{ root: classes.menu }} elevation={0}>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  onMouseOver={() => setOpenMenu(true)}
+                  autoFocusItem={false}
+                  id='simple-menu'
+                  onKeyDown={handleListKeyDown}
+                  onMouseLeave={handleClose}
+                  disablePadding
+                >
+                  {menuOptions.map((option, i) => (
+                    <MenuItem
+                      key={`${option}${i}`}
+                      component={Link}
+                      to={option.link}
+                      classes={{ root: classes.menuItem }}
+                      onClick={(event) => {
+                        handleMenuItemClick(event, i);
+                        props.setValue(1);
+                        handleClose(true);
+                      }}
+                      selected={
+                        i === props.selectedIndex &&
+                        props.value === 1 &&
+                        window.location.pathname !== '/meus-imoveis'
+                      }
+                    >
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+      {/* <Menu
         id='simple-menu'
         anchorEl={anchorEl}
         open={openMenu}
@@ -273,24 +343,7 @@ const Header = (props) => {
         MenuListProps={{ onMouseLeave: handleClose }}
         style={{ zIndex: 1302 }}
         keepMounted
-      >
-        {menuOptions.map((option, i) => (
-          <MenuItem
-            key={`${option}${i}`}
-            component={Link}
-            to={option.link}
-            classes={{ root: classes.menuItem }}
-            onClick={(event) => {
-              handleMenuItemClick(event, i);
-              props.setValue(1);
-              handleClose(true);
-            }}
-            selected={i === props.selectedIndex && props.value === 1}
-          >
-            {option.name}
-          </MenuItem>
-        ))}
-      </Menu>
+      ></Menu> */}
     </>
   );
 
@@ -306,25 +359,56 @@ const Header = (props) => {
       >
         <div className={classes.toolbarMargin} />
         <List disablePadding>
-          {routes.map((route) => (
+          <Link to={'/imoveis-para-alugar'}>
             <ListItem
-              divider
-              key={`${route}${route.activeIndex}`}
               button
-              component={Link}
-              to={route.link}
-              selected={props.value === route.activeIndex}
-              classes={{ selected: classes.drawerItemSelected }}
-              onClick={() => {
-                setOpenDrawer(false);
-                props.setValue(route.activeIndex);
-              }}
+              activeindex='1'
+              name='Imoveis para alugar'
+              className={classes.drawerItems}
             >
-              <ListItemText className={classes.drawerItems} disableTypography>
-                {route.name}
-              </ListItemText>
+              <ListItemIcon>
+                <HomeTwoToneIcon />
+              </ListItemIcon>
+              <ListItemText primary='Imóveis para aluguar' />
             </ListItem>
-          ))}
+          </Link>
+          <ListItem button onClick={handleClick}>
+            <ListItemIcon>
+              <CardMembershipTwoToneIcon />
+            </ListItemIcon>
+            <ListItemText primary='Para proprietários' />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={open} timeout='auto' unmountOnExit>
+            <List component='div' disablePadding>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
+                <ListItemText primary='Meus imóvies' />
+              </ListItem>
+            </List>
+            <List component='div' disablePadding>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <PublishTwoToneIcon />
+                </ListItemIcon>
+                <ListItemText primary='Anunciar para alugar' />
+              </ListItem>
+            </List>
+          </Collapse>
+          <ListItem button>
+            <ListItemIcon>
+              <ContactSupportTwoToneIcon />
+            </ListItemIcon>
+            <ListItemText primary='Quem somos' />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <DraftsIcon />
+            </ListItemIcon>
+            <ListItemText primary='Contate nos' />
+          </ListItem>
         </List>
       </SwipeableDrawer>
     </>
