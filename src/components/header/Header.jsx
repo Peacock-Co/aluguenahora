@@ -14,7 +14,7 @@ import {
   Tabs,
   Tab,
   Button,
-  MenuItem,
+  Menu,
   IconButton,
   useScrollTrigger,
   useMediaQuery,
@@ -24,22 +24,13 @@ import {
   ListItemText,
   Divider,
   Hidden,
-  Popper,
-  Grow,
-  ClickAwayListener,
-  MenuList,
-  Paper,
   ListItemIcon,
-  Collapse,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import DraftsIcon from '@material-ui/icons/Drafts';
-import CardMembershipTwoToneIcon from '@material-ui/icons/CardMembershipTwoTone';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
 import ContactSupportTwoToneIcon from '@material-ui/icons/ContactSupportTwoTone';
@@ -105,6 +96,10 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       opacity: 1.1,
     },
+  },
+
+  menu: {
+    zIndex: 1302,
   },
 
   drawerIconContainer: {
@@ -193,12 +188,6 @@ const Header = (props) => {
     setOpen(!open);
   };
 
-  const handleMenuItemClick = (e, i) => {
-    setAnchorEl(null);
-    setOpenMenu(false);
-    props.setSelectedIndex(i);
-  };
-
   const handleClose = (e) => {
     setAnchorEl(null);
     setOpenMenu(false);
@@ -207,21 +196,6 @@ const Header = (props) => {
   const handleLogout = () => {
     dispatch(startLogout());
   };
-
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpenMenu(false);
-    }
-  }
-
-  const menuOptions = [
-    {
-      name: 'Meus Imóveis',
-      link: '/meus-anuncios',
-      activeIndex: 2,
-    },
-  ];
 
   const routes = [
     { name: 'Home', link: '/aluguenahora', activeIndex: 0 },
@@ -232,19 +206,16 @@ const Header = (props) => {
     },
 
     {
-      name: 'Para proprietarios',
-      link: '/para-proprietarios',
+      name: 'Meus Imóveis',
+      link: '/meus-anuncios',
       activeIndex: 2,
-      ariaOwns: anchorEl ? 'simple-menu' : undefined,
-      ariaPopup: anchorEl ? 'true' : undefined,
-      mouseOver: (event) => handleClick(event),
     },
     { name: 'Quem somos', link: '/quem-somos', activeIndex: 3 },
     { name: 'Contate nos', link: '/contato', activeIndex: 4 },
   ];
 
   useEffect(() => {
-    [...menuOptions, ...routes].forEach((route) => {
+    [...routes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
           if (props.value !== route.activeIndex) {
@@ -261,7 +232,7 @@ const Header = (props) => {
           break;
       }
     });
-  }, [props.value, menuOptions, props.selectedIndex, routes, props]);
+  }, [props.value, props.selectedIndex, routes, props]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -293,61 +264,12 @@ const Header = (props) => {
             aria-haspopup={route.ariaPopup}
             onMouseOver={route.mouseOver}
             onMouseLeave={() => setOpenMenu(false)}
+            onClick={handleClick}
           />
         ))}
       </Tabs>
-      <Popper
-        open={openMenu}
-        anchorEl={anchorEl}
-        placement='bottom-start'
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: 'top-left',
-            }}
-          >
-            <Paper classes={{ root: classes.menu }} elevation={0}>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  onMouseOver={() => setOpenMenu(true)}
-                  autoFocusItem={false}
-                  id='simple-menu'
-                  onKeyDown={handleListKeyDown}
-                  onMouseLeave={handleClose}
-                  disablePadding
-                >
-                  {menuOptions.map((option, i) => (
-                    <MenuItem
-                      key={`${option}${i}`}
-                      component={Link}
-                      to={option.link}
-                      classes={{ root: classes.menuItem }}
-                      onClick={(event) => {
-                        handleMenuItemClick(event, i);
-                        props.setValue(1);
-                        handleClose(true);
-                      }}
-                      selected={
-                        i === props.selectedIndex &&
-                        props.value === 1 &&
-                        window.location.pathname !== '/meus-imoveis'
-                      }
-                    >
-                      {option.name}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-      {/* <Menu
+
+      <Menu
         id='simple-menu'
         anchorEl={anchorEl}
         open={openMenu}
@@ -356,7 +278,7 @@ const Header = (props) => {
         MenuListProps={{ onMouseLeave: handleClose }}
         style={{ zIndex: 1302 }}
         keepMounted
-      ></Menu> */}
+      ></Menu>
     </>
   );
 
@@ -385,36 +307,21 @@ const Header = (props) => {
             </ListItemIcon>
             <ListItemText primary='Imóveis para aluguar' />
           </ListItem>
+
           <ListItem
             button
-            onClick={handleClick}
-            name='Para proprietários'
-            activeindex='2'
             className={classes.drawerItems}
+            name='Meus imóvies'
+            component={Link}
+            to={'/meus-anuncios'}
+            activeindex='2'
           >
             <ListItemIcon>
-              <CardMembershipTwoToneIcon />
+              <StarBorder />
             </ListItemIcon>
-            <ListItemText primary='Para proprietários' activeindex='2' />
-            {open ? <ExpandLess /> : <ExpandMore />}
+            <ListItemText primary='Meus imóvies' />
           </ListItem>
-          <Collapse in={open} timeout='auto' unmountOnExit>
-            <List component='div' disablePadding>
-              <ListItem
-                button
-                className={classes.drawerItems}
-                name='Meus imóvies'
-                component={Link}
-                to={'/meus-anuncios'}
-                activeindex='2'
-              >
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary='Meus imóvies' />
-              </ListItem>
-            </List>
-          </Collapse>
+
           <ListItem
             button
             activeindex='3'
