@@ -36,7 +36,6 @@ import { makeStyles } from '@material-ui/styles';
 import { useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import PublishTwoToneIcon from '@material-ui/icons/PublishTwoTone';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import CardMembershipTwoToneIcon from '@material-ui/icons/CardMembershipTwoTone';
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -71,21 +70,25 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    width: '18rem',
+    width: '20rem',
   },
+
   tabContainer: {
     marginRight: 'auto',
   },
+
   tab: {
     ...theme.typography.tab,
     minWidth: 10,
     marginLeft: '25px',
   },
+
   logoContainer: {
     '&:hover': {
       backgroundColor: 'transparent',
     },
   },
+
   logo: {
     height: '2.7em',
     marginBottom: '0.5em',
@@ -94,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
       height: '2em',
     },
   },
+
   menuItem: {
     ...theme.typography.tab,
     fontSize: 14,
@@ -102,11 +106,13 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1.1,
     },
   },
+
   drawerIconContainer: {
     '&:hover': {
       backgroundColor: 'transparent',
     },
   },
+
   drawerIcon: {
     height: '40px',
     width: '40px',
@@ -124,14 +130,20 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.tab,
     fontSize: 14,
     opacity: 0.6,
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
   },
+
   drawerItemSelected: {
     opacity: 1.1,
   },
+
   appbar: {
     zIndex: theme.zIndex.modal + 1,
     backgroundColor: '#ffffff',
   },
+
   toolbar: {
     [theme.breakpoints.down('md')]: {
       justifyContent: 'space-between',
@@ -140,10 +152,12 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'start',
     },
   },
+
   accountButtom: {
     marginRight: '1.5em',
     borderRadius: '5em',
   },
+
   logoutButton: {
     marginRight: '1.5em',
     borderRadius: '5em',
@@ -206,7 +220,6 @@ const Header = (props) => {
       name: 'Meus Imóveis',
       link: '/meus-anuncios',
       activeIndex: 2,
-      selectedIndex: 2,
     },
   ];
 
@@ -359,51 +372,70 @@ const Header = (props) => {
       >
         <div className={classes.toolbarMargin} />
         <List disablePadding>
-          <Link to={'/imoveis-para-alugar'}>
-            <ListItem
-              button
-              activeindex='1'
-              name='Imoveis para alugar'
-              className={classes.drawerItems}
-            >
-              <ListItemIcon>
-                <HomeTwoToneIcon />
-              </ListItemIcon>
-              <ListItemText primary='Imóveis para aluguar' />
-            </ListItem>
-          </Link>
-          <ListItem button onClick={handleClick}>
+          <ListItem
+            component={Link}
+            to={'/imoveis-para-alugar'}
+            button
+            activeindex='1'
+            name='Imoveis para alugar'
+            className={classes.drawerItems}
+          >
+            <ListItemIcon>
+              <HomeTwoToneIcon />
+            </ListItemIcon>
+            <ListItemText primary='Imóveis para aluguar' />
+          </ListItem>
+          <ListItem
+            button
+            onClick={handleClick}
+            name='Para proprietários'
+            activeindex='2'
+            className={classes.drawerItems}
+          >
             <ListItemIcon>
               <CardMembershipTwoToneIcon />
             </ListItemIcon>
-            <ListItemText primary='Para proprietários' />
+            <ListItemText primary='Para proprietários' activeindex='2' />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={open} timeout='auto' unmountOnExit>
             <List component='div' disablePadding>
-              <ListItem button className={classes.nested}>
+              <ListItem
+                button
+                className={classes.drawerItems}
+                name='Meus imóvies'
+                component={Link}
+                to={'/meus-anuncios'}
+                activeindex='2'
+              >
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
                 <ListItemText primary='Meus imóvies' />
               </ListItem>
             </List>
-            <List component='div' disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <PublishTwoToneIcon />
-                </ListItemIcon>
-                <ListItemText primary='Anunciar para alugar' />
-              </ListItem>
-            </List>
           </Collapse>
-          <ListItem button>
+          <ListItem
+            button
+            activeindex='3'
+            className={classes.drawerItems}
+            name='Quem somos'
+            component={Link}
+            to={'/quem-somos'}
+          >
             <ListItemIcon>
               <ContactSupportTwoToneIcon />
             </ListItemIcon>
             <ListItemText primary='Quem somos' />
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            activeindex='4'
+            className={classes.drawerItems}
+            name='Contate nos'
+            component={Link}
+            to={'/contato'}
+          >
             <ListItemIcon>
               <DraftsIcon />
             </ListItemIcon>
@@ -438,7 +470,10 @@ const Header = (props) => {
             </Button>
             {matches ? drawer : tabs}
             <Hidden xsDown>
-              <Link to='/auth/login' style={{ textDecoration: 'none' }}>
+              <Link
+                to='/auth/login'
+                style={{ textDecoration: 'none', marginLeft: 'auto' }}
+              >
                 {isLoggedIn ? (
                   <>
                     <Button
