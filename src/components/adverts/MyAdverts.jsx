@@ -56,6 +56,10 @@ export const MyAdverts = () => {
     setOpen(true);
   }
 
+  function handleDeleteAdvert(advertId) {
+    setAdverts(adverts.filter((adv) => adv.id !== advertId));
+  }
+
   return (
     <>
       <Grid
@@ -69,6 +73,7 @@ export const MyAdverts = () => {
           <CardAdvertPropertyList
             adverts={adverts}
             selectAdvert={handleSelectAdvert}
+            deleteAdvert={handleDeleteAdvert}
           />
         </Grid>
         <Grid item>

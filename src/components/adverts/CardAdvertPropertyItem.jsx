@@ -76,7 +76,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function CardAdvertPropertyItem({ advert, selectAdvert }) {
+export function CardAdvertPropertyItem({ advert, selectAdvert, deleteAdvert }) {
   const classes = useStyles();
   // const dispatch = useDispatch();
   const [currImg, setCurrImg] = useState(0);
@@ -178,9 +178,9 @@ export function CardAdvertPropertyItem({ advert, selectAdvert }) {
                   cursor: 'pointer',
                   margin: '0.5em',
                 }}
-                onClick={() => selectAdvert(advert)}
+                onClick={() => deleteAdvert(advert.id)}
               >
-                Deletar
+                Eliminar
               </Button>
             </Grid>
           </Grid>

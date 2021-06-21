@@ -14,7 +14,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardAdvertPropertyList({ adverts, selectAdvert }) {
+export default function CardAdvertPropertyList({
+  adverts,
+  selectAdvert,
+  deleteAdvert,
+}) {
   const classes = useStyles();
 
   return (
@@ -42,6 +46,7 @@ export default function CardAdvertPropertyList({ adverts, selectAdvert }) {
                 advert={advert}
                 key={advert.id}
                 selectAdvert={selectAdvert}
+                deleteAdvert={deleteAdvert}
               />
             ))}
           </Grid>
